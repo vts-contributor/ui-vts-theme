@@ -1,0 +1,146 @@
+@import '../../variables';
+
+// cdk overlay
+.cdk-overlay-container {
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+}
+
+.cdk-visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  outline: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.cdk-overlay-backdrop {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .4s cubic-bezier(.25, .8, .25, 1);
+  opacity: 0;
+  position: absolute;
+  pointer-events: auto;
+  z-index: 1000;
+
+  &.vts-modal-mask {
+    opacity: 1;
+  }
+}
+
+.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  z-index: 1000; // Give an opportunity to the content own to manage their z-index such as Modal
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  min-width: 1px;
+  min-height: 1px;
+}
+
+// Used when disabling global scrolling.
+.cdk-global-scrollblock {
+  position: fixed;
+
+  // Necessary for the content not to lose its width. Note that we're using 100%, instead of
+  // 100vw, because 100vw includes the width plus the scrollbar, whereas 100% is the width
+  // that the element had before we made it `fixed`.
+  width: 100%;
+
+  // Note: this will always add a scrollbar to whatever element it is on, which can
+  // potentially result in double scrollbars. It shouldn't be an issue, because we won't
+  // block scrolling on a page that doesn't have a scrollbar in the first place.
+  overflow-y: scroll;
+
+  // https://github.com/angular/material2/issues/15051
+  body {
+    overflow-x: visible;
+  }
+}
+
+.vts-overlay-transparent-backdrop {
+  &, &.cdk-overlay-backdrop-showing {
+    opacity: 0;
+  }
+}
+
+.vts-animate-disabled {
+  // drawer
+  &.vts-drawer {
+    &.vts-drawer-open .vts-drawer-mask {
+      animation: none;
+      transition: none;
+    }
+
+    & > * {
+      transition: none;
+    }
+  }
+
+  // modal
+  .vts-modal-mask, .vts-modal {
+    animation: none;
+    transition: none;
+
+    &.zoom-enter, &.zoom-leave,
+    &.zoom-enter-active, &.zoom-leave-active {
+      animation: none;
+      transition: none;
+    }
+  }
+
+  // menu
+  &.vts-menu {
+    transition: none;
+
+    .vts-menu-item, .vts-menu-submenu-title {
+      transition: none;
+    }
+
+    .vts-menu-item .vtsicon, .vts-menu-submenu-title .vtsicon {
+      transition: none;
+
+      & + span {
+        transition: none;
+      }
+    }
+  }
+
+  // tabs
+  &.vts-tabs {
+    .vts-tabs-top-content.vts-tabs-content-animated,
+    .vts-tabs-bottom-content.vts-tabs-content-animated,
+    .vts-tabs-top-content > .vts-tabs-tabpane,
+    .vts-tabs-bottom-content > .vts-tabs-tabpane,
+    &.vts-tabs-left .vts-tabs-ink-bar-animated,
+    &.vts-tabs-right .vts-tabs-ink-bar-animated,
+    &.vts-tabs-top .vts-tabs-ink-bar-animated,
+    &.vts-tabs-bottom .vts-tabs-ink-bar-animated {
+      transition: none;
+    }
+  }
+
+  // collapse
+  &.vts-collapse > .vts-collapse-item > .vts-collapse-header .vts-collapse-arrow svg {
+    transition: none;
+  }
+}

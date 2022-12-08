@@ -1,0 +1,94 @@
+@import '../../../style/themes/index';
+@import '../../../style/mixins/index';
+
+@typography-prefix-cls: ~'@{vts-prefix}-typo';
+
+.@{typography-prefix-cls} {
+    &-h1 {
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 54px;
+        font-family: @typography-font-1;
+    }
+    
+    &-h2 {
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 48px;
+        font-family: @typography-font-1;
+    }
+
+    &-h3 {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 36px;
+        font-family: @typography-font-1;
+    }
+
+    &-h4 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 36px;
+        font-family: @typography-font-2;
+    }
+
+    &-h5 {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        font-family: @typography-font-2;
+    }
+
+    &-sub1 {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 30px;
+        font-family: @typography-font-2;
+    }
+
+    &-sub2 {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        font-family: @typography-font-2;
+    }
+
+    &-body1 {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        font-family: @typography-font-2;
+    }
+
+    &-body2 {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        font-family: @typography-font-2;
+    }
+
+    &-link {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        font-family: @typography-font-2;
+        text-decoration: underline;
+        color: @btn-link-color;
+        cursor: pointer;
+
+        &:hover {
+            color: @btn-link-hover-color;
+            text-decoration: @btn-link-hover-text-decoration;
+        }
+
+        &:active {
+            color: @btn-link-active-color;
+            text-decoration: @btn-link-hover-text-decoration;
+        }
+
+        &:focus {
+            color: @btn-link-focus-color;
+            text-decoration: @btn-link-focus-text-decoration;
+        }
+    }
+}

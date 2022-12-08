@@ -1,0 +1,516 @@
+@import '../../../style/themes/index';
+@import '../../../style/mixins/index';
+
+@input-affix-with-clear-btn-width: 38px;
+
+// size mixins for input
+.input-xl() {
+  padding: @input-padding-vertical-xl @input-padding-horizontal-xl;
+  font-size: @input-font-size-xl;
+}
+
+.input-lg() {
+  padding: @input-padding-vertical-lg @input-padding-horizontal-lg;
+  font-size: @input-font-size-lg;
+}
+
+.input-md() {
+  padding: @input-padding-vertical-md @input-padding-horizontal-md;
+  font-size: @input-font-size-md;
+}
+
+.input-sm() {
+  padding: @input-padding-vertical-sm @input-padding-horizontal-sm;
+  font-size: @input-font-size-sm;
+}
+
+// input status
+// == when focus or actived
+.active(@color: @outline-color) {
+  & when (@theme = dark) {
+    border-color: @color;
+  }
+  & when not (@theme = dark) {
+    border-color: ~`colorPalette('@{color}', 5) `;
+  }
+  border-right-width: @border-width-base !important;
+  outline: 0;
+}
+
+// == when hoverd
+.hover(@border-color: @input-border-hover) {
+  border-color: @border-color;
+}
+
+.disabled() {
+  color: @input-color-disable;
+  background-color: @input-bg-disable;
+  cursor: not-allowed;
+  opacity: 1;
+
+  &:hover {
+    .hover(@input-border-default);
+  }
+}
+
+.state-for-child(@child-cls) {
+  &:hover .@{child-cls} {
+    border-color: @input-border-hover;
+    color: @input-color-hover;
+    background: @input-bg-hover;
+  }
+
+  &:focus .@{child-cls}, &-focused .@{child-cls} {
+    border-color: @input-border-focus;
+    color: @input-color-focus;
+    background: @input-bg-focus;
+  }
+
+  &-sm:focus .@{child-cls}, &-sm&-focused .@{child-cls} {
+    box-shadow: @input-box-shadow-sm;
+  }
+
+  &-md:focus .@{child-cls}, &-md&-focused .@{child-cls} {
+    box-shadow: @input-box-shadow-md;
+  }
+
+  &-lg:focus .@{child-cls}, &-lg&-focused .@{child-cls} {
+    box-shadow: @input-box-shadow-lg;
+  }
+  
+  &-xl:focus .@{child-cls}, &-xl&-focused .@{child-cls} {
+    box-shadow: @input-box-shadow-xl;
+  }
+
+  &:focus-visible .@{child-cls} {
+    outline: none;
+  }
+
+  &&-disabled .@{child-cls}, &&[disabled] .@{child-cls} {
+    border-color: @input-border-disable;
+    color: @input-color-disable;
+    background: @input-bg-disable;
+  }
+}
+
+.state() {
+  &:hover {
+    border-color: @input-border-hover;
+    color: @input-color-hover;
+    background: @input-bg-hover;
+  }
+
+  &:focus, &-focused {
+    border-color: @input-border-focus;
+    color: @input-color-focus;
+    background: @input-bg-focus;
+  }
+
+  &-sm:focus, &-sm&-focused {
+    box-shadow: @input-box-shadow-sm;
+  }
+
+  &-md:focus, &-md&-focused {
+    box-shadow: @input-box-shadow-md;
+  }
+
+  &-lg:focus, &-lg&-focused {
+    box-shadow: @input-box-shadow-lg;
+  }
+  
+  &-xl:focus, &-xl&-focused {
+    box-shadow: @input-box-shadow-xl;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  // &-filled {
+  //   border-color: @input-border-fill;
+  //   color: @input-color-fill;
+  //   background: @input-bg-fill;
+  // }
+
+  // &-filled:focus {
+  //   border-color: @input-border-typing;
+  //   color: @input-color-typing;
+  //   background: @input-bg-typing;
+  //   box-shadow: none;
+  // }
+
+  &&-disabled, &&[disabled] {
+    border-color: @input-border-disable;
+    color: @input-color-disable;
+    background: @input-bg-disable;
+  }
+}
+
+// Basic style for input
+.input() {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  padding: @input-padding-vertical-md @input-padding-horizontal-md;
+  color: @input-color-default;
+  font-size: @font-size-base;
+  line-height: @line-height-base;
+  background-color: @input-bg-default;
+  background-image: none;
+  border: @border-width-base @border-style-base @input-border-default;
+  border-radius: @border-radius-base;
+  transition: all 0.3s;
+  .placeholder(); // Reset placeholder
+  .state();
+
+  &-borderless {
+    &,
+    &:hover,
+    &:focus,
+    &-focused,
+    &-disabled,
+    &[disabled] {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+    }
+  }
+
+  // Reset height for `textarea`s
+  textarea& {
+    max-width: 100%; // prevent textearea resize from coming out of its container
+    height: auto;
+    min-height: @input-height-md;
+    line-height: @line-height-base;
+    vertical-align: bottom;
+    transition: all 0.3s, height 0s;
+    padding: @textarea-padding !important;
+  }
+
+  // Size
+  &-xl {
+    .input-xl();
+  }
+
+  &-lg {
+    .input-lg();
+  }
+
+  &-md {
+    .input-md();
+  }
+
+  &-sm {
+    .input-sm();
+  }
+}
+
+// label input
+.input-group(@inputClass) {
+  position: relative;
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  // Undo padding and float of grid classes
+  &[class*='col-'] {
+    float: none;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  > [class*='col-'] {
+    padding-right: 8px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  &-addon,
+  &-wrap,
+  > .@{inputClass} {
+    display: table-cell;
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+  }
+
+  &-addon,
+  &-wrap {
+    width: 1px; // To make addon/wrap as small as possible
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  &-wrap > * {
+    display: block !important;
+  }
+
+  .@{inputClass} {
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: inherit;
+
+    &:focus {
+      z-index: 1; // Fix https://gw.alipayobjects.com/zos/rmsportal/DHNpoqfMXSfrSnlZvhsJ.png
+      border-right-width: 1px;
+    }
+
+    &:hover {
+      z-index: 1;
+      border-right-width: 1px;
+      .@{vts-prefix}-input-search-with-button & {
+        z-index: 0;
+      }
+    }
+  }
+
+  &-addon {
+    position: relative;
+    padding: 0 @input-padding-horizontal-md;
+    color: @input-color-default;
+    font-weight: normal;
+    font-size: @font-size-base;
+    text-align: center;
+    background-color: @input-addon-bg;
+    border: @border-width-base @border-style-base @input-border-default;
+    border-radius: @border-radius-base;
+    transition: all 0.3s;
+
+    // Reset Select's style in addon
+    .@{vts-prefix}-select {
+      margin: -(@input-padding-vertical-md + 1px) (-@input-padding-horizontal-md);
+
+      &.@{vts-prefix}-select-single:not(.@{vts-prefix}-select-customize-input)
+        .@{vts-prefix}-select-selector {
+        background-color: inherit;
+        border: @border-width-base @border-style-base transparent;
+        box-shadow: none;
+      }
+
+      &-open,
+      &-focused {
+        .@{vts-prefix}-select-selector {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+
+  // Reset rounded corners
+  > .@{inputClass}:first-child,
+  &-addon:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    // Reset Select's style in addon
+    .@{vts-prefix}-select .@{vts-prefix}-select-selector {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  > .@{inputClass}-affix-wrapper {
+    &:not(:first-child) .@{inputClass} {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:not(:last-child) .@{inputClass} {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &-addon:first-child {
+    border-right: 0;
+  }
+
+  &-addon:last-child {
+    border-left: 0;
+  }
+
+  > .@{inputClass}:last-child,
+  &-addon:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    // Reset Select's style in addon
+    .@{vts-prefix}-select .@{vts-prefix}-select-selector {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  // Sizing options
+  &-xl .@{inputClass},
+  &-xl > &-addon {
+    .input-xl();
+  }
+
+  &-lg .@{inputClass},
+  &-lg > &-addon {
+    .input-lg();
+  }
+
+  &-md .@{inputClass},
+  &-md > &-addon {
+    .input-md();
+  }
+
+  &-sm .@{inputClass},
+  &-sm > &-addon {
+    .input-sm();
+  }
+
+  // Fix https://github.com/ant-design-git/ant-design-git/issues/5754
+  &-xl .@{vts-prefix}-select-single .@{vts-prefix}-select-selector {
+    height: @input-height-xl;
+  }
+
+  &-lg .@{vts-prefix}-select-single .@{vts-prefix}-select-selector {
+    height: @input-height-lg;
+  }
+
+  &-md .@{vts-prefix}-select-single .@{vts-prefix}-select-selector {
+    height: @input-height-md;
+  }
+
+  &-sm .@{vts-prefix}-select-single .@{vts-prefix}-select-selector {
+    height: @input-height-sm;
+  }
+
+  .@{inputClass}-affix-wrapper {
+    &:not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      .@{vts-prefix}-input-search & {
+        border-top-left-radius: @border-radius-base;
+        border-bottom-left-radius: @border-radius-base;
+      }
+    }
+  }
+
+  &&-compact {
+    display: block;
+    .clearfix();
+
+    &-addon,
+    &-wrap,
+    > .@{inputClass} {
+      &:not(:first-child):not(:last-child) {
+        border-right-width: @border-width-base;
+
+        &:hover {
+          z-index: 1;
+        }
+
+        &:focus {
+          z-index: 1;
+        }
+      }
+    }
+
+    & > * {
+      display: inline-block;
+      float: none;
+      vertical-align: top; // https://github.com/ant-design-git/ant-design-git-pro/issues/139
+      border-radius: 0;
+    }
+
+    & > .@{inputClass}-affix-wrapper {
+      display: inline-flex;
+    }
+
+    & > .@{vts-prefix}-picker-range {
+      display: inline-flex;
+    }
+
+    & > *:not(:last-child) {
+      margin-right: -@border-width-base;
+      border-right-width: @border-width-base;
+    }
+
+    // Undo float for .vts-input-group .vts-input
+    .@{inputClass} {
+      float: none;
+    }
+
+    // reset border for Select, DatePicker, AutoComplete, Cascader, Mention, TimePicker, Input
+    & > .@{vts-prefix}-select > .@{vts-prefix}-select-selector,
+    & > .@{vts-prefix}-select-auto-complete .@{vts-prefix}-input,
+    & > .@{vts-prefix}-cascader-picker .@{vts-prefix}-input,
+    & > .@{vts-prefix}-input-group-wrapper .@{vts-prefix}-input {
+      border-right-width: @border-width-base;
+      border-radius: 0;
+
+      &:hover {
+        z-index: 1;
+      }
+
+      &:focus {
+        z-index: 1;
+      }
+    }
+
+    & > .@{vts-prefix}-select-focused {
+      z-index: 1;
+    }
+
+    // update z-index for arrow icon
+    & > .@{vts-prefix}-select > .@{vts-prefix}-select-arrow {
+      z-index: 1; // https://github.com/ant-design-git/ant-design-git/issues/20371
+    }
+
+    & > *:first-child,
+    & > .@{vts-prefix}-select:first-child > .@{vts-prefix}-select-selector,
+    & > .@{vts-prefix}-select-auto-complete:first-child .@{vts-prefix}-input,
+    & > .@{vts-prefix}-cascader-picker:first-child .@{vts-prefix}-input {
+      border-top-left-radius: @border-radius-base;
+      border-bottom-left-radius: @border-radius-base;
+    }
+
+    & > *:last-child,
+    & > .@{vts-prefix}-select:last-child > .@{vts-prefix}-select-selector,
+    & > .@{vts-prefix}-cascader-picker:last-child .@{vts-prefix}-input,
+    & > .@{vts-prefix}-cascader-picker-focused:last-child .@{vts-prefix}-input {
+      border-right-width: @border-width-base;
+      border-top-right-radius: @border-radius-base;
+      border-bottom-right-radius: @border-radius-base;
+    }
+
+    // https://github.com/ant-design-git/ant-design-git/issues/12493
+    & > .@{vts-prefix}-select-auto-complete .@{vts-prefix}-input {
+      vertical-align: top;
+    }
+
+    .@{vts-prefix}-input-group-wrapper + .@{vts-prefix}-input-group-wrapper {
+      margin-left: -1px;
+      .@{vts-prefix}-input-affix-wrapper {
+        border-radius: 0;
+      }
+    }
+
+    .@{vts-prefix}-input-group-wrapper:not(:last-child) {
+      &.@{vts-prefix}-input-search > .@{vts-prefix}-input-group {
+        & > .@{vts-prefix}-input-group-addon > .@{vts-prefix}-input-search-button {
+          border-radius: 0;
+        }
+
+        & > .@{vts-prefix}-input {
+          border-radius: @border-radius-base 0 0 @border-radius-base;
+        }
+      }
+    }
+  }
+}

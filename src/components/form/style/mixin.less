@@ -1,0 +1,152 @@
+@import '../../input/style/mixin';
+@import '../../input/style/affix';
+
+@form-prefix-cls: ~'@{vts-prefix}-form';
+@form-item-prefix-cls: ~'@{form-prefix-cls}-item';
+
+.form-control-validation(@text-color: @input-color-default; @border-color: @input-border-default; @background-color: @input-bg-default) {
+  .@{vts-prefix}-form-item-split {
+    color: @text-color;
+  }
+
+  .@{vts-prefix}-form-item-control .@{vts-prefix}-input,
+  .@{vts-prefix}-form-item-control .@{vts-prefix}-input-affix-wrapper {
+    &,
+    &:hover {
+      background-color: @background-color;
+      border-color: @border-color;
+      color: @text-color;
+    }
+
+    &:focus,
+    &-focused {
+      .active(@border-color);
+    }
+
+    &&-disabled, &&[disabled] {
+      background-color: @input-bg-disable;
+      color: @input-color-disable;
+      border-color: @input-border-disable;
+  
+      input:focus {
+        box-shadow: none !important;
+      }
+    }
+  }
+
+  .@{vts-prefix}-input-disabled {
+    background-color: @input-bg-disable;
+    border-color: @input-border-default;
+  }
+
+  .@{vts-prefix}-calendar-picker-open .@{vts-prefix}-calendar-picker-input {
+    .active(@border-color);
+  }
+
+  .@{vts-prefix}-input-prefix {
+    color: @text-color;
+  }
+
+  .@{vts-prefix}-input-group-addon {
+    color: @text-color;
+    border-color: @border-color;
+  }
+
+  .has-feedback {
+    color: @text-color;
+  }
+}
+
+// Reset form styles
+// -----------------------------
+// Based on Bootstrap framework
+.reset-form() {
+  legend {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0;
+    color: @text-color-secondary;
+    line-height: inherit;
+    border: 0;
+    border-bottom: @border-width-base @border-style-base @border-color-base;
+  }
+
+  input[type='search'] {
+    box-sizing: border-box;
+  }
+
+  // Position radios and checkboxes better
+  input[type='radio'],
+  input[type='checkbox'] {
+    line-height: normal;
+  }
+
+  input[type='file'] {
+    display: block;
+  }
+
+  // Make range inputs behave like textual form controls
+  input[type='range'] {
+    display: block;
+    width: 100%;
+  }
+
+  // Make multiple select elements height not fixed
+  select[multiple],
+  select[size] {
+    height: auto;
+  }
+
+  // Focus for file, radio, and checkbox
+  input[type='file']:focus,
+  input[type='radio']:focus,
+  input[type='checkbox']:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+
+  // Adjust output element
+  output {
+    display: block;
+    padding-top: 15px;
+    color: @input-color-default;
+    line-height: @line-height-base;
+  }
+}
+
+.formSize(@suffix, @padding-vertical, @padding-horizon, @font-size) {
+  &-@{suffix} &-item {
+    font-size: @font-size;
+  }
+
+  &-@{suffix} {
+    font-size: @font-size;
+
+    .@{vts-prefix}-input {
+      .input-affix();
+    }
+
+    .@{form-item-prefix-cls}-control-input when (@suffix = xl) {
+      .@{vts-prefix}-input, .@{vts-prefix}-input-affix-wrapper {
+        .input-xl();
+      }
+    }
+    .@{form-item-prefix-cls}-control-input when (@suffix = lg) {
+      .@{vts-prefix}-input, .@{vts-prefix}-input-affix-wrapper {
+        .input-lg();
+      }
+    }
+    .@{form-item-prefix-cls}-control-input when (@suffix = md) {
+      .@{vts-prefix}-input, .@{vts-prefix}-input-affix-wrapper {
+        .input-md();
+      }
+    }
+    .@{form-item-prefix-cls}-control-input when (@suffix = sm) {
+      .@{vts-prefix}-input, .@{vts-prefix}-input-affix-wrapper {
+        .input-sm();
+      }
+    }
+  }
+}

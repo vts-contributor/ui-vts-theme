@@ -1,0 +1,81 @@
+@import './index';
+
+.clear-icon-size() {
+  .@{vts-prefix}-input-sm + .@{vts-prefix}-input-suffix > & {
+    font-size: @icon-font-size-sm;
+  }
+  .@{vts-prefix}-input-md + .@{vts-prefix}-input-suffix > & {
+    font-size: @icon-font-size-md;
+  }
+  .@{vts-prefix}-input-lg + .@{vts-prefix}-input-suffix > & {
+    font-size: @icon-font-size-lg;
+  }
+  .@{vts-prefix}-input-xl + .@{vts-prefix}-input-suffix > & {
+    font-size: @icon-font-size-xl;
+  }
+  
+}
+
+// ========================= Input =========================
+.@{vts-prefix}-input-clear-icon {
+  margin: 0 @input-affix-margin;
+  color: @grey-3;
+  font-size: @icon-font-size-md;
+  vertical-align: -1px;
+  cursor: pointer;
+  transition: color 0.3s;
+  .clear-icon-size();
+
+  &:hover {
+    color: @grey-2;
+  }
+
+  &:active {
+    color: @text-color;
+  }
+
+  &-hidden {
+    visibility: hidden;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+// ======================= TextArea ========================
+.@{vts-prefix}-input-affix-wrapper-textarea-with-clear-btn {
+  padding: 0 !important;
+  border: 0 !important;
+
+  .@{vts-prefix}-suffix {
+    margin: 0;
+  }
+
+
+  .@{vts-prefix}-input-textarea-clear-icon {
+    position: absolute;
+    top: 8px;
+    right: @control-padding-horizontal;
+    z-index: 1;
+    color: @control-clear-icon-color-default;
+    font-size: @icon-font-size-md;
+    cursor: pointer;
+
+    &:hover {
+      color: @control-clear-icon-color-hover;
+    }
+  
+    &:active {
+      color: @text-color;
+    }
+  
+    &-hidden {
+      visibility: hidden;
+    }
+  }
+}
+
+.@{vts-prefix}-input-textarea-clear-icon {
+  .clear-icon-size();
+}

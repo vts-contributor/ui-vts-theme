@@ -1,0 +1,246 @@
+@import './index';
+
+@selection-item-padding: ceil(@font-size-base * 1.25);
+
+.@{select-prefix-cls}-single {
+  // ========================= Selector =========================
+  .@{select-prefix-cls}-selector {
+    display: flex;
+
+    .@{select-prefix-cls}-selection-search {
+      position: absolute;
+      top: 0;
+      right: @input-padding-horizontal-md;
+      bottom: 0;
+      left: @input-padding-horizontal-md;
+
+      &-input {
+        width: 100%;
+      }
+    }
+
+    .@{select-prefix-cls}-selection-item,
+    .@{select-prefix-cls}-selection-placeholder {
+      padding: 0;
+      line-height: @select-height-without-border;
+      transition: all 0.3s;
+
+      // Firefox inline-block position calculation is not same as Chrome & Safari. Patch this:
+      @supports (-moz-appearance: meterbar) {
+        & {
+          line-height: @select-height-without-border;
+        }
+      }
+    }
+
+    .@{select-prefix-cls}-selection-item {
+      position: relative;
+      user-select: none;
+    }
+
+    .@{select-prefix-cls}-selection-placeholder {
+      pointer-events: none;
+    }
+
+    // For common baseline align
+    &::after,
+    // For '' value baseline align
+    .@{select-prefix-cls}-selection-item::after,
+    // For undefined value baseline align
+    .@{select-prefix-cls}-selection-placeholder::after {
+      display: inline-block;
+      width: 0;
+      visibility: hidden;
+      content: '\a0';
+    }
+  }
+
+  // With arrow should provides `padding-right` to show the arrow
+  &.@{select-prefix-cls}-show-arrow .@{select-prefix-cls}-selection-search {
+    right: @input-padding-horizontal-md + @font-size-base;
+  }
+
+  // &.@{select-prefix-cls}-show-arrow .@{select-prefix-cls}-selection-item,
+  // &.@{select-prefix-cls}-show-arrow .@{select-prefix-cls}-selection-placeholder {
+  //   padding-right: @selection-item-padding;
+  // }
+
+  // Opacity selection if open
+  &.@{select-prefix-cls}-open .@{select-prefix-cls}-selection-item {
+    color: @input-placeholder-color;
+  }
+
+  // ========================== Input ==========================
+  // We only change the style of non-customize input which is only support by `combobox` mode.
+
+  // Not customize
+  &:not(.@{select-prefix-cls}-customize-input) {
+    .@{select-prefix-cls}-selector {
+      width: 100%;
+      height: @input-height-md;
+      padding: 0 @input-padding-horizontal-md;
+
+      .@{select-prefix-cls}-selection-search-input {
+        height: @select-height-without-border;
+      }
+
+      &::after {
+        line-height: @select-height-without-border;
+      }
+    }
+  }
+
+  &.@{select-prefix-cls}-customize-input {
+    .@{select-prefix-cls}-selector {
+      &::after {
+        display: none;
+      }
+
+      .@{select-prefix-cls}-selection-search {
+        position: static;
+        width: 100%;
+      }
+
+      .@{select-prefix-cls}-selection-placeholder {
+        position: absolute;
+        right: 0;
+        left: 0;
+        padding: 0 @input-padding-horizontal-md;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .select-size-single(xl);
+  .select-size-single(lg);
+  .select-size-single(md);
+  .select-size-single(sm);
+
+  // Size small need additional set padding
+  // &.@{select-prefix-cls}-sm {
+  //   &:not(.@{select-prefix-cls}-customize-input) {
+  //     .@{select-prefix-cls}-selection-search {
+  //       right: @input-padding-horizontal-sm;
+  //       left: @input-padding-horizontal-sm;
+  //     }
+
+  //     .@{select-prefix-cls}-selector {
+  //       padding: 0 @input-padding-horizontal-sm;
+  //     }
+
+  //     // With arrow should provides `padding-right` to show the arrow
+  //     &.@{select-prefix-cls}-show-arrow .@{select-prefix-cls}-selection-search {
+  //       right: @input-padding-horizontal-sm + @font-size-base * 1.5;
+  //     }
+
+  //     &.@{select-prefix-cls}-show-arrow .@{select-prefix-cls}-selection-item,
+  //     &.@{select-prefix-cls}-show-arrow .@{select-prefix-cls}-selection-placeholder {
+  //       padding-right: @font-size-base * 1.5;
+  //     }
+  //   }
+  // }
+
+  // &.@{select-prefix-cls}-lg {
+  //   &:not(.@{select-prefix-cls}-customize-input) {
+  //     .@{select-prefix-cls}-selector {
+  //       padding: 0 @input-padding-horizontal-lg;
+  //     }
+  //   }
+  // }
+}
+
+// ============================================================
+// ==                          Size                          ==
+// ============================================================
+.select-size-single(@suffix, @isSingleSelect: true) {
+  @merged-cls: ~'@{select-prefix-cls}-@{suffix}';
+
+  @control-height: ~'control-height-@{suffix}';
+  @padding-horizontal: ~'input-padding-horizontal-@{suffix}';
+  @padding-vertical: ~'input-padding-vertical-@{suffix}';
+  @font-size: ~'input-font-size-@{suffix}';
+  @suffix-font-size: ~'icon-font-size-@{suffix}';
+
+  @select-clear-right: ~'select-clear-right-@{suffix}';
+  @select-arrow-right: ~'select-arrow-right-@{suffix}';
+
+
+  @control-height-var: @@control-height;
+  @padding-horizontal-var: @@padding-horizontal;
+  @padding-vertical-var: @@padding-vertical;
+  @font-size-var: @@font-size;
+  @suffix-font-size-var: @@suffix-font-size;
+
+  &.@{merged-cls}:not(.@{select-prefix-cls}-customize-input) {
+    .@{select-prefix-cls}-selector {
+      height: @control-height-var;
+      padding: 0 @padding-horizontal-var;
+      font-size: @font-size-var;
+      padding-right: @@select-clear-right + @suffix-font-size-var + 8px;
+  
+      & when (@isSingleSelect = true) {
+        &::after,
+        .@{select-prefix-cls}-selection-item,
+        .@{select-prefix-cls}-selection-placeholder {
+          line-height: @control-height-var - 2 * @border-width-base;
+        }
+      }
+    }
+
+    .@{select-prefix-cls}-clear {
+      font-size: @suffix-font-size-var;
+      height: @suffix-font-size-var;
+      width: @suffix-font-size-var;
+      right: @@select-clear-right;
+
+      & when (@suffix = xl) {
+        transform: translateY(-2px);
+      }
+    
+      & when (@suffix = lg) {
+        transform: translateY(-2px);
+      }
+    }
+
+    .@{select-prefix-cls}-arrow {
+      right: @@select-arrow-right;
+
+      & when (@suffix = xl) {
+        font-size: 10px;
+        height: @icon-font-size-xl;
+        width: @icon-font-size-xl;
+      }
+      & when (@suffix = lg) {
+        font-size: 10px;
+        height: @icon-font-size-lg;
+        width: @icon-font-size-lg;
+      }
+      & when (@suffix = md) {
+        font-size: 8px;
+        height: @icon-font-size-md;
+        width: @icon-font-size-md;
+      }
+      & when (@suffix = sm) {
+        font-size: 8px;
+        height: @icon-font-size-sm;
+        width: @icon-font-size-sm;
+      }
+    }
+
+    & when (@isSingleSelect = true) {
+      .@{select-prefix-cls}-selection-search {
+        right: @@select-clear-right + @suffix-font-size-var + 8px
+      }
+
+      // Not customize
+      &:not(.@{select-prefix-cls}-customize-input) {
+        .@{select-prefix-cls}-selection-search-input {
+          height: @control-height-var - 2 * @border-width-base;
+        }
+      }
+    }
+  }
+}

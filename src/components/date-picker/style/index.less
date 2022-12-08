@@ -1,0 +1,401 @@
+@import '../../../style/themes/index';
+@import '../../../style/mixins/index';
+@import '../../input/style/mixin';
+
+@picker-prefix-cls: ~'@{vts-prefix}-picker';
+
+// .picker-padding(@input-height, @font-size, @padding-horizontal) {
+//   // font height probably 22.0001， So use floor better
+//   @font-height: floor(@font-size * @line-height-base) + 2;
+//   @padding-top: max(((@input-height - @font-height) / 2), 0);
+//   @padding-bottom: max(@input-height - @font-height - @padding-top, 0);
+//   padding: @padding-top @padding-horizontal @padding-bottom;
+// }
+
+.picker(@input-height, @padding-vertical, @padding-horizontal, @font-size, @suffix-font-size) {
+  padding: @padding-vertical @padding-horizontal;
+  height: @input-height;
+
+  .@{picker-prefix-cls}-input > input {
+    font-size: @font-size;
+  }
+
+  .@{picker-prefix-cls}-suffix {
+    font-size: @suffix-font-size;
+  }
+
+  .@{picker-prefix-cls}-clear {
+    font-size: @suffix-font-size;
+  }
+}
+
+.@{picker-prefix-cls} {
+  @arrow-size: 10px;
+  width: 100%;
+
+  .reset-component();
+  // .picker-padding(@input-height-md, @font-size-base, @input-padding-horizontal-md);
+  padding: @input-padding-vertical-md @input-padding-horizontal-md;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: @picker-bg;
+  border: @border-width-base @border-style-base @input-border-default;
+  border-radius: @border-radius-base;
+  transition: border @animation-duration-slow, box-shadow @animation-duration-slow;
+
+  .state();
+
+  // &:hover,
+  // &-focused {
+  //   .hover();
+  // }
+
+  // &-focused {
+  //   .active();
+  // }
+
+  &-panel-open &-suffix {
+    color: @primary-1;
+  }
+
+  &&-disabled &-suffix {
+    color: @control-color-disable;
+    cursor: not-allowed;
+  }
+
+  &&-borderless {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  // ======================== Input =========================
+  &-input {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+
+    > input {
+      .input();
+      flex: auto;
+
+      // Fix Firefox flex not correct:
+      // https://github.com/ant-design-git/ant-design-git/pull/20023#issuecomment-564389553
+      min-width: 1px;
+      height: auto;
+      padding: 0;
+      background: transparent;
+
+      border: 0;
+
+      &:focus {
+        box-shadow: none;
+      }
+
+      &[disabled] {
+        background: @control-bg-disable;
+        border-color: @control-bg-disable;
+        color: @control-color-disable;
+        cursor: not-allowed;
+      }
+    }
+
+    &-placeholder {
+      > input {
+        color: @input-placeholder-color;
+      }
+    }
+  }
+
+  // Size
+  &-xl {
+    .picker(@input-height-xl, @input-padding-vertical-xl, @input-padding-horizontal-xl, @input-font-size-xl, @icon-font-size-xl);
+
+    .@{picker-prefix-cls}-suffix {
+      margin: @picker-affix-margin-xl;
+    }
+  }
+
+  &-lg {
+    .picker(@input-height-lg, @input-padding-vertical-lg, @input-padding-horizontal-lg, @input-font-size-lg, @icon-font-size-lg);
+
+    .@{picker-prefix-cls}-suffix {
+      margin: @picker-affix-margin-lg;
+    }
+  }
+  
+  &-md {
+    .picker(@input-height-md, @input-padding-vertical-md, @input-padding-horizontal-md, @input-font-size-md, @icon-font-size-md);
+
+    .@{picker-prefix-cls}-suffix {
+      margin: @picker-affix-margin-md;
+    }
+  }
+  
+  &-sm {
+    .picker(@input-height-sm, @input-padding-vertical-sm, @input-padding-horizontal-sm, @input-font-size-sm, @icon-font-size-sm);
+
+    .@{picker-prefix-cls}-suffix {
+      margin: @picker-affix-margin-sm;
+    }
+  }
+
+  &-suffix {
+    align-self: center;
+    margin-left: (@padding-xs / 2);
+    color: @disabled-color;
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover {
+      color: @primary-1;
+    }
+
+    > * {
+      vertical-align: top;
+    }
+  }
+
+  &-clear {
+    // position: absolute;
+    // top: 50%;
+    // right: 0;
+    // color: @disabled-color;
+    // line-height: 1;
+    // background: @component-background;
+    // transform: translateY(-50%);
+    // cursor: pointer;
+    // opacity: 1;
+    // transition: opacity @animation-duration-slow, color @animation-duration-slow;
+
+    // > * {
+    //   vertical-align: top;
+    // }
+
+    cursor: pointer;
+    color: @control-clear-icon-color-default;
+
+    &:hover {
+      color: @control-clear-icon-color-hover;
+    }
+  }
+
+  &-separator {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: @font-size-lg;
+    color: @disabled-color;
+    font-size: @font-size-lg;
+    vertical-align: top;
+    cursor: default;
+
+    .@{picker-prefix-cls}-focused & {
+      color: @text-color-secondary;
+    }
+
+    .@{picker-prefix-cls}-range-separator & {
+      .@{picker-prefix-cls}-disabled & {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  // ======================== Range =========================
+  &-range {
+    position: relative;
+    display: inline-flex;
+
+    // Clear
+    // .@{picker-prefix-cls}-clear {
+    //   right: @input-padding-horizontal-md;
+    // }
+
+    // &:hover {
+    //   .@{picker-prefix-cls}-clear {
+    //     opacity: 1;
+    //   }
+    // }
+
+    // Active bar
+    &:not(&-single) .@{picker-prefix-cls}-active-bar {
+      bottom: -@border-width-base;
+      height: 2px;
+      margin-left: @input-padding-horizontal-md;
+      background: @primary-color;
+      opacity: 0;
+      transition: all @animation-duration-slow ease-out;
+      pointer-events: none;
+    }
+
+    &.@{picker-prefix-cls}-focused {
+      .@{picker-prefix-cls}-active-bar {
+        opacity: 1;
+      }
+    }
+
+    &-separator {
+      align-items: center;
+      padding: 0 @padding-xs;
+      line-height: 1;
+    }
+
+    &.@{picker-prefix-cls}-small {
+      .@{picker-prefix-cls}-clear {
+        right: @input-padding-horizontal-sm;
+      }
+
+      .@{picker-prefix-cls}-active-bar {
+        margin-left: @input-padding-horizontal-sm;
+      }
+    }
+  }
+
+  // ======================= Dropdown =======================
+  &-dropdown {
+    .reset-component();
+    position: absolute;
+    z-index: @zindex-picker;
+
+    &-hidden {
+      display: none;
+    }
+
+    &-placement-bottomLeft {
+      .@{picker-prefix-cls}-range-arrow {
+        top: (@arrow-size / 2) - (@arrow-size / 3);
+        display: block;
+        transform: rotate(-45deg);
+      }
+    }
+
+    &-placement-topLeft {
+      .@{picker-prefix-cls}-range-arrow {
+        bottom: (@arrow-size / 2) - (@arrow-size / 3);
+        display: block;
+        transform: rotate(135deg);
+      }
+    }
+
+    &.slide-up-enter.slide-up-enter-active&-placement-topLeft,
+    &.slide-up-enter.slide-up-enter-active&-placement-topRight,
+    &.slide-up-appear.slide-up-appear-active&-placement-topLeft,
+    &.slide-up-appear.slide-up-appear-active&-placement-topRight {
+      animation-name: vtsSlideDownIn;
+    }
+
+    &.slide-up-enter.slide-up-enter-active&-placement-bottomLeft,
+    &.slide-up-enter.slide-up-enter-active&-placement-bottomRight,
+    &.slide-up-appear.slide-up-appear-active&-placement-bottomLeft,
+    &.slide-up-appear.slide-up-appear-active&-placement-bottomRight {
+      animation-name: vtsSlideUpIn;
+    }
+
+    &.slide-up-leave.slide-up-leave-active&-placement-topLeft,
+    &.slide-up-leave.slide-up-leave-active&-placement-topRight {
+      animation-name: antSlideDownOut;
+    }
+
+    &.slide-up-leave.slide-up-leave-active&-placement-bottomLeft,
+    &.slide-up-leave.slide-up-leave-active&-placement-bottomRight {
+      animation-name: vtsSlideUpOut;
+    }
+  }
+
+  &-dropdown-range {
+    padding: (@arrow-size * 2 / 3) 0;
+
+    &-hidden {
+      display: none;
+    }
+  }
+
+  // Time picker with additional style
+  &-dropdown &-panel > &-time-panel {
+    padding-top: (@padding-xs / 2);
+  }
+
+  // ======================== Ranges ========================
+  &-ranges {
+    margin-bottom: 0;
+    padding: (@padding-xs / 2) @padding-sm;
+    overflow: hidden;
+    line-height: @picker-text-height - 2 * @border-width-base - (@padding-xs / 2);
+    text-align: left;
+    list-style: none;
+
+    > li {
+      display: inline-block;
+    }
+
+    // https://github.com/ant-design-git/ant-design-git/issues/23687
+    .@{picker-prefix-cls}-preset > .@{vts-prefix}-tag-blue {
+      color: @primary-color;
+      background: @primary-1;
+      border-color: @primary-3;
+      cursor: pointer;
+    }
+
+    .@{picker-prefix-cls}-ok {
+      float: right;
+      margin-left: @padding-xs;
+    }
+  }
+
+  &-range-wrapper {
+    display: flex;
+  }
+
+  &-range-arrow {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    width: @arrow-size;
+    height: @arrow-size;
+    margin-left: @input-padding-horizontal-md * 1.5;
+    box-shadow: 2px -2px 6px fade(@black, 6%);
+    transition: left @animation-duration-slow ease-out;
+
+    &::after {
+      position: absolute;
+      top: @border-width-base;
+      right: @border-width-base;
+      width: @arrow-size;
+      height: @arrow-size;
+      border: (@arrow-size / 2) solid @border-color-split;
+      border-color: @calendar-bg @calendar-bg transparent transparent;
+      content: '';
+    }
+  }
+
+  &-panel-container {
+    overflow: hidden;
+    vertical-align: top;
+    background: @calendar-bg;
+    border-radius: @border-radius-base;
+    box-shadow: @box-shadow-base;
+    transition: margin @animation-duration-slow;
+
+    .@{picker-prefix-cls}-panels {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      direction: ltr;
+    }
+
+    .@{picker-prefix-cls}-panel {
+      vertical-align: top;
+      background: transparent;
+      border-width: 0 0 @border-width-base 0;
+      border-radius: 0;
+
+      &-focused {
+        border-color: @border-color-split;
+      }
+    }
+  }
+}
+
+@import './panel';
+@import './rtl';

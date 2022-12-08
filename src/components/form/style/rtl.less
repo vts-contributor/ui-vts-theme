@@ -1,0 +1,185 @@
+@import '../../../style/themes/index';
+@import '../../../style/mixins/index';
+@import '../../input/style/mixin';
+@import '../../button/style/mixin';
+@import '../../grid/style/mixin';
+
+@form-prefix-cls: ~'@{vts-prefix}-form';
+@form-item-prefix-cls: ~'@{form-prefix-cls}-item';
+
+.@{form-prefix-cls} {
+  &-rtl {
+    direction: rtl;
+  }
+}
+
+// ================================================================
+// =                             Item                             =
+// ================================================================
+.@{form-item-prefix-cls} {
+  // ==============================================================
+  // =                            Label                           =
+  // ==============================================================
+  &-label {
+    .@{form-prefix-cls}-rtl & {
+      text-align: left;
+    }
+
+    > label {
+      &.@{form-item-prefix-cls}-required::before {
+        .@{form-prefix-cls}-rtl & {
+          margin-right: 0;
+          margin-left: 4px;
+        }
+      }
+      &::after {
+        .@{form-prefix-cls}-rtl & {
+          margin: 0 @form-item-label-colon-margin-left 0 @form-item-label-colon-margin-right;
+        }
+      }
+
+      .@{form-item-prefix-cls}-optional {
+        .@{form-prefix-cls}-rtl & {
+          margin-right: @margin-xss;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  // ==============================================================
+  // =                            Input                           =
+  // ==============================================================
+  &-control {
+    .@{vts-prefix}-col-rtl &:first-child {
+      width: 100%;
+    }
+  }
+
+  // status
+  &-has-feedback {
+    .@{vts-prefix}-input {
+      .@{form-prefix-cls}-rtl & {
+        padding-right: @input-padding-horizontal-md;
+        padding-left: 24px;
+      }
+    }
+
+    .@{vts-prefix}-input-affix-wrapper {
+      .@{vts-prefix}-input-suffix {
+        .@{form-prefix-cls}-rtl & {
+          padding-right: @input-padding-horizontal-md;
+          padding-left: 18px;
+        }
+      }
+      .@{vts-prefix}-input {
+        .@{form-prefix-cls}-rtl & {
+          padding: 0;
+        }
+      }
+    }
+
+    .@{vts-prefix}-input-search:not(.@{vts-prefix}-input-search-enter-button) {
+      .@{vts-prefix}-input-suffix {
+        .@{form-prefix-cls}-rtl & {
+          right: auto;
+          left: 28px;
+        }
+      }
+    }
+
+    .@{vts-prefix}-input-number {
+      .@{form-prefix-cls}-rtl & {
+        padding-left: 18px;
+      }
+    }
+
+    > .@{vts-prefix}-select .@{vts-prefix}-select-arrow,
+    > .@{vts-prefix}-select .@{vts-prefix}-select-clear,
+    :not(.@{vts-prefix}-input-group-addon) > .@{vts-prefix}-select .@{vts-prefix}-select-arrow,
+    :not(.@{vts-prefix}-input-group-addon) > .@{vts-prefix}-select .@{vts-prefix}-select-clear {
+      .@{form-prefix-cls}-rtl & {
+        right: auto;
+        left: 32px;
+      }
+    }
+
+    > .@{vts-prefix}-select .@{vts-prefix}-select-selection-selected-value,
+    :not(.@{vts-prefix}-input-group-addon)
+      > .@{vts-prefix}-select
+      .@{vts-prefix}-select-selection-selected-value {
+      .@{form-prefix-cls}-rtl & {
+        padding-right: 0;
+        padding-left: 42px;
+      }
+    }
+
+    .@{vts-prefix}-cascader-picker {
+      &-arrow {
+        .@{form-prefix-cls}-rtl & {
+          margin-right: 0;
+          margin-left: 19px;
+        }
+      }
+      &-clear {
+        .@{form-prefix-cls}-rtl & {
+          right: auto;
+          left: 32px;
+        }
+      }
+    }
+
+    .@{vts-prefix}-picker {
+      .@{form-prefix-cls}-rtl & {
+        padding-right: @input-padding-horizontal-md;
+        padding-left: @input-padding-horizontal-md + @font-size-base * 1.3;
+      }
+
+      &-large {
+        .@{form-prefix-cls}-rtl & {
+          padding-right: @input-padding-horizontal-lg;
+          padding-left: @input-padding-horizontal-lg + @font-size-base * 1.3;
+        }
+      }
+
+      &-small {
+        .@{form-prefix-cls}-rtl & {
+          padding-right: @input-padding-horizontal-sm;
+          padding-left: @input-padding-horizontal-sm + @font-size-base * 1.3;
+        }
+      }
+    }
+
+    &.@{form-item-prefix-cls} {
+      &-has-success,
+      &-has-warning,
+      &-has-error,
+      &-is-validating {
+        // ====================== Icon ======================
+        .@{form-item-prefix-cls}-children-icon {
+          .@{form-prefix-cls}-rtl & {
+            right: auto;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// inline
+.@{form-prefix-cls}-inline {
+  .@{form-prefix-cls}-item {
+    .@{form-prefix-cls}-rtl& {
+      margin-right: 0;
+      margin-left: 16px;
+    }
+  }
+}
+
+// vertical
+.make-vertical-layout-label() {
+  .@{form-prefix-cls}-rtl& {
+    text-align: right;
+  }
+}

@@ -1,0 +1,20 @@
+// Fix Input component height issue in IE11
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .@{vts-prefix}-input {
+    height: @input-height-md;
+
+    &-lg {
+      height: @input-height-lg;
+    }
+
+    &-sm {
+      height: @input-height-sm;
+    }
+
+    &-affix-wrapper {
+      > input.@{vts-prefix}-input {
+        height: auto;
+      }
+    }
+  }
+}

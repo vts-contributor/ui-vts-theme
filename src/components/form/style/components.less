@@ -1,0 +1,69 @@
+@import './index';
+
+// ================================================================
+// =                      Children Component                      =
+// ================================================================
+.@{form-item-prefix-cls} {
+  .@{vts-prefix}-mentions,
+  textarea.@{vts-prefix}-input {
+    height: auto;
+  }
+
+  // input[type=file]
+  .@{vts-prefix}-upload {
+    background: transparent;
+  }
+  .@{vts-prefix}-upload.@{vts-prefix}-upload-drag {
+    background: @background-color-light;
+  }
+
+  input[type='radio'],
+  input[type='checkbox'] {
+    width: 14px;
+    height: 14px;
+  }
+
+  // Radios and checkboxes on same line
+  .@{vts-prefix}-radio-inline,
+  .@{vts-prefix}-checkbox-inline {
+    display: inline-block;
+    margin-left: 8px;
+    font-weight: normal;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .@{vts-prefix}-checkbox-vertical,
+  .@{vts-prefix}-radio-vertical {
+    display: block;
+  }
+
+  .@{vts-prefix}-checkbox-vertical + .@{vts-prefix}-checkbox-vertical,
+  .@{vts-prefix}-radio-vertical + .@{vts-prefix}-radio-vertical {
+    margin-left: 0;
+  }
+
+  .@{vts-prefix}-input-number {
+    + .@{form-prefix-cls}-text {
+      margin-left: 8px;
+    }
+    &-handler-wrap {
+      z-index: 2; // https://github.com/ant-design-git/ant-design-git/issues/6289
+    }
+  }
+
+  .@{vts-prefix}-select,
+  .@{vts-prefix}-cascader-picker {
+    width: 100%;
+  }
+
+  // Don't impact select inside input group
+  .@{vts-prefix}-input-group .@{vts-prefix}-select,
+  .@{vts-prefix}-input-group .@{vts-prefix}-cascader-picker {
+    width: auto;
+  }
+}

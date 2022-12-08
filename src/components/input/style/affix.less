@@ -1,0 +1,77 @@
+@import './index';
+@import './mixin';
+
+.@{vts-prefix}-input {
+  .input-affix();
+}
+
+.input-affix() {
+  &-affix-wrapper {
+    .input();
+    display: inline-flex;
+
+    &:hover {
+      z-index: 1;
+      .@{vts-prefix}-input-search-with-button & {
+        z-index: 0;
+      }
+    }
+
+    &:focus, &-focused {
+      z-index: 1;
+    }
+
+    &-disabled, &-disabled:hover, &&-disabled {
+      .@{vts-prefix}-input[disabled] {
+        background: transparent;
+      }
+
+      border-color: @input-border-disable;
+      color: @input-color-disable;
+      background: @input-bg-disable;
+    }
+
+    > input.@{vts-prefix}-input {
+      padding: 0;
+      border: none;
+      outline: none;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    &::before {
+      width: 0;
+      visibility: hidden;
+      content: '\a0';
+    }
+  }
+
+  &-prefix,
+  &-suffix {
+    display: flex;
+    flex: none;
+    align-items: center;
+  }
+
+  &-prefix {
+    margin-right: @input-affix-margin;
+  }
+
+  &-affix-wrapper-xl &-suffix {
+    margin: @input-affix-margin-xl;
+  }
+
+  &-affix-wrapper-lg &-suffix {
+    margin: @input-affix-margin-lg;
+  }
+
+  &-affix-wrapper-md &-suffix {
+    margin: @input-affix-margin-md;
+  }
+
+  &-affix-wrapper-sm &-suffix {
+    margin: @input-affix-margin-sm;
+  }
+}

@@ -1,0 +1,15 @@
+.@{avatar-prefix-cls}-group {
+  &-rtl {
+    .@{avatar-prefix-cls}:not(:first-child) {
+      margin-right: @avatar-group-overlapping;
+      margin-left: 0;
+    }
+  }
+
+  &-popover.@{vts-prefix}-popover-rtl {
+    .@{vts-prefix}-avatar + .@{vts-prefix}-avatar {
+      margin-right: @avatar-group-space;
+      margin-left: 0;
+    }
+  }
+}

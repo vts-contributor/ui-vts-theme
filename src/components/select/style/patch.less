@@ -1,0 +1,58 @@
+.vts-select-dropdown {
+  top: 100%;
+  left: 0;
+  position: relative;
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  display: block;
+
+  .cdk-virtual-scroll-content-wrapper {
+    right: 0;
+  }
+  .full-width {
+    contain: initial;
+    .cdk-virtual-scroll-content-wrapper {
+      position: static;
+    }
+  }
+}
+
+.item-size(@suffix) {
+  .vts-select-dropdown-@{suffix} {
+    @select-item-padding: ~'select-item-padding-@{suffix}';
+    @select-item-font-size: ~'select-item-font-size-@{suffix}';
+    @select-check-right: ~'select-arrow-right-@{suffix}';
+
+    @control-height: ~'control-height-@{suffix}';
+
+    .@{select-prefix-cls}-item {
+      min-height: @@control-height;
+      line-height: @@control-height;
+      font-size: @@select-item-font-size;
+      // padding: @@select-item-padding;
+      // font-size: @@select-item-font-size;
+
+      &-option-state {
+        font-size: @@select-item-font-size;
+        height: @@select-item-font-size;
+        width: @@select-item-font-size;
+        position: absolute;
+        right: @@select-check-right;
+      }
+    }
+
+    .cdk-virtual-scroll-viewport {
+      overflow: hidden;
+    }
+
+    &:hover .cdk-virtual-scroll-viewport {
+      overflow: auto;
+    }
+  }
+}
+
+.item-size(xl);
+.item-size(lg);
+.item-size(md);
+.item-size(sm);
