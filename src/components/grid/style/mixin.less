@@ -50,4 +50,8 @@
 
 .make-grid(@class: ~'') {
   .loop-grid-columns(@grid-columns, @class);
+
+  .@{vts-prefix}-col@{class}-auto {
+    flex: 0 0 auto;
+  }
 }
