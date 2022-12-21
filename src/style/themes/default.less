@@ -11,13 +11,13 @@
 
 // Override
 @primary-color: @primary-1;
-@info-color: @primary-color;
-@success-color: @green-6;
-@processing-color: @blue-6;
-@error-color: @primary-1;
-@highlight-color: @red-5;
-@warning-color: @gold-6;
-@normal-color: #d9d9d9;
+@info-color: @func-blue-2;
+@success-color: @func-green-1;
+@processing-color: @blue-5;
+@error-color: @primary-0;
+@highlight-color: @primary-2;
+@warning-color: @func-orange-1;
+@normal-color: @ilus-grey-7;
 @white: #fff;
 @black: #000;
 
@@ -115,8 +115,12 @@
 @ilus-grey-7: #F0F0F0;
 @ilus-grey-8: #FAFAFA;
 
-@text-color-sec: #617882;
-
+@text-color: @black-1;
+@text-color-dark: @text-color;
+@heading-color: @black-1;
+@text-color-secondary: @grey-2;
+@text-color-secondary-dark: @text-color-secondary;
+@text-color-inverse: @white;
 
 // Base Scaffolding Variables
 // ---
@@ -130,23 +134,11 @@
 @popover-customize-border-color: @border-color-split;
 @font-family: inherit;
 @code-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-@text-color: @black-1;
-@text-color-secondary: fade(@black, 45%);
-@text-color-inverse: @white;
 @icon-color: inherit;
 @icon-color-hover: fade(@black, 75%);
-@heading-color: fade(@black, 85%);
-@text-color-dark: fade(@white, 85%);
-@text-color-secondary-dark: fade(@white, 65%);
 @text-selection-bg: @primary-color;
 @font-variant-base: tabular-nums;
 @font-feature-settings-base: 'tnum';
-
-@heading-1-size: ceil(@font-size-base * 2.71);
-@heading-2-size: ceil(@font-size-base * 2.14);
-@heading-3-size: ceil(@font-size-base * 1.71);
-@heading-4-size: ceil(@font-size-base * 1.42);
-@heading-5-size: ceil(@font-size-base * 1.14);
 
 @line-height-base: 1.4;
 @border-radius-base: 3px;
@@ -272,7 +264,7 @@
 @background-color-base: hsv(0, 0, 96%); // Default grey background color
 
 // Disabled states
-@disabled-color: @grey-3;
+@disabled-color: @grey-4;
 @disabled-bg: @grey-5;
 @disabled-color-dark: fade(#fff, 35%);
 
@@ -551,10 +543,10 @@
 
 // Form
 // ---
-@label-required-color: @highlight-color;
-@label-color: @heading-color;
+@form-label-required-color: @primary-color;
+@form-label-color: @heading-color;
 @form-warning-input-bg: @input-bg-default;
-@form-item-margin-bottom: 24px;
+@form-item-margin-bottom: 26px;
 @form-item-trailing-colon: true;
 @form-vertical-label-padding: 0 0 8px;
 @form-vertical-label-margin: 0;
@@ -562,6 +554,8 @@
 @form-item-label-colon-margin-right: 8px;
 @form-item-label-colon-margin-left: 2px;
 @form-error-input-bg: @input-bg-default;
+@form-error-color: @primary-1;
+@form-extra-padding-top: 4px;
 
 // Input
 // ---
@@ -1083,7 +1077,7 @@
 @page-header-content-padding-vertical: @padding-sm;
 @page-header-back-color: #000;
 @page-header-ghost-bg: inherit;
-@page-header-heading-title: @heading-4-size;
+@page-header-heading-title: @typography-heading-4-size;
 @page-header-heading-sub-title: 14px;
 @page-header-tabs-tab-font-size: 16px;
 
@@ -1235,12 +1229,22 @@
 
 // Typography
 // ---
-@typography-title-font-weight: 600;
-@typography-title-margin-top: 1.2em;
-@typography-title-margin-bottom: 0.5em;
+@typography-heading-1-size: @font-size-base * 2.25;
+@typography-heading-2-size: @font-size-base * 2;
+@typography-heading-3-size: @font-size-base * 1.5;
+@typography-heading-4-size: @font-size-base * 1.5;
+@typography-heading-5-size: @font-size-base;
+@typography-subtitle-1-size: @font-size-base * 1.25;
+@typography-subtitle-2-size: @font-size-base;
+@typography-body-1-size: @font-size-base;
+@typography-body-2-size: @font-size-base * 0.875;
+@typography-link-size: @font-size-base;
 
-@typography-font-1: 'FS PF BeauSans Pro';
-@typography-font-2: 'Sarabun';
+@typography-heading-line-height: 1.5;
+@typography-body-line-height: @line-height-base;
+
+@typography-font-heading: 'FS PF BeauSans Pro';
+@typography-font-body: 'Sarabun';
 
 // Upload
 // ---
@@ -1287,10 +1291,22 @@
 
 //  Result
 // ---
-@result-title-font-size: 24px;
-@result-subtitle-font-size: @font-size-base;
-@result-icon-font-size: 72px;
-@result-extra-margin: 24px 0 0 0;
+@result-padding: @padding-lg;
+@result-default-margin: @margin-xs; // Min margin between components
+
+@result-title-font-size: 1.5rem;
+@result-title-font-weight: 600;
+@result-subtitle-font-size: 1rem;
+@result-subtitle-font-weight: 500;
+@result-content-font-size: 1rem;
+@result-content-font-weight: normal;
+@result-content-padding: @padding-sm;
+@result-content-background: @grey-5;
+
+@result-404-icon-current-color: #CB213D;
+@result-403-icon-current-color: #CB213D;
+@result-500-icon-current-color: #CB213D;
+@result-bad-connection-icon-current-color: #CB213D;
 
 // Image
 // ---

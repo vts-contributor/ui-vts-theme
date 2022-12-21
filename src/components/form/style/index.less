@@ -29,6 +29,10 @@
     .formSize(md, @input-padding-vertical-md, @input-padding-horizontal-md, @input-font-size-md);
     .formSize(sm, @input-padding-vertical-sm, @input-padding-horizontal-sm, @input-font-size-sm);
   }
+
+  > .@{form-item-prefix-cls}:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .explainAndExtraDistance(@num) when (@num >= 0) {
@@ -75,7 +79,7 @@
       // display: inline;
       display: inline-flex;
       align-items: center;
-      color: @label-color;
+      color: @form-label-color;
       font-size: inherit;
 
       > .@{iconfont-css-prefix} {
@@ -83,11 +87,10 @@
       }
 
       // Required mark
-      &.@{form-item-prefix-cls}-required:not(.@{form-item-prefix-cls}-required-mark-optional)::before {
+      &.@{form-item-prefix-cls}-required:not(.@{form-item-prefix-cls}-required-mark-optional)::after {
         display: inline-block;
         margin-right: 4px;
-        color: @label-required-color;
-        font-family: SimSun, sans-serif;
+        color: @form-label-required-color;
         line-height: 1;
         content: '*';
 
@@ -161,13 +164,12 @@
   &-explain,
   &-extra {
     clear: both;
-    min-height: @form-item-margin-bottom;
-    // .explainAndExtraDistance((@form-item-margin-bottom - @form-font-height) / 2);
-    padding-top: 8px;
+    padding-top: @form-extra-padding-top;
     color: @text-color-secondary;
     font-size: inherit;
     line-height: @line-height-base;
-    transition: color 0.3s @ease-out; // sync input color transition
+    transition: color 0.3s @ease-out;
+    white-space: pre-line;
   }
 
   .@{vts-prefix}-input-textarea-show-count {
