@@ -11,12 +11,16 @@
 
 // Override
 @primary-color: @primary-1;
-@info-color: @primary-color;
+@info-color: @func-blue-3;
+@info-global-color: @func-blue-2;
 @success-color: @green-6;
+@success-global-color: @func-green-2;
 @processing-color: @blue-6;
 @error-color: @primary-1;
+@error-global-color: @func-red-2;
 @highlight-color: @red-5;
 @warning-color: @gold-6;
+@warning-global-color: @func-orange-2;
 @normal-color: #d9d9d9;
 @white: #fff;
 @black: #000;
@@ -136,6 +140,7 @@
 @icon-color: inherit;
 @icon-color-hover: fade(@black, 75%);
 @heading-color: fade(@black, 85%);
+@heading-global-color: @white-1;
 @text-color-dark: fade(@white, 85%);
 @text-color-secondary-dark: fade(@white, 65%);
 @text-selection-bg: @primary-color;
@@ -1173,16 +1178,34 @@
 @alert-success-border-color: ~`colorPalette('@{success-color}', 3) `;
 @alert-success-bg-color: ~`colorPalette('@{success-color}', 1) `;
 @alert-success-icon-color: @success-color;
+@alert-global-success-border-color: ~`colorPalette('@{success-global-color}', 3) `;
+@alert-global-success-bg-color: @success-global-color;
+@alert-global-success-icon-color: @white-1;
+
 @alert-info-border-color: ~`colorPalette('@{info-color}', 3) `;
 @alert-info-bg-color: ~`colorPalette('@{info-color}', 1) `;
 @alert-info-icon-color: @info-color;
+@alert-global-info-border-color: ~`colorPalette('@{info-global-color}', 3) `;
+@alert-global-info-bg-color: @info-global-color;
+@alert-global-info-icon-color: @white-1;
+
 @alert-warning-border-color: ~`colorPalette('@{warning-color}', 3) `;
 @alert-warning-bg-color: ~`colorPalette('@{warning-color}', 1) `;
 @alert-warning-icon-color: @warning-color;
+@alert-global-warning-border-color: ~`colorPalette('@{warning-global-color}', 3) `;
+@alert-global-warning-bg-color: @warning-global-color;
+@alert-global-warning-icon-color: @white-1;
+
 @alert-error-border-color: ~`colorPalette('@{error-color}', 3) `;
 @alert-error-bg-color: ~`colorPalette('@{error-color}', 1) `;
 @alert-error-icon-color: @error-color;
+@alert-global-error-border-color: ~`colorPalette('@{error-global-color}', 3) `;
+@alert-global-error-bg-color: @error-global-color;
+@alert-global-error-icon-color: @white-1;
+
 @alert-message-color: @heading-color;
+@alert-global-message-color: @heading-global-color;
+
 @alert-text-color: @text-color;
 @alert-close-color: @text-color-secondary;
 @alert-close-hover-color: @icon-color-hover;
