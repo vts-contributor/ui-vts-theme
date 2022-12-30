@@ -4,18 +4,19 @@
 @inplace-prefix-cls: ~'@{vts-prefix}-inplace';
 
 .@{inplace-prefix-cls} {
-    margin-top: 20px;
+    margin: @inplace-margin;
+    padding-right: @inplace-padding-right;
     &-display {
         display: inline-block; 
         padding: 5px; 
-        cursor: pointer;
-        border: solid 1px #EEE;
-        border-radius: 5px;
+        cursor: @inplace-curor-hover;
+        border: @inplace-border;
+        border-radius: @inplace-border-radius;
     }
     &-display:hover {
-        color: #FFF;
-        background-color: #EE0033;
-        border-radius: 5px;
+        color: @inplace-color-hover;
+        background-color: @inplace-bg-hover;
+        border-radius: @inplace-border-radius;
     }
     &-content {
         overflow: hidden;
@@ -29,8 +30,15 @@
             border: solid 1px #DDD;
         }
         input:hover {
-            border-color: #6565FA;
+            border-color: @inplace-border-input-hover;
         }
         
+    }
+    &-disabled,
+    &-disabled:hover  {
+        background-color: @inplace-disabled-bg;
+        color: @inplace-disabled-color;
+        cursor: @inplace-disabled-curor-hover;
+        border-radius: @inplace-border-radius;
     }
 }
