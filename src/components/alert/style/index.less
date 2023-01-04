@@ -19,6 +19,14 @@
     color: @alert-global-message-color;
   }
 
+  &-no-border {
+    border: @border-width-base @border-style-base @border-style-transparent;
+  }
+
+  &-box-shadow {
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.15);
+  }
+
   &-form-content {
     flex: 1;
     min-width: 0;
@@ -43,8 +51,6 @@
 
   &-success {
     background-color: @alert-global-success-bg-color;
-    border: @border-width-base @border-style-base @alert-global-success-border-color;
-
     .@{alert-prefix-cls}-icon {
       color: @alert-global-success-icon-color;
     }
@@ -57,7 +63,6 @@
 
   &-info {
     background-color: @alert-global-info-bg-color;
-    border: @border-width-base @border-style-base @alert-global-info-border-color;
     .@{alert-prefix-cls}-icon {
       color: @alert-global-info-icon-color;
     }
@@ -70,7 +75,6 @@
 
   &-warning {
     background-color: @alert-global-warning-bg-color;
-    border: @border-width-base @border-style-base @alert-global-warning-border-color;
     .@{alert-prefix-cls}-icon {
       color: @alert-global-warning-icon-color;
     }
@@ -83,7 +87,6 @@
 
   &-error {
     background-color: @alert-global-error-bg-color;
-    border: @border-width-base @border-style-base @alert-global-error-border-color;
 
     .@{alert-prefix-cls}-icon {
       color: @alert-global-error-icon-color;
@@ -163,7 +166,7 @@
   }
 
   &-message {
-    font-weight: 500;
+    font-weight: 600;
   }
 
   &-global-message {
