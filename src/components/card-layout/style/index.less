@@ -1,0 +1,123 @@
+@import '../../../style/themes/index';
+@import '../../../style/mixins/index';
+
+@card-layout-prefix-cls: ~'@{vts-prefix}-card-layout';
+
+@gradient-min: fade(@card-skeleton-bg, 20%);
+@gradient-max: fade(@card-skeleton-bg, 40%);
+
+.@{card-layout-prefix-cls} {
+  .reset-component();
+  &-basic {
+    .@{vts-prefix}-card-meta {
+      margin-bottom: 1em;
+
+      &-detail > div {
+        margin-bottom: 0;
+      }
+      &-avatar {
+        .@{vts-prefix}-avatar {
+          width: 48px;
+          height: 48px;
+        }
+      }
+    }
+
+    .@{vts-prefix}-card-body {
+      padding: 1.5em 1.5em 1em 1.5em;
+    }
+
+    .@{vts-prefix}-card-actions {
+      border: none;
+      margin: 0 1.5em;
+      li {
+        margin: 0 0 1.5em 0;
+        span :only-of-type {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &-basic&-container {
+    .@{vts-prefix}-card-meta {
+      display: flex;
+      flex-direction: column;
+      .@{vts-prefix}-card-meta-detail {
+        margin-top: 0.5em;
+        width: 100%;
+      }
+    }
+  }
+
+  &-basic&-container&-align-left {
+    .@{vts-prefix}-card-meta {
+      align-items: flex-start;
+    }
+  }
+
+  &-basic&-container&-align-center {
+    .@{vts-prefix}-card-meta {
+      align-items: center;
+      &-avatar {
+        padding: 0;
+      }
+      &-title, &-description {
+        text-align: center;
+      }
+    }
+  }
+
+  &-basic&-container&-align-right {
+    .@{vts-prefix}-card-meta {
+      align-items: flex-end;
+      &-avatar {
+        padding: 0;
+      }
+      &-title, &-description {
+        text-align: right;
+      }
+    }
+  }
+
+  &-cover {
+    .@{vts-prefix}-card-cover {
+      position: absolute;
+      z-index: 0;
+      height: 100%;
+      img {
+        height: 100%;
+      }
+    }
+
+    .@{vts-prefix}-card-meta {
+      margin-bottom: 0.5em;
+      &-title, &-description {
+        color: #ffffff;
+      }
+    }
+
+    .@{vts-prefix}-card-body {
+      color: #ffffff;
+    }
+
+    .@{vts-prefix}-card-actions > li > span {
+      color: #ffffff;
+    }
+  }
+
+  &-cover-rotate {
+    .@{vts-prefix}-card-actions {
+      li {
+        margin: 1rem 1.5rem;
+        text-align: left;
+        span {
+          font-size: 20px;
+          line-height: 30px;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
