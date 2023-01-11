@@ -12,6 +12,20 @@
 // Override
 @primary-color: @primary-1;
 @info-color: @func-blue-2;
+@info-form-color: @func-blue-6;
+@info-global-color: @func-blue-2;
+@success-color: @func-green-1;
+@success-form-color: @func-green-6;
+@success-global-color: @func-green-2;
+@error-color: @primary-0;
+@error-form-color: @ilus-red-8;
+@error-global-color: @func-red-2;
+@warning-color: @func-orange-1;
+@warning-form-color: @func-yellow-6;
+@warning-global-color: @func-orange-2;
+@highlight-color: @red-5;
+@processing-color: @blue-6;
+@normal-color: #d9d9d9;
 @success-color: @func-green-1;
 @processing-color: @blue-5;
 @error-color: @primary-0;
@@ -72,7 +86,7 @@
 @func-green-5: #A7EDCA;
 @func-green-6: #E5FCF2;
 
-@func-blue-1: #004E7A;
+@func-blue-2: #004E7A;
 @func-blue-2: #0377AD;
 @func-blue-3: #0593CF;
 @func-blue-4: #2AB1EB;
@@ -160,6 +174,7 @@
 @padding-sm: 12px; // Form controls and items
 @padding-xs: 8px; // small items
 @padding-xss: 4px; // more small
+@padding-xxs: 2px; //extra small
 
 // Control
 @control-padding-horizontal: 16px;
@@ -253,7 +268,7 @@
 @border-color-inverse: @white;
 @border-width-base: 1px; // width of the border for a component
 @border-style-base: solid; // style of a components border
-
+@border-style-transparent: transparent;
 // Outline
 @outline-blur-size: 0;
 @outline-width: 2px;
@@ -1083,14 +1098,16 @@
 
 // Breadcrumb
 // ---
-@breadcrumb-base-color: @text-color-secondary;
+@breadcrumb-base-color: @primary-6;
 @breadcrumb-last-item-color: @text-color;
 @breadcrumb-font-size: @font-size-base;
 @breadcrumb-icon-font-size: @font-size-base;
-@breadcrumb-link-color: @text-color-secondary;
+@breadcrumb-link-color: @primary-6;
 @breadcrumb-link-color-hover: @primary-2;
+@breadcrumb-link-color-active: @primary-1;
+@breadcrumb-item-disabled: @grey-4;
 @breadcrumb-separator-color: @text-color-secondary;
-@breadcrumb-separator-margin: 0 @padding-xs;
+@breadcrumb-separator-margin: 0 @padding-xxs;
 
 // Slider
 // ---
@@ -1164,19 +1181,33 @@
 
 // Alert
 // ---
-@alert-success-border-color: ~`colorPalette('@{success-color}', 3) `;
-@alert-success-bg-color: ~`colorPalette('@{success-color}', 1) `;
+@alert-success-border-color: @func-green-3;
+@alert-success-bg-color: @success-form-color;
 @alert-success-icon-color: @success-color;
-@alert-info-border-color: ~`colorPalette('@{info-color}', 3) `;
-@alert-info-bg-color: ~`colorPalette('@{info-color}', 1) `;
+@alert-global-success-bg-color: @success-global-color;
+@alert-global-success-icon-color: @white-1;
+
+@alert-info-border-color: @func-blue-4;
+@alert-info-bg-color: @info-form-color;
 @alert-info-icon-color: @info-color;
-@alert-warning-border-color: ~`colorPalette('@{warning-color}', 3) `;
-@alert-warning-bg-color: ~`colorPalette('@{warning-color}', 1) `;
+@alert-global-info-bg-color: @info-global-color;
+@alert-global-info-icon-color: @white-1;
+
+@alert-warning-border-color: @func-yellow-3;
+@alert-warning-bg-color: @warning-form-color;
 @alert-warning-icon-color: @warning-color;
-@alert-error-border-color: ~`colorPalette('@{error-color}', 3) `;
-@alert-error-bg-color: ~`colorPalette('@{error-color}', 1) `;
+@alert-global-warning-bg-color: @warning-global-color;
+@alert-global-warning-icon-color: @white-1;
+
+@alert-error-border-color: @func-red-4;
+@alert-error-bg-color: @error-form-color;
 @alert-error-icon-color: @error-color;
+@alert-global-error-bg-color: @error-global-color;
+@alert-global-error-icon-color: @white-1;
+
 @alert-message-color: @heading-color;
+@alert-global-message-color: @heading-global-color;
+
 @alert-text-color: @text-color;
 @alert-close-color: @text-color-secondary;
 @alert-close-hover-color: @icon-color-hover;
