@@ -10,7 +10,7 @@
   /* To support leave along ErrorList. We add additional className to handle explain style */
   &-explain {
     &&-error {
-      color: @error-color;
+      color: @form-error-color;
     }
 
     &&-warning {
@@ -158,10 +158,10 @@
 
   // ========================= Error =========================
   &-has-error {
-    .form-control-validation(@input-color-default; @error-color; @form-error-input-bg);
+    .form-control-validation(@input-color-default; @form-error-color; @form-error-input-bg);
 
     &.@{form-item-prefix-cls}-has-feedback .@{form-item-prefix-cls}-children-icon {
-      color: @error-color;
+      color: @form-error-color;
       animation-name: diffZoomIn2 !important;
     }
 
@@ -169,11 +169,11 @@
     .@{vts-prefix}-select:not(.@{vts-prefix}-select-disabled):not(.@{vts-prefix}-select-customize-input) {
       .@{vts-prefix}-select-selector {
         background-color: @form-error-input-bg;
-        border-color: @error-color !important;
+        border-color: @form-error-color !important;
       }
       &.@{vts-prefix}-select-open .@{vts-prefix}-select-selector,
       &.@{vts-prefix}-select-focused .@{vts-prefix}-select-selector {
-        .active(@error-color);
+        .active(@form-error-color);
       }
     }
 
@@ -187,7 +187,7 @@
 
     .@{vts-prefix}-select.@{vts-prefix}-select-auto-complete {
       .@{vts-prefix}-input:focus {
-        border-color: @error-color;
+        border-color: @form-error-color;
       }
     }
 
@@ -195,14 +195,14 @@
     .@{vts-prefix}-input-number,
     .@{vts-prefix}-picker {
       background-color: @form-error-input-bg;
-      border-color: @error-color;
+      border-color: @form-error-color;
       &-focused,
       &:focus {
-        .active(@error-color);
+        .active(@form-error-color);
       }
       &:not([disabled]):hover {
         background-color: @form-error-input-bg;
-        border-color: @error-color;
+        border-color: @form-error-color;
       }
     }
 
@@ -211,24 +211,24 @@
         &,
         &:not([disabled]):hover {
           background-color: @form-error-input-bg;
-          border-color: @error-color;
+          border-color: @form-error-color;
         }
       }
       &.@{vts-prefix}-mention-active:not([disabled]) .@{vts-prefix}-mention-editor,
       .@{vts-prefix}-mention-editor:not([disabled]):focus {
-        .active(@error-color);
+        .active(@form-error-color);
       }
     }
 
     .@{vts-prefix}-cascader-picker:focus .@{vts-prefix}-cascader-input {
       background-color: @form-error-input-bg;
-      .active(@error-color);
+      .active(@form-error-color);
     }
 
     // transfer
     .@{vts-prefix}-transfer {
       &-list {
-        border-color: @error-color;
+        border-color: @form-error-color;
 
         &-search:not([disabled]) {
           border-color: @input-border-default;
@@ -246,31 +246,31 @@
 
     // RadioGroup
     .@{vts-prefix}-radio-wrapper {
-      color: @error-color !important;
+      color: @form-error-color !important;
       
       & > .@{vts-prefix}-radio > .@{vts-prefix}-radio-inner {
-        border-color: @error-color !important;
+        border-color: @form-error-color !important;
         background-color: @radio-bg-error !important;
       }
     }
 
     .@{vts-prefix}-radio-button-wrapper {
-      border-color: @error-color !important;
-      color: @error-color !important;
+      border-color: @form-error-color !important;
+      color: @form-error-color !important;
 
       &:not(:first-child) {
         &::before {
-          background-color: @error-color;
+          background-color: @form-error-color;
         }
       }
     }
 
     // Checkbox
     .@{vts-prefix}-checkbox-wrapper {
-      color: @error-color !important;
+      color: @form-error-color !important;
 
       &:not(&-checked) > .@{vts-prefix}-checkbox > .@{vts-prefix}-checkbox-inner {
-        border-color: @error-color !important;
+        border-color: @form-error-color !important;
         background-color: @radio-bg-error !important;
       }
     }
