@@ -119,6 +119,15 @@
 .formSize(@suffix, @padding-vertical, @padding-horizon, @font-size) {
   &-@{suffix} &-item {
     font-size: @font-size;
+
+    &-has-error {
+      @calc-margin: @form-item-margin-bottom - (@form-extra-padding-top - ((@line-height-base - 1) * @font-size * 0.5)) - @font-size * @line-height-base;
+      margin-bottom: if((@calc-margin > 0), @calc-margin, @form-extra-padding-top - ((@line-height-base - 1) * @font-size * 0.5));
+    }
+
+    &-extra, &-explain {
+      padding-top: @form-extra-padding-top - ((@line-height-base - 1) * @font-size * 0.5);
+    }
   }
 
   &-@{suffix} {
