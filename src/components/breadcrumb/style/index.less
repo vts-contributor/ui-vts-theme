@@ -6,55 +6,69 @@
 .@{breadcrumb-prefix-cls} {
   .reset-component();
 
-  color: @breadcrumb-base-color;
+  display: flex;
+  align-items: center;
   font-size: @breadcrumb-font-size;
-
-  .@{iconfont-css-prefix} {
-    font-size: @breadcrumb-icon-font-size;
-  }
-
-  a {
-    color: inherit;
-    transition: color 0.3s;
-    &:hover {
-      text-decoration: underline;
-    }
-    &:active {
-      text-decoration: underline;
-      font-weight: 700;
-      color: @breadcrumb-link-color-active;
-    }
-  }
-
-  & > span:last-child {
-    color: @breadcrumb-last-item-color;
-    a {
-      color: @breadcrumb-last-item-color;
-      pointer-events: none;
-      cursor: default;
-    }
-  }
 
   & > span:last-child &-separator {
     display: none;
   }
 
+  @{breadcrumb-prefix-cls}-item:last-child .@{breadcrumb-prefix-cls}-separator {
+    display: none;
+  }
+
   &-separator {
-    margin: @breadcrumb-separator-margin;
+    margin: 0 @breadcrumb-separator-margin;
     color: @breadcrumb-separator-color;
   }
 
-  &-link {
-    > .@{iconfont-css-prefix} + span,
-    > .@{iconfont-css-prefix} + a {
+  &-item { 
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &-link,
+  &-overlay-link {
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s;
+
+    > a {
+      color: @breadcrumb-base-color;
+
+      &:hover {
+        text-decoration: underline;
+      }
+      
+      &:active {
+        text-shadow: 1px 0 0 @breadcrumb-link-color-active;
+        color: @breadcrumb-link-color-active;
+        text-decoration: unset;
+      }
+
+    }
+    
+    i {
+      font-size: @breadcrumb-icon-font-size;
+    }
+
+    i + span {
       margin-left: 4px;
     }
   }
 
   &-overlay-link {
-    > .@{iconfont-css-prefix} {
-      margin-left: 4px;
+    color: @breadcrumb-base-color;
+
+    > i {
+      color: inherit;
     }
+  }
+
+  &-overlay-link > &-link {
+    color: inherit;
+    cursor: pointer;
   }
   
   &-disabled {

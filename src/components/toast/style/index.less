@@ -3,17 +3,13 @@
 @import './customize.less';
 
 @toast-prefix-cls: ~'@{vts-prefix}-toast';
-@toast-width: 384px;
-@toast-padding: @notification-padding-vertical @notification-padding-horizontal;
-@toast-margin-bottom: 16px;
-@toast-margin-edge: 24px;
 
 .@{toast-prefix-cls} {
   .reset-component();
   
   width: @toast-width;
   position: fixed;
-  z-index: @zindex-notification;
+  z-index: @zindex-toast;
   margin-right: @toast-margin-edge;
 
   &-topLeft,
@@ -36,14 +32,12 @@
   &-notice {
     position: relative;
     width: @toast-width;
-    max-width: ~'calc(100vw - @{notification-margin-edge} * 2)';
+    max-width: ~'calc(100vw - @{toast-margin-edge} * 2)';
     margin-bottom: @toast-margin-bottom;
     margin-left: auto;
     overflow: hidden;
     word-wrap: break-word;
-    background: @notification-bg;
     border-radius: @border-radius-base;
-    box-shadow: @shadow-2;
 
     .@{toast-prefix-cls}-topLeft &,
     .@{toast-prefix-cls}-bottomLeft & {
@@ -58,19 +52,15 @@
   }
 
   &-notice {
-    padding: @toast-padding;
-    line-height: @line-height-base;
-
     &-message {
       margin-bottom: 8px;
       color: @heading-color;
       font-size: @font-size-lg;
       line-height: 24px;
 
-      // https://github.com/ant-design-git/ant-design-git/issues/5846#issuecomment-296244140
       &-single-line-auto-margin {
         display: block;
-        width: ~'calc(@{toast-width} - @{notification-padding-horizontal} * 2 - 24px - 48px - 100%)';
+        width: ~'calc(@{toast-width} - @{toast-padding-horizontal} * 2 - 24px - 48px - 100%)';
         max-width: 4px;
         background-color: transparent;
         pointer-events: none;
@@ -100,9 +90,6 @@
       font-size: @font-size-base;
     }
 
-    // Icon & color style in different selector level
-    // https://github.com/ant-design-git/ant-design-git/issues/16503
-    // https://github.com/ant-design-git/ant-design-git/issues/15512
     &-icon {
       position: absolute;
       margin-left: 4px;
@@ -217,5 +204,3 @@
     opacity: 0;
   }
 }
-
-@import './rtl';
