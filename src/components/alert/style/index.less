@@ -9,172 +9,137 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 8px 15px;
+  padding: 16px;
   word-wrap: break-word;
   border-radius: @border-radius-base;
+
+  &-theme-fill {
+    border: @border-width-base @border-style-base @border-style-transparent;
+    box-shadow: 2px 4px 6px @shadow-color;
+
+    .@{alert-prefix-cls}-icon {
+      margin-right: @icon-margin * 2;
+    }
+
+    &.@{alert-prefix-cls} {
+      &-success {
+        background-color: @alert-fill-success-bg-color;
+        color: @alert-fill-success-icon-color;
+      }
+
+      &-info {
+        background-color: @alert-fill-info-bg-color;
+        color: @alert-fill-info-icon-color;
+      }
+
+      &-warning {
+        background-color: @alert-fill-warning-bg-color;
+        color: @alert-fill-warning-icon-color;
+      }
+
+      &-error {
+        background-color: @alert-fill-error-bg-color;
+        color: @alert-fill-error-icon-color;
+      }
+    }
+
+    .@{alert-prefix-cls}-icon {
+      font-size: @alert-fill-icon-size;
+
+      &:not(.@{alert-prefix-cls}-close-icon) {
+        align-self: center;
+      }
+    }
+  }
+
+  &-theme-outline& {
+    &.@{alert-prefix-cls} {
+      &-success {
+        background-color: @alert-outline-success-bg-color;
+        border: @border-width-base @border-style-base @alert-outline-success-border-color;
+        color: @alert-outline-success-icon-color;
+      }
+
+      &-info {
+        background-color: @alert-outline-info-bg-color;
+        border: @border-width-base @border-style-base @alert-outline-info-border-color;
+        color: @alert-outline-info-icon-color;
+      }
+
+      &-warning {
+        background-color: @alert-outline-warning-bg-color;
+        border: @border-width-base @border-style-base @alert-outline-warning-border-color;
+        color: @alert-outline-warning-icon-color;
+      }
+
+      &-error {
+        background-color: @alert-outline-error-bg-color;
+        border: @border-width-base @border-style-base @alert-outline-error-border-color;
+        color: @alert-outline-error-icon-color;
+      }
+    }
+
+    .@{alert-prefix-cls}-icon {
+      font-size: @alert-outline-icon-size;
+    }
+  }
+  
+  &-with-description {
+    align-items: flex-start;
+  }
 
   &-content {
     flex: 1;
     min-width: 0;
-    color: @alert-global-message-color;
   }
-
-  &-no-border {
-    border: @border-width-base @border-style-base @border-style-transparent;
-  }
-
-  &-box-shadow {
-    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.15);
-  }
-
-  &-form-content {
-    flex: 1;
-    min-width: 0;
-  }
-
-  &-icon-size {
-    margin-right: @margin-xs;
-    align-self: center;
-    font-size: 32px;
-  }
-
-  &-form-size {
-    font-size: 24px;
-    margin-right: @margin-xs;
+  
+  &-message {
+    display: block;
+    font-size: @typography-subtitle-2-size;
+    line-height: @alert-line-height;
+    font-weight: 600;
   }
 
   &-description {
-    display: none;
+    display: block;
     font-size: @font-size-base;
-    line-height: @font-size-base + 8px;
+    line-height: @alert-line-height;
+  }
+    
+  &-icon {
+    margin-right: @icon-margin;
   }
 
-  &-success {
-    background-color: @alert-global-success-bg-color;
-    .@{alert-prefix-cls}-icon {
-      color: @alert-global-success-icon-color;
-    }
-  }
-  &-form-success {
-    background-color: @alert-success-bg-color;
-    border: @border-width-base @border-style-base @alert-success-border-color;
-    color: @alert-success-icon-color;
-  }
-
-  &-info {
-    background-color: @alert-global-info-bg-color;
-    .@{alert-prefix-cls}-icon {
-      color: @alert-global-info-icon-color;
-    }
-  }
-  &-form-info {
-    background-color: @alert-info-bg-color;
-    border: @border-width-base @border-style-base @alert-info-border-color;
-    color: @alert-info-icon-color;
-  }
-
-  &-warning {
-    background-color: @alert-global-warning-bg-color;
-    .@{alert-prefix-cls}-icon {
-      color: @alert-global-warning-icon-color;
-    }
-  }
-  &-form-warning {
-    background-color: @alert-warning-bg-color;
-    border: @border-width-base @border-style-base @alert-warning-border-color;
-    color: @alert-warning-icon-color;
-  }
-
-  &-error {
-    background-color: @alert-global-error-bg-color;
-
-    .@{alert-prefix-cls}-icon {
-      color: @alert-global-error-icon-color;
-    }
-
-    .@{alert-prefix-cls}-description > pre {
-      margin: 0;
-      padding: 0;
-    }
-  }
-  &-form-error {
-    background-color: @alert-error-bg-color;
-    border: @border-width-base @border-style-base @alert-error-border-color;
-    color: @alert-error-icon-color;
-
-    .@{alert-prefix-cls}-description > pre {
-      margin: 0;
-      padding: 0;
-    }
-  }
-
-  &-action {
-    margin-left: @margin-xs;
-  }
-
-  &-close-icon {
-    margin-left: @margin-xs;
+  &-icon&-close-icon {
+    color: inherit;
+    font-size: @alert-close-icon-size;
+    margin-left: @icon-margin;
+    margin-right: 0;
     padding: 0;
     overflow: hidden;
-    font-size: @font-size-sm;
-    line-height: @font-size-sm;
     background-color: transparent;
     border: none;
     outline: none;
     cursor: pointer;
-    .@{iconfont-css-prefix}-close {
-      transition: color 0.3s;
-      &:hover {
-        color: @alert-close-hover-color;
+    display: flex;
+    align-items: center;
+    align-self: center;
+
+    &:hover {
+      > i {
+        transition: transform 0.1s ease-out;
+        transform: scale(1.2, 1.2);
+      }
+
+      .@{alert-prefix-cls}-close-text {
+        text-decoration: underline;
       }
     }
   }
 
   &-close-text {
-    color: @alert-close-color;
-    transition: color 0.3s;
-    &:hover {
-      color: @alert-close-hover-color;
-    }
-  }
-
-  &-with-description {
-    align-items: flex-start;
-    padding: @alert-with-description-padding;
-  }
-
-  &-with-description&-no-icon {
-    padding: @alert-with-description-no-icon-padding-vertical 15px;
-  }
-
-  &-with-description &-icon-size {
-    margin-right: @alert-with-description-padding-vertical;
-    font-size: 32px;
-  }
-  &-with-description &-form-size {
-    margin-right: @alert-with-description-padding-vertical;
-    font-size: @alert-with-description-icon-size;
-  }
-
-  &-with-description &-message {
-    display: block;
-    margin-bottom: 4px;
-  }
-  &-with-description &-form-message{
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  &-message {
-    font-weight: 600;
-  }
-
-  &-global-message {
-    color: @alert-global-message-color;
-  }
-
-  &-with-description &-description {
-    display: block;
+    color: inherit;
+    font-size: @font-size-base;
   }
 
   &&-motion-leave {
@@ -199,5 +164,3 @@
     border-radius: 0;
   }
 }
-
-@import './rtl';

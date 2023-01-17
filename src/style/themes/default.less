@@ -11,26 +11,24 @@
 
 // Override
 @primary-color: @primary-1;
+
 @info-color: @func-blue-2;
-@info-form-color: @func-blue-6;
-@info-global-color: @func-blue-2;
+@info-active-color: @func-blue-6;
+
 @success-color: @func-green-1;
-@success-form-color: @func-green-6;
-@success-global-color: @func-green-2;
+@success-active-color: @func-green-6;
+
 @error-color: @primary-0;
-@error-form-color: @ilus-red-8;
-@error-global-color: @func-red-2;
+@error-active-color: @ilus-red-8;
+
 @warning-color: @func-orange-1;
-@warning-form-color: @func-yellow-6;
-@warning-global-color: @func-orange-2;
+@warning-active-color: @func-yellow-6;
+
 @highlight-color: @red-5;
 @processing-color: @blue-6;
 @normal-color: #d9d9d9;
-@success-color: @func-green-1;
 @processing-color: @blue-5;
-@error-color: @primary-0;
 @highlight-color: @primary-2;
-@warning-color: @func-orange-1;
 @normal-color: @ilus-grey-7;
 @white: #fff;
 @black: #000;
@@ -150,6 +148,7 @@
 @code-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 @icon-color: inherit;
 @icon-color-hover: fade(@black, 75%);
+@icon-margin: @margin-xs;
 @text-selection-bg: @primary-color;
 @font-variant-base: tabular-nums;
 @font-feature-settings-base: 'tnum';
@@ -244,7 +243,7 @@
 @link-decoration: none;
 @link-hover-decoration: none;
 @link-focus-decoration: none;
-@link-focus-outline: 0;
+@link-focus-outline: auto;
 
 // Animation
 @ease-base-out: cubic-bezier(0.7, 0.3, 0.1, 1);
@@ -533,7 +532,7 @@
 @zindex-modal: 1000;
 @zindex-modal-mask: 1000;
 @zindex-message: 1010;
-@zindex-notification: 1010;
+@zindex-toast: 1010;
 @zindex-popover: 1030;
 @zindex-dropdown: 1050;
 @zindex-picker: 1050;
@@ -1035,9 +1034,9 @@
 
 // Avatar
 // ---
-@avatar-size-base: 32px;
-@avatar-size-lg: 40px;
-@avatar-size-sm: 24px;
+@avatar-size-base: @btn-height-md;
+@avatar-size-lg: @btn-height-lg;
+@avatar-size-sm: @btn-height-sm;
 @avatar-font-size-base: 18px;
 @avatar-font-size-lg: 24px;
 @avatar-font-size-sm: 14px;
@@ -1099,15 +1098,13 @@
 // Breadcrumb
 // ---
 @breadcrumb-base-color: @primary-6;
-@breadcrumb-last-item-color: @text-color;
 @breadcrumb-font-size: @font-size-base;
-@breadcrumb-icon-font-size: @font-size-base;
-@breadcrumb-link-color: @primary-6;
-@breadcrumb-link-color-hover: @primary-2;
+@breadcrumb-icon-font-size: @btn-font-size-lg;
+@breadcrumb-link-color: @btn-link-color;
 @breadcrumb-link-color-active: @primary-1;
 @breadcrumb-item-disabled: @grey-4;
 @breadcrumb-separator-color: @text-color-secondary;
-@breadcrumb-separator-margin: 0 @padding-xxs;
+@breadcrumb-separator-margin: 8px;
 
 // Slider
 // ---
@@ -1157,7 +1154,7 @@
 @skeleton-to-color: shade(@skeleton-color, 5%);
 @skeleton-paragraph-margin-top: 28px;
 @skeleton-paragraph-li-margin-top: @margin-md;
-@skeleton-paragraph-li-height: 16px;
+@skeleton-paragraph-li-height: 12px;
 @skeleton-title-height: 16px;
 @skeleton-title-paragraph-margin-top: @margin-lg;
 
@@ -1181,43 +1178,37 @@
 
 // Alert
 // ---
-@alert-success-border-color: @func-green-3;
-@alert-success-bg-color: @success-form-color;
-@alert-success-icon-color: @success-color;
-@alert-global-success-bg-color: @success-global-color;
-@alert-global-success-icon-color: @white-1;
+@alert-outline-success-border-color: @func-green-3;
+@alert-outline-success-bg-color: @success-active-color;
+@alert-outline-success-icon-color: @success-color;
+@alert-fill-success-bg-color: @func-green-2;
+@alert-fill-success-icon-color: @white-1;
 
-@alert-info-border-color: @func-blue-4;
-@alert-info-bg-color: @info-form-color;
-@alert-info-icon-color: @info-color;
-@alert-global-info-bg-color: @info-global-color;
-@alert-global-info-icon-color: @white-1;
+@alert-outline-info-border-color: @func-blue-4;
+@alert-outline-info-bg-color: @info-active-color;
+@alert-outline-info-icon-color: @info-color;
+@alert-fill-info-bg-color: @func-blue-2;
+@alert-fill-info-icon-color: @white-1;
 
-@alert-warning-border-color: @func-yellow-3;
-@alert-warning-bg-color: @warning-form-color;
-@alert-warning-icon-color: @warning-color;
-@alert-global-warning-bg-color: @warning-global-color;
-@alert-global-warning-icon-color: @white-1;
+@alert-outline-warning-border-color: @func-yellow-3;
+@alert-outline-warning-bg-color: @warning-active-color;
+@alert-outline-warning-icon-color: @warning-color;
+@alert-fill-warning-bg-color: @func-orange-2;
+@alert-fill-warning-icon-color: @white-1;
 
-@alert-error-border-color: @func-red-4;
-@alert-error-bg-color: @error-form-color;
-@alert-error-icon-color: @error-color;
-@alert-global-error-bg-color: @error-global-color;
-@alert-global-error-icon-color: @white-1;
+@alert-outline-error-border-color: @func-red-4;
+@alert-outline-error-bg-color: @error-active-color;
+@alert-outline-error-icon-color: @error-color;
+@alert-fill-error-bg-color: @func-red-2;
+@alert-fill-error-icon-color: @white-1;
 
-@alert-message-color: @heading-color;
-@alert-global-message-color: @heading-global-color;
+@alert-outline-icon-size: 24px;
+@alert-fill-icon-size: 32px;
+@alert-close-icon-size: 24px;
 
-@alert-text-color: @text-color;
-@alert-close-color: @text-color-secondary;
 @alert-close-hover-color: @icon-color-hover;
-@alert-no-icon-padding-vertical: @padding-xs;
-@alert-with-description-no-icon-padding-vertical: @padding-md - 1px;
-@alert-with-description-padding-vertical: @padding-md - 1px;
-@alert-with-description-padding: @alert-with-description-padding-vertical 15px
-@alert-with-description-no-icon-padding-vertical @alert-with-description-icon-size;
-@alert-icon-top: 8px + @font-size-base * (@line-height-base / 2) - (@font-size-base / 2);
-@alert-with-description-icon-size: 24px;
+
+@alert-line-height: 1.5;
 
 // List
 // ---
@@ -1314,11 +1305,14 @@
 @steps-vertical-tail-width: 16px;
 @steps-vertical-tail-width-sm: 12px;
 
-// Notification
+// Toast
 // ---
-@notification-bg: @component-background;
-@notification-padding-vertical: 16px;
-@notification-padding-horizontal: 24px;
+@toast-padding-vertical: 16px;
+@toast-padding-horizontal: 24px;
+@toast-width: 384px;
+@toast-padding: @toast-padding-vertical @toast-padding-horizontal;
+@toast-margin-bottom: 16px;
+@toast-margin-edge: 24px;
 
 //  Result
 // ---
