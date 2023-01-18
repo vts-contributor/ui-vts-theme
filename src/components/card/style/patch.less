@@ -16,3 +16,22 @@ vts-card-meta {
 vts-card-loading {
   display: block;
 }
+
+.@{card-prefix-cls}-cover-fluid {
+  &-body {
+    padding: 0;
+
+    &-meta {
+      padding: @card-padding-base @card-padding-base 1em @card-padding-base;
+    }
+
+    &-cover > img {
+      border-radius: 0;
+    }
+  }
+
+  &-actions li {
+    padding-top: @card-padding-base;
+    text-align: left;
+  }
+}
