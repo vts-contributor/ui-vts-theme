@@ -23,18 +23,42 @@
     display: block;
   }
 
-  .avatar-size(@avatar-size-base, @avatar-font-size-base);
+  .avatar-size(@avatar-size-xs, @avatar-font-size-xs);
 
-  &-lg {
-    .avatar-size(@avatar-size-lg, @avatar-font-size-lg);
+  &-xxs {
+    .avatar-size(@avatar-size-xxs, @avatar-font-size-xxs);
+  }
+
+  &-xs {
+    .avatar-size(@avatar-size-xs, @avatar-font-size-xs);
   }
 
   &-sm {
     .avatar-size(@avatar-size-sm, @avatar-font-size-sm);
   }
 
+  &-md {
+    .avatar-size(@avatar-size-md, @avatar-font-size-md);
+  }
+
+  &-lg {
+    .avatar-size(@avatar-size-lg, @avatar-font-size-lg);
+  }
+
+  &-xl {
+    .avatar-size(@avatar-size-xl, @avatar-font-size-xl);
+  }
+
+  &-circle {
+    border-radius: 50%;
+  }
+
   &-square {
-    border-radius: @avatar-border-radius;
+    border-radius: 0;
+  }
+
+  &-rounded {
+    border-radius: @avatar-rounded-border-radius;
   }
 
   & > img {
@@ -49,12 +73,14 @@
   width: @size;
   height: @size;
   line-height: @size;
-  border-radius: 50%;
 
-  &-string {
+  .@{avatar-prefix-cls}-string {
     position: absolute;
     left: 50%;
     transform-origin: 0 center;
+    display: inline-block;
+    user-select: none;
+    transform: translateX(-50%);
   }
 
   &.@{avatar-prefix-cls}-icon {

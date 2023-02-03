@@ -7,21 +7,13 @@
 .@{image-prefix-cls} {
   position: relative;
   display: inline-block;
-  &-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    &-placeholder {
-      background-color: @image-bg;
-      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTQuNSAyLjVoLTEzQS41LjUgMCAwIDAgMSAzdjEwYS41LjUgMCAwIDAgLjUuNWgxM2EuNS41IDAgMCAwIC41LS41VjNhLjUuNSAwIDAgMC0uNS0uNXpNNS4yODEgNC43NWExIDEgMCAwIDEgMCAyIDEgMSAwIDAgMSAwLTJ6bTguMDMgNi44M2EuMTI3LjEyNyAwIDAgMS0uMDgxLjAzSDIuNzY5YS4xMjUuMTI1IDAgMCAxLS4wOTYtLjIwN2wyLjY2MS0zLjE1NmEuMTI2LjEyNiAwIDAgMSAuMTc3LS4wMTZsLjAxNi4wMTZMNy4wOCAxMC4wOWwyLjQ3LTIuOTNhLjEyNi4xMjYgMCAwIDEgLjE3Ny0uMDE2bC4wMTUuMDE2IDMuNTg4IDQuMjQ0YS4xMjcuMTI3IDAgMCAxLS4wMi4xNzV6IiBmaWxsPSIjOEM4QzhDIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48L3N2Zz4=);
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 30%;
-    }
-  }
 
   &-square {
-    border-radius: 3px;
+    border-radius: 0;
+  }
+
+  &-rounded {
+    border-radius: @image-rounded-border-radius;
   }
 
   &-circle {
@@ -29,8 +21,8 @@
   }
 
   &-thumbnail {
-    padding: 5px;
-    border: 1px solid #E0E0E0;
+    padding: @image-thumbnail-padding;
+    border: 1px solid #e0e0e0;
   }
 
   &-mask {
@@ -121,7 +113,7 @@
       width: 100%;
       color: @image-preview-operation-color;
       list-style: none;
-      background: fade(@modal-mask-bg, 10%);
+      background: fade(@modal-mask-bg, 20%);
       pointer-events: auto;
 
       &-operation {
@@ -134,6 +126,10 @@
         }
         &:last-of-type {
           margin-left: 0;
+        }
+
+        &:hover {
+          transform: scale(1.2);
         }
       }
       &-icon {
@@ -154,7 +150,7 @@
       height: 44px;
       margin-top: -22px;
       color: @image-preview-operation-color;
-      background: fade(@modal-mask-bg, 10%);
+      background: fade(@modal-mask-bg, 20%);
       border-radius: 50%;
       cursor: pointer;
       pointer-events: auto;
@@ -167,6 +163,10 @@
       }
       > .vtsicon {
         font-size: 18px;
+      }
+
+      &:hover > .vtsicon {
+        transform: scale(1.4);
       }
     }
 

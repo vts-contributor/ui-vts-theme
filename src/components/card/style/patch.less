@@ -1,12 +1,3 @@
-@skeleton-prefix-cls: ~'@{vts-prefix}-skeleton';
-.@{card-prefix-cls} {
-  &-rtl {
-    .@{skeleton-prefix-cls}-header {
-      padding: 0 0 0 @card-head-padding;
-    }
-  }
-}
-
 vts-card {
   display: block;
 }
@@ -22,7 +13,7 @@ vts-card-loading {
     padding: 0;
 
     &-meta {
-      padding: @card-padding-base @card-padding-base 1em @card-padding-base;
+      padding: @card-horizontal-padding @card-horizontal-padding 1em @card-horizontal-padding;
     }
 
     &-cover > img {
@@ -31,7 +22,7 @@ vts-card-loading {
   }
 
   &-actions li {
-    padding-top: @card-padding-base;
+    padding-top: @card-horizontal-padding;
     text-align: left;
   }
 }
