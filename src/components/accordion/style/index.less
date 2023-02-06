@@ -1,0 +1,153 @@
+@import '../../../style/themes/index';
+@import '../../../style/mixins/index';
+@import (reference) '../../typography/style/index';
+
+@accordion-prefix-cls: ~'@{vts-prefix}-accordion';
+
+.@{accordion-prefix-cls} {
+  .reset-component();
+
+  background-color: @accordion-bg;
+  border-radius: @accordion-panel-border-radius;
+  border: @border-width-base @border-style-base @grey-6;
+  border-bottom: 0;
+
+  & > &-item {
+    border-bottom: @border-width-base @border-style-base @grey-6;
+
+    &:first-child, 
+    &:first-child > .@{accordion-prefix-cls}-header {
+      border-top-left-radius: @accordion-panel-border-radius;
+      border-top-right-radius: @accordion-panel-border-radius;
+    }
+
+    &:last-child, 
+    &:last-child:not(.@{accordion-prefix-cls}-item-active) > .@{accordion-prefix-cls}-header {
+      border-bottom-left-radius: @accordion-panel-border-radius;
+      border-bottom-right-radius: @accordion-panel-border-radius;
+    }
+
+    &:not(.@{accordion-prefix-cls}-item-active):not(.@{accordion-prefix-cls}-item-disabled) {
+      &:hover > .@{accordion-prefix-cls}-header {
+        background-color: @accordion-header-hover-bg;
+      }
+    }
+
+    > .@{accordion-prefix-cls}-header {
+      .sub2();
+
+      position: relative;
+      padding: @accordion-header-padding;
+      
+      cursor: pointer;
+      transition: all 0.3s;
+      .clearfix();
+
+      .@{accordion-prefix-cls}-arrow {
+        .iconfont-mixin();
+
+        position: absolute;
+        top: ((@font-size-base * @line-height-base - @font-size-sm) / 2);
+        left: @accordion-header-arrow-left;
+        display: inline-block;
+        padding: @accordion-header-padding;
+        padding-right: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+        color: @grey-3;
+        font-size: @font-size-lg;
+
+        & svg {
+          transition: transform 0.24s;
+        }
+      }
+
+      .@{accordion-prefix-cls}-extra {
+        float: right;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .@{accordion-prefix-cls}-header-collapsible-only {
+      cursor: default;
+      .@{accordion-prefix-cls}-header-text {
+        cursor: pointer;
+      }
+    }
+
+    &.@{accordion-prefix-cls}-no-arrow {
+      > .@{accordion-prefix-cls}-header {
+        padding-left: 12px;
+      }
+    }
+  }
+
+  // Expand Icon right
+  &-icon-position-right {
+    & > .@{accordion-prefix-cls}-item {
+      > .@{accordion-prefix-cls}-header {
+        padding: @accordion-header-padding;
+
+        .@{accordion-prefix-cls}-arrow {
+          right: @padding-md;
+          left: auto;
+        }
+      }
+    }
+  }
+
+  &-icon-position-left {
+    & > .@{accordion-prefix-cls}-item {
+      > .@{accordion-prefix-cls}-header {
+        padding-left: 36px;
+      }
+    }
+  }
+
+  .@{accordion-prefix-cls}-item {
+    .@{accordion-prefix-cls}-header {
+      background-color: @accordion-header-active-bg;
+    }
+
+    &:not(.@{accordion-prefix-cls}-item-active) {
+      .@{accordion-prefix-cls}-header {
+        background-color: @accordion-header-bg;
+      }
+    }
+  }
+
+  &-flush {
+    border: none;
+  }
+
+  &-content {
+    color: @text-color;
+    background-color: inherit;
+    border-top: @border-width-base @border-style-base @grey-6;
+
+    & > &-box {
+      padding: @accordion-content-padding;
+    }
+
+    &-hidden {
+      display: none;
+    }
+  }
+
+  &-item:last-child {
+    > .@{accordion-prefix-cls}-content {
+      border-radius: 0 0 @accordion-panel-border-radius @accordion-panel-border-radius;
+    }
+  }
+
+  & &-item-disabled > &-header {
+    &,
+    & > .arrow {
+      color: @disabled-color;
+      cursor: not-allowed;
+    }
+  }
+}

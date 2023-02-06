@@ -55,6 +55,7 @@
 @grey-3: #8F9294;
 @grey-4: #D1D1D1;
 @grey-5: #E9E9E9;
+@grey-6: #E0E0E0;
 
 @func-red-1: #88001D;
 @func-red-2: #C7002B;
@@ -263,7 +264,7 @@
 
 // Border color
 @border-color-base: @grey-3;
-@border-color-split: hsv(0, 0, 94%); // split border inside a component
+@border-color-split: @ilus-grey-6; // split border inside a component
 @border-color-inverse: @white;
 @border-width-base: 1px; // width of the border for a component
 @border-style-base: solid; // style of a components border
@@ -281,6 +282,10 @@
 @disabled-color: @grey-4;
 @disabled-bg: @grey-5;
 @disabled-color-dark: fade(#fff, 35%);
+
+// Transition
+@transition-duration: 0.3s;
+@transition-function: ease-out;
 
 // Shadow
 @shadow-color: rgba(0, 0, 0, 0.15);
@@ -544,9 +549,6 @@
 @animation-duration-slow: 0.3s; // Modal
 @animation-duration-base: 0.2s;
 @animation-duration-fast: 0.1s; // Tooltip
-
-//CollapsePanel
-@collapse-panel-border-radius: @border-radius-base;
 
 //Dropdown
 @dropdown-menu-bg: @component-background;
@@ -961,26 +963,29 @@
 
 // Card
 // ---
-@card-head-color: @heading-color;
-@card-head-background: transparent;
-@card-head-font-size: @font-size-lg;
-@card-head-font-size-sm: @font-size-base;
-@card-head-padding: 16px;
-@card-head-padding-sm: (@card-head-padding / 2);
-@card-head-height: 48px;
-@card-head-height-sm: 36px;
-@card-inner-head-padding: 12px;
-@card-padding-base: 24px;
-@card-padding-base-sm: (@card-padding-base / 2);
-@card-actions-background: @component-background;
-@card-actions-li-margin: 12px 0;
-@card-skeleton-bg: #cfd8dc;
 @card-background: @component-background;
-@card-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
-0 5px 12px 4px rgba(0, 0, 0, 0.09);
-@card-radius: @border-radius-base;
-@card-head-tabs-margin-bottom: -17px;
-@card-head-extra-color: @text-color;
+@card-skeleton-bg: #cfd8dc;
+@card-border-radius: 6px;
+@card-border: @border-color-split;
+@card-hover-border: @card-border;
+@card-shadow: 2px 4px 6px rgba(0, 0, 0, 0.15);
+@card-hover-shadow: 2px 4px 6px 2px rgb(0 0 0 / 15%);
+
+@card-horizontal-padding: 24px;
+@card-head-height: 48px;
+@card-head-vertical-padding: 12px;
+@card-body-vertical-padding: 16px;
+@card-meta-divider-margin: 8px;
+@card-meta-avatar-margin: 16px;
+@card-footer-padding: 8px 0 12px 0;
+
+//Card layout
+// ---
+@card-layout-avatar-width: 48px;
+@card-layout-avatar-height: 48px;
+@card-layout-padding-base: 1em;
+@card-layout-padding: 1.5em;
+@card-cover-background-color: #ffffff;
 
 // Comment
 // ---
@@ -1034,15 +1039,21 @@
 
 // Avatar
 // ---
-@avatar-size-base: @btn-height-md;
-@avatar-size-lg: @btn-height-lg;
-@avatar-size-sm: @btn-height-sm;
-@avatar-font-size-base: 18px;
-@avatar-font-size-lg: 24px;
+@avatar-size-xxs: 24px;
+@avatar-size-xs: 32px;
+@avatar-size-sm: 48px;
+@avatar-size-md: 64px;
+@avatar-size-lg: 72px;
+@avatar-size-xl: 96px;
+@avatar-font-size-xxs: 14px;
+@avatar-font-size-xs: 14px;
 @avatar-font-size-sm: 14px;
+@avatar-font-size-md: 18px;
+@avatar-font-size-lg: 24px;
+@avatar-font-size-xl: 24px;
 @avatar-bg: #ccc;
 @avatar-color: #fff;
-@avatar-border-radius: @border-radius-base;
+@avatar-rounded-border-radius: @image-rounded-border-radius;
 @avatar-group-overlapping: -8px;
 @avatar-group-space: 3px;
 @avatar-group-border-color: #fff;
@@ -1139,24 +1150,28 @@
 @tree-node-hover-bg: @item-hover-bg;
 @tree-node-selected-bg: @primary-2;
 
-// Collapse
+// Accordion
 // ---
-@collapse-header-padding: @padding-sm @padding-md;
-@collapse-header-padding-extra: 40px;
-@collapse-header-bg: @background-color-light;
-@collapse-content-padding: @padding-md;
-@collapse-content-bg: @component-background;
-@collapse-header-arrow-left: 16px;
+@accordion-bg: @component-background;
+@accordion-header-padding: @padding-md @padding-lg;
+@accordion-header-bg: @accordion-bg;
+@accordion-header-active-bg: @ilus-grey-7;
+@accordion-header-hover-bg: @ilus-grey-8;
+@accordion-content-padding: @padding-lg;
+@accordion-header-arrow-left: 16px;
+@accordion-panel-border-radius: 6px;
 
 // Skeleton
 // ---
 @skeleton-color: rgba(190, 190, 190, 0.2);
 @skeleton-to-color: shade(@skeleton-color, 5%);
 @skeleton-paragraph-margin-top: 28px;
-@skeleton-paragraph-li-margin-top: @margin-md;
-@skeleton-paragraph-li-height: 12px;
+@skeleton-paragraph-li-margin-top: 12px;
+@skeleton-paragraph-li-height: 10px;
 @skeleton-title-height: 16px;
+@skeleton-title-margin-top: 8px;
 @skeleton-title-paragraph-margin-top: @margin-lg;
+@skeleton-rounded-border-radius: 100px;
 
 // Transfer
 // ---
@@ -1320,7 +1335,7 @@
 @result-default-margin: @margin-xs; // Min margin between components
 
 @result-title-font-size: 1.5rem;
-@result-title-font-weight: 600;
+@result-title-font-weight: 700;
 @result-subtitle-font-size: 1rem;
 @result-subtitle-font-weight: 500;
 @result-content-font-size: 1rem;
@@ -1336,13 +1351,12 @@
 // Image
 // ---
 @image-size-base: 48px;
-@image-font-size-base: 24px;
-@image-bg: #f5f5f5;
-@image-color: #fff;
-@image-mask-font-size: 16px;
 @image-preview-operation-size: 18px;
-@image-preview-operation-color: @text-color-dark;
-@image-preview-operation-disabled-color: fade(@image-preview-operation-color, 25%);
+@image-preview-operation-color: @white-1;
+@image-preview-operation-disabled-color: @disabled-color;
+@image-rounded-border-radius: 3px;
+@image-thumbnail-padding: 8px;
+@image-thumbnail-border-color: @ilus-grey-6;
 
 @chart-color-donut-title: @ilus-blue-gray-1;
 @chart-color-donut-subtitle: @ilus-blue-gray-1;
