@@ -33,22 +33,25 @@
   &-header {
     height: @layout-header-height;
     padding: @layout-header-padding;
-    color: @layout-header-color;
     line-height: @layout-header-height;
     background: @layout-header-background;
+    color: @layout-header-color;
+    box-shadow: @layout-header-box-shadow;
+    z-index: 1;
   }
-
-  &-footer {
-    padding: @layout-footer-padding;
-    color: @text-color;
-    font-size: @font-size-base;
-    background: @layout-footer-background;
-  }
-
+  
   &-content {
     flex: auto;
     /* fix firefox can't set height smaller than content on flex item */
     min-height: 0;
+    padding: @layout-content-padding;
+  }
+
+  &-footer {
+    padding: @layout-footer-padding;
+    background: @layout-footer-background;
+    color: @layout-footer-color;
+    box-shadow: @layout-footer-box-shadow;
   }
 
   &-sider {
@@ -58,6 +61,7 @@
     min-width: 0;
     background: @layout-sider-background;
     transition: all 0.2s;
+    z-index: 2;
 
     &-children {
       height: 100%;

@@ -509,13 +509,20 @@
 @grid-columns: 24;
 
 // Layout
-@layout-body-background: #f0f2f5;
-@layout-header-background: @ilus-blue-gray-1;
-@layout-header-height: 64px;
-@layout-header-padding: 0 50px;
+@layout-body-background: @white-1;
+@layout-header-background: @menu-horizontal-bg;
 @layout-header-color: @text-color;
-@layout-footer-padding: 24px 50px;
-@layout-footer-background: @grey-4;
+@layout-header-height: @menu-horizontal-min-height;
+@layout-header-padding: 0 24px;
+@layout-header-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+@layout-content-padding: 24px;
+
+@layout-footer-padding: 8px 24px;
+@layout-footer-background: @grey-5;
+@layout-footer-color: @text-color;
+@layout-footer-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
 @layout-sider-background: @layout-header-background;
 @layout-trigger-height: 48px;
 @layout-trigger-background: #002140;
@@ -838,39 +845,81 @@
 @progress-steps-item-bg: #f3f3f3;
 @progress-text-font-size: 1em;
 @progress-circle-text-font-size: 1em;
+
 // Menu
 // ---
-@menu-inline-toplevel-item-height: 40px;
-@menu-item-height: 40px;
-@menu-item-group-height: @line-height-base;
-@menu-item-font-weight: 500;
-@menu-collapsed-width: 70px;
-@menu-bg: @white-1;
-@menu-popup-bg: @white-1;
 @menu-item-color: inherit;
-@menu-hover-color: @primary-3;
-@menu-hover-color-white: @white;
-@menu-highlight-color: @primary-1;
-@menu-highlight-danger-color: @error-color;
-@menu-item-active-bg: @item-active-bg;
-@menu-item-active-bg-red: @primary-0;
-@menu-item-active-color-white: @white;
-@menu-item-active-danger-bg: @item-active-bg;
-@menu-item-active-border-width: 0px;
-@menu-item-active-font-weight: 500;
-@menu-item-group-title-color: @white-1;
-@menu-item-group-title-color: @black-1;
-@menu-item-hover-bg-grey7: @ilus-grey-7;
-@menu-item-hover-color-red: @primary-0;
-@menu-item-vertical-margin: 0px;
-@menu-item-boundary-margin: 0px;
 @menu-item-font-size: @font-size-base;
-@menu-item-padding: 0 16px;
-@menu-horizontal-line-height: 46px;
-@menu-icon-margin-right: 10px;
+@menu-item-height: 48px;
+@menu-item-min-width: 160px;
+@menu-arrow-size: 16px;
+@menu-arrow-right: 8px;
+@menu-item-idle-icon-color: @grey-3;
 @menu-icon-size: @menu-item-font-size;
-@menu-icon-size-lg: @font-size-lg;
-@menu-item-group-title-font-size: @menu-item-font-size;
+@menu-icon-margin-right: @icon-margin;
+
+@menu-horizontal-bg: @white;
+@menu-horizontal-padding: 0;
+@menu-horizontal-min-height: 56px;
+@menu-horizontal-item-hover-background: @grey-5;
+@menu-horizontal-item-hover-color: inherit;
+@menu-horizontal-item-highlight-border-height: 4px;
+@menu-horizontal-item-highlight-border-color: @primary-1;
+@menu-horizontal-item-active-background: @btn-primary-active-bg;
+@menu-horizontal-item-active-color: @white-1;
+@menu-horizontal-item-padding: 16px;
+@menu-horizontal-item-margin: (24px / 2);
+@menu-horizontal-item-disabled-background: @ilus-grey-2;
+@menu-horizontal-item-disabled-color: @disabled-color;
+
+@menu-vertical-background: @ilus-blue-gray-1;
+@menu-vertical-padding: 4px 16px 0 16px;
+@menu-vertical-indent-margin: 24px;
+@menu-vertical-sub-line-width: 1px;
+@menu-vertical-sub-line-color: @ilus-blue-gray-4;
+@menu-vertical-item-height: 56px;
+@menu-vertical-item-margin: 6px;
+@menu-vertical-item-padding: 0, 12px;
+@menu-vertical-item-border-radius: 6px;
+@menu-vertical-item-color: @ilus-blue-gray-7;
+@menu-vertical-item-hover-background: @ilus-blue-gray-4;
+@menu-vertical-item-hover-color: @menu-vertical-item-color;
+@menu-vertical-item-active-background: @primary-1;
+@menu-vertical-item-active-color: @white;
+@menu-vertical-group-title-color: @ilus-grey-1;
+@menu-vertical-item-disabled-background: @grey-2;
+@menu-vertical-item-disabled-color: @grey-3;
+
+@menu-popup-padding: 8px 0 16px 0;
+@menu-popup-radius: 8px;
+@menu-popup-item-padding: 0 (@menu-arrow-size + @menu-arrow-right + @menu-arrow-right) 0 @menu-horizontal-item-padding;
+
+@menu-popup-horizontal-bg: @white-1;
+@menu-popup-horizontal-font-color: @text-color;
+@menu-popup-horizontal-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+@menu-popup-horizontal-border: 1px solid @grey-4;
+@menu-popup-horizontal-item-highlight-background: @grey-5;
+@menu-popup-horizontal-item-highlight-color: @text-color;
+@menu-popup-horizontal-item-active-background: @primary-0;
+@menu-popup-horizontal-item-active-color: @white;
+@menu-popup-horizontal-group-title-color: inherit;
+@menu-popup-horizontal-item-disabled-background: @ilus-grey-2;
+@menu-popup-horizontal-item-disabled-color: @disabled-color;
+
+@menu-popup-vertical-bg: @ilus-blue-gray-3;
+@menu-popup-vertical-font-color: @menu-vertical-item-color;
+@menu-popup-vertical-box-shadow: @menu-popup-horizontal-box-shadow;
+@menu-popup-vertical-border: 1px solid @grey-2;
+@menu-popup-vertical-item-highlight-background: @menu-vertical-item-hover-background;
+@menu-popup-vertical-item-highlight-color: @menu-vertical-item-hover-color;
+@menu-popup-vertical-item-active-background: @menu-vertical-item-active-background;
+@menu-popup-vertical-item-active-color: @menu-vertical-item-active-color;
+@menu-popup-vertical-group-title-color: @menu-vertical-group-title-color;
+@menu-popup-vertical-item-disabled-background: @grey-2;
+@menu-popup-vertical-item-disabled-color: @grey-3;
+
+@menu-collapsed-width: 70px;
+@menu-collapse-icon-size: @font-size-lg;
 
 // Spin
 // ---
