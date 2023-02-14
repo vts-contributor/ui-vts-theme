@@ -92,6 +92,16 @@
   }
 }
 
+.nowrap() {
+  white-space: nowrap;
+}
+
+.truncate() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .make-type(@class: ~'') {
   .@{typography-prefix-cls}@{class}-type {
     &-body1 {
