@@ -11,12 +11,24 @@
 
 // Override
 @primary-color: @primary-1;
+
 @info-color: @func-blue-2;
+@info-active-color: @func-blue-6;
+
 @success-color: @func-green-1;
-@processing-color: @blue-5;
+@success-active-color: @func-green-6;
+
 @error-color: @primary-0;
-@highlight-color: @primary-2;
+@error-active-color: @ilus-red-8;
+
 @warning-color: @func-orange-1;
+@warning-active-color: @func-yellow-6;
+
+@highlight-color: @red-5;
+@processing-color: @blue-6;
+@normal-color: #d9d9d9;
+@processing-color: @blue-5;
+@highlight-color: @primary-2;
 @normal-color: @ilus-grey-7;
 @white: #fff;
 @black: #000;
@@ -43,6 +55,7 @@
 @grey-3: #8F9294;
 @grey-4: #D1D1D1;
 @grey-5: #E9E9E9;
+@grey-6: #E0E0E0;
 
 @func-red-1: #88001D;
 @func-red-2: #C7002B;
@@ -72,7 +85,7 @@
 @func-green-5: #A7EDCA;
 @func-green-6: #E5FCF2;
 
-@func-blue-1: #004E7A;
+@func-blue-2: #004E7A;
 @func-blue-2: #0377AD;
 @func-blue-3: #0593CF;
 @func-blue-4: #2AB1EB;
@@ -136,6 +149,7 @@
 @code-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 @icon-color: inherit;
 @icon-color-hover: fade(@black, 75%);
+@icon-margin: @margin-xs;
 @text-selection-bg: @primary-color;
 @font-variant-base: tabular-nums;
 @font-feature-settings-base: 'tnum';
@@ -160,6 +174,7 @@
 @padding-sm: 12px; // Form controls and items
 @padding-xs: 8px; // small items
 @padding-xss: 4px; // more small
+@padding-xxs: 2px; //extra small
 
 // Control
 @control-padding-horizontal: 16px;
@@ -229,7 +244,7 @@
 @link-decoration: none;
 @link-hover-decoration: none;
 @link-focus-decoration: none;
-@link-focus-outline: 0;
+@link-focus-outline: auto;
 
 // Animation
 @ease-base-out: cubic-bezier(0.7, 0.3, 0.1, 1);
@@ -249,11 +264,11 @@
 
 // Border color
 @border-color-base: @grey-3;
-@border-color-split: hsv(0, 0, 94%); // split border inside a component
+@border-color-split: @ilus-grey-6; // split border inside a component
 @border-color-inverse: @white;
 @border-width-base: 1px; // width of the border for a component
 @border-style-base: solid; // style of a components border
-
+@border-style-transparent: transparent;
 // Outline
 @outline-blur-size: 0;
 @outline-width: 2px;
@@ -267,6 +282,10 @@
 @disabled-color: @grey-4;
 @disabled-bg: @grey-5;
 @disabled-color-dark: fade(#fff, 35%);
+
+// Transition
+@transition-duration: 0.3s;
+@transition-function: ease-out;
 
 // Shadow
 @shadow-color: rgba(0, 0, 0, 0.15);
@@ -518,7 +537,7 @@
 @zindex-modal: 1000;
 @zindex-modal-mask: 1000;
 @zindex-message: 1010;
-@zindex-notification: 1010;
+@zindex-toast: 1010;
 @zindex-popover: 1030;
 @zindex-dropdown: 1050;
 @zindex-picker: 1050;
@@ -530,9 +549,6 @@
 @animation-duration-slow: 0.3s; // Modal
 @animation-duration-base: 0.2s;
 @animation-duration-fast: 0.1s; // Tooltip
-
-//CollapsePanel
-@collapse-panel-border-radius: @border-radius-base;
 
 //Dropdown
 @dropdown-menu-bg: @component-background;
@@ -947,26 +963,29 @@
 
 // Card
 // ---
-@card-head-color: @heading-color;
-@card-head-background: transparent;
-@card-head-font-size: @font-size-lg;
-@card-head-font-size-sm: @font-size-base;
-@card-head-padding: 16px;
-@card-head-padding-sm: (@card-head-padding / 2);
-@card-head-height: 48px;
-@card-head-height-sm: 36px;
-@card-inner-head-padding: 12px;
-@card-padding-base: 24px;
-@card-padding-base-sm: (@card-padding-base / 2);
-@card-actions-background: @component-background;
-@card-actions-li-margin: 12px 0;
-@card-skeleton-bg: #cfd8dc;
 @card-background: @component-background;
-@card-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
-0 5px 12px 4px rgba(0, 0, 0, 0.09);
-@card-radius: @border-radius-base;
-@card-head-tabs-margin-bottom: -17px;
-@card-head-extra-color: @text-color;
+@card-skeleton-bg: #cfd8dc;
+@card-border-radius: 6px;
+@card-border: @border-color-split;
+@card-hover-border: @card-border;
+@card-shadow: 2px 4px 6px rgba(0, 0, 0, 0.15);
+@card-hover-shadow: 2px 4px 6px 2px rgb(0 0 0 / 15%);
+
+@card-horizontal-padding: 24px;
+@card-head-height: 48px;
+@card-head-vertical-padding: 12px;
+@card-body-vertical-padding: 16px;
+@card-meta-divider-margin: 8px;
+@card-meta-avatar-margin: 16px;
+@card-footer-padding: 8px 0 12px 0;
+
+//Card layout
+// ---
+@card-layout-avatar-width: 48px;
+@card-layout-avatar-height: 48px;
+@card-layout-padding-base: 1em;
+@card-layout-padding: 1.5em;
+@card-cover-background-color: #ffffff;
 
 // Comment
 // ---
@@ -1020,15 +1039,21 @@
 
 // Avatar
 // ---
-@avatar-size-base: 32px;
-@avatar-size-lg: 40px;
-@avatar-size-sm: 24px;
-@avatar-font-size-base: 18px;
-@avatar-font-size-lg: 24px;
+@avatar-size-xxs: 24px;
+@avatar-size-xs: 32px;
+@avatar-size-sm: 48px;
+@avatar-size-md: 64px;
+@avatar-size-lg: 72px;
+@avatar-size-xl: 96px;
+@avatar-font-size-xxs: 14px;
+@avatar-font-size-xs: 14px;
 @avatar-font-size-sm: 14px;
+@avatar-font-size-md: 18px;
+@avatar-font-size-lg: 24px;
+@avatar-font-size-xl: 24px;
 @avatar-bg: #ccc;
 @avatar-color: #fff;
-@avatar-border-radius: @border-radius-base;
+@avatar-rounded-border-radius: @image-rounded-border-radius;
 @avatar-group-overlapping: -8px;
 @avatar-group-space: 3px;
 @avatar-group-border-color: #fff;
@@ -1083,14 +1108,14 @@
 
 // Breadcrumb
 // ---
-@breadcrumb-base-color: @text-color-secondary;
-@breadcrumb-last-item-color: @text-color;
+@breadcrumb-base-color: @primary-6;
 @breadcrumb-font-size: @font-size-base;
-@breadcrumb-icon-font-size: @font-size-base;
-@breadcrumb-link-color: @text-color-secondary;
-@breadcrumb-link-color-hover: @primary-2;
+@breadcrumb-icon-font-size: @btn-font-size-lg;
+@breadcrumb-link-color: @btn-link-color;
+@breadcrumb-link-color-active: @primary-1;
+@breadcrumb-item-disabled: @grey-4;
 @breadcrumb-separator-color: @text-color-secondary;
-@breadcrumb-separator-margin: 0 @padding-xs;
+@breadcrumb-separator-margin: 8px;
 
 // Slider
 // ---
@@ -1125,24 +1150,28 @@
 @tree-node-hover-bg: @item-hover-bg;
 @tree-node-selected-bg: @primary-2;
 
-// Collapse
+// Accordion
 // ---
-@collapse-header-padding: @padding-sm @padding-md;
-@collapse-header-padding-extra: 40px;
-@collapse-header-bg: @background-color-light;
-@collapse-content-padding: @padding-md;
-@collapse-content-bg: @component-background;
-@collapse-header-arrow-left: 16px;
+@accordion-bg: @component-background;
+@accordion-header-padding: @padding-md @padding-lg;
+@accordion-header-bg: @accordion-bg;
+@accordion-header-active-bg: @ilus-grey-7;
+@accordion-header-hover-bg: @ilus-grey-8;
+@accordion-content-padding: @padding-lg;
+@accordion-header-arrow-left: 16px;
+@accordion-panel-border-radius: 6px;
 
 // Skeleton
 // ---
 @skeleton-color: rgba(190, 190, 190, 0.2);
 @skeleton-to-color: shade(@skeleton-color, 5%);
 @skeleton-paragraph-margin-top: 28px;
-@skeleton-paragraph-li-margin-top: @margin-md;
-@skeleton-paragraph-li-height: 16px;
+@skeleton-paragraph-li-margin-top: 12px;
+@skeleton-paragraph-li-height: 10px;
 @skeleton-title-height: 16px;
+@skeleton-title-margin-top: 8px;
 @skeleton-title-paragraph-margin-top: @margin-lg;
+@skeleton-rounded-border-radius: 100px;
 
 // Transfer
 // ---
@@ -1164,29 +1193,37 @@
 
 // Alert
 // ---
-@alert-success-border-color: ~`colorPalette('@{success-color}', 3) `;
-@alert-success-bg-color: ~`colorPalette('@{success-color}', 1) `;
-@alert-success-icon-color: @success-color;
-@alert-info-border-color: ~`colorPalette('@{info-color}', 3) `;
-@alert-info-bg-color: ~`colorPalette('@{info-color}', 1) `;
-@alert-info-icon-color: @info-color;
-@alert-warning-border-color: ~`colorPalette('@{warning-color}', 3) `;
-@alert-warning-bg-color: ~`colorPalette('@{warning-color}', 1) `;
-@alert-warning-icon-color: @warning-color;
-@alert-error-border-color: ~`colorPalette('@{error-color}', 3) `;
-@alert-error-bg-color: ~`colorPalette('@{error-color}', 1) `;
-@alert-error-icon-color: @error-color;
-@alert-message-color: @heading-color;
-@alert-text-color: @text-color;
-@alert-close-color: @text-color-secondary;
+@alert-outline-success-border-color: @func-green-3;
+@alert-outline-success-bg-color: @success-active-color;
+@alert-outline-success-icon-color: @success-color;
+@alert-fill-success-bg-color: @func-green-2;
+@alert-fill-success-icon-color: @white-1;
+
+@alert-outline-info-border-color: @func-blue-4;
+@alert-outline-info-bg-color: @info-active-color;
+@alert-outline-info-icon-color: @info-color;
+@alert-fill-info-bg-color: @func-blue-2;
+@alert-fill-info-icon-color: @white-1;
+
+@alert-outline-warning-border-color: @func-yellow-3;
+@alert-outline-warning-bg-color: @warning-active-color;
+@alert-outline-warning-icon-color: @warning-color;
+@alert-fill-warning-bg-color: @func-orange-2;
+@alert-fill-warning-icon-color: @white-1;
+
+@alert-outline-error-border-color: @func-red-4;
+@alert-outline-error-bg-color: @error-active-color;
+@alert-outline-error-icon-color: @error-color;
+@alert-fill-error-bg-color: @func-red-2;
+@alert-fill-error-icon-color: @white-1;
+
+@alert-outline-icon-size: 24px;
+@alert-fill-icon-size: 32px;
+@alert-close-icon-size: 24px;
+
 @alert-close-hover-color: @icon-color-hover;
-@alert-no-icon-padding-vertical: @padding-xs;
-@alert-with-description-no-icon-padding-vertical: @padding-md - 1px;
-@alert-with-description-padding-vertical: @padding-md - 1px;
-@alert-with-description-padding: @alert-with-description-padding-vertical 15px
-@alert-with-description-no-icon-padding-vertical @alert-with-description-icon-size;
-@alert-icon-top: 8px + @font-size-base * (@line-height-base / 2) - (@font-size-base / 2);
-@alert-with-description-icon-size: 24px;
+
+@alert-line-height: 1.5;
 
 // List
 // ---
@@ -1283,11 +1320,14 @@
 @steps-vertical-tail-width: 16px;
 @steps-vertical-tail-width-sm: 12px;
 
-// Notification
+// Toast
 // ---
-@notification-bg: @component-background;
-@notification-padding-vertical: 16px;
-@notification-padding-horizontal: 24px;
+@toast-padding-vertical: 16px;
+@toast-padding-horizontal: 24px;
+@toast-width: 384px;
+@toast-padding: @toast-padding-vertical @toast-padding-horizontal;
+@toast-margin-bottom: 16px;
+@toast-margin-edge: 24px;
 
 //  Result
 // ---
@@ -1295,7 +1335,7 @@
 @result-default-margin: @margin-xs; // Min margin between components
 
 @result-title-font-size: 1.5rem;
-@result-title-font-weight: 600;
+@result-title-font-weight: 700;
 @result-subtitle-font-size: 1rem;
 @result-subtitle-font-weight: 500;
 @result-content-font-size: 1rem;
@@ -1311,13 +1351,20 @@
 // Image
 // ---
 @image-size-base: 48px;
-@image-font-size-base: 24px;
-@image-bg: #f5f5f5;
-@image-color: #fff;
-@image-mask-font-size: 16px;
 @image-preview-operation-size: 18px;
-@image-preview-operation-color: @text-color-dark;
-@image-preview-operation-disabled-color: fade(@image-preview-operation-color, 25%);
+@image-preview-operation-color: @white-1;
+@image-preview-operation-disabled-color: @disabled-color;
+@image-rounded-border-radius: 3px;
+@image-thumbnail-padding: 8px;
+@image-thumbnail-border-color: @ilus-grey-6;
 
 @chart-color-donut-title: @ilus-blue-gray-1;
 @chart-color-donut-subtitle: @ilus-blue-gray-1;
+
+// Splitter
+// ---
+@splitter-gutter-bg: @ilus-grey-7;
+@splitter-handle-bg: @ilus-blue-gray-7;
+@splitter-gutter-active-bg: @ilus-blue-gray-7;
+@splitter-handle-active-bg: @ilus-blue-gray-7;
+
