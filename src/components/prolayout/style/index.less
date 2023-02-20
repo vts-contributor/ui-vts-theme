@@ -1,9 +1,9 @@
 @import '../../../style/themes/index';
 @import '../../../style/mixins/index';
 
-@layout-prefix-cls: ~'@{vts-prefix}-pro-layout';
+@prolayout-prefix-cls: ~'@{vts-prefix}-prolayout';
 
-.@{layout-prefix-cls} {
+.@{prolayout-prefix-cls} {
   display: flex;
   flex: auto;
   flex-direction: column;
@@ -19,8 +19,8 @@
   &&-has-sider {
     flex-direction: row;
 
-    > .@{layout-prefix-cls},
-    > .@{layout-prefix-cls}-content {
+    > .@{prolayout-prefix-cls},
+    > .@{prolayout-prefix-cls}-content {
       width: 0; // https://segmentfault.com/a/1190000019498300
     }
   }
