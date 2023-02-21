@@ -10,63 +10,6 @@
 
 @carousel-prefix-cls: ~'@{vts-prefix}-carousel';
 
-.slick-button-prev,
-.slick-button-next {
-  position: absolute;
-  top: 50%;
-  width: @carousel-navigation-size * 3 / 2;
-  height: @carousel-navigation-size;
-  margin-top: calc(0px - (@carousel-navigation-size / 2));
-  z-index: 10;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  &.slick-button-disabled {
-    opacity: 0.35;
-    cursor: auto;
-    pointer-events: none;
-  }
-  &.slick-button-hidden {
-    opacity: 0;
-    cursor: auto;
-    pointer-events: none;
-  }
-  .slick-navigation-disabled & {
-    display: none !important;
-  }
-  &:after {
-    font-family: swiper-icons;
-    font-size: @carousel-navigation-size;
-    text-transform: none !important;
-    letter-spacing: 0;
-    font-variant: initial;
-    line-height: 1;
-  }
-}
-.slick-button-prev,
-.slick-rtl .slick-button-next {
-  &:after {
-    content: 'prev';
-  }
-  left: 10px;
-  right: auto;
-}
-.slick-button-next,
-.slick-rtl .slick-button-prev {
-  &:after {
-    content: 'next';
-  }
-  right: 10px;
-  left: auto;
-}
-
-.slick-button-lock {
-  display: none;
-}
-
-
 .@{carousel-prefix-cls} {
   .reset-component();
 
