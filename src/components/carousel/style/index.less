@@ -191,6 +191,7 @@
   
   &-button-prev,
   &-button-next {
+    display: none;
     &.@{carousel-prefix-cls}-navigation-inner {
       position: absolute;
       z-index: 10;
@@ -265,19 +266,34 @@
     }
 
     .@{carousel-prefix-cls}-vertical > & {
+      .@{carousel-prefix-cls}-button-ico {
+        transform: rotate(90deg);
+      }
+
       &.@{carousel-prefix-cls}-navigation-inner {
         top: @carousel-navigation-vertical-offset;
         bottom: unset;
         left: 50%;
         right: auto;
-        transform: rotate(90deg) translateX(-50%);
+        transform: translateX(-50%);
 
         &.@{carousel-prefix-cls}-navigation-inner:hover {
-          transform: scale(1.1) rotate(90deg) translateX(-50%);
+          transform: translateX(-50%) scale(1.1);
         }
       }
 
-      
+      &.@{carousel-prefix-cls}-navigation-edge {
+        top: -@carousel-navigation-edge-height + @carousel-navigation-edge-offset;
+        bottom: unset;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+
+        &:hover {
+          background: @carousel-navigation-edge-hover-bg;
+          color: @carousel-navigation-edge-hover-color;
+        }
+      }
     }
   }
 
@@ -302,7 +318,7 @@
         left: auto;
         right: -@carousel-navigation-edge-width + @carousel-navigation-edge-offset;
 
-        &.@{carousel-prefix-cls}-navigation-inner:hover {
+        &:hover {
           background: @carousel-navigation-edge-hover-bg;
           color: @carousel-navigation-edge-hover-color;
         }
@@ -310,25 +326,30 @@
     }
 
     .@{carousel-prefix-cls}-vertical > & {
+      .@{carousel-prefix-cls}-button-ico {
+        transform: rotate(90deg);
+      }
+
       &.@{carousel-prefix-cls}-navigation-inner {
         top: unset;
         bottom: @carousel-navigation-vertical-offset;
         left: 50%;
         right: auto;
-        transform: rotate(90deg) translateX(-50%);
+        transform: translateX(-50%);
 
         &:hover {
-          transform: scale(1.1) rotate(90deg) translateX(-50%);
+          transform: translateX(-50%) scale(1.1);
         }
       }
 
       &.@{carousel-prefix-cls}-navigation-edge {
-        top: 50%;
-        bottom: unset;
-        left: auto;
-        right: -@carousel-navigation-edge-width + @carousel-navigation-edge-offset;
+        top: unset;
+        bottom: -@carousel-navigation-edge-height + @carousel-navigation-edge-offset;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
 
-        &.@{carousel-prefix-cls}-navigation-inner:hover {
+        &:hover {
           background: @carousel-navigation-edge-hover-bg;
           color: @carousel-navigation-edge-hover-color;
         }
