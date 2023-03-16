@@ -1,0 +1,122 @@
+@import './index';
+@import './size';
+
+@table-border: @border-width-base @border-style-base @table-border-color;
+
+.@{protable-prefix-cls}.@{protable-prefix-cls}-bordered {
+  // ============================ Title =============================
+  > .@{protable-prefix-cls}-title {
+    border: @table-border;
+    border-bottom: 0;
+  }
+
+  > .@{protable-prefix-cls}-container {
+    // ============================ Content ============================
+    border: @table-border;
+    border-right: 0;
+    border-bottom: 0;
+
+    > .@{protable-prefix-cls}-content,
+    > .@{protable-prefix-cls}-header,
+    > .@{protable-prefix-cls}-body {
+      > table {
+        // ============================= Cell =============================
+        > thead > tr > th,
+        > tbody > tr > td,
+        > tfoot > tr > th,
+        > tfoot > tr > td {
+          border-right: @table-border;
+        }
+        // ============================ Header ============================
+        > thead {
+          > tr:not(:last-child) > th {
+            border-bottom: @border-width-base @border-style-base @table-border-color;
+          }
+        }
+
+        // Fixed right should provides additional border
+        > thead > tr,
+        > tbody > tr,
+        > tfoot > tr {
+          > .@{protable-prefix-cls}-cell-fix-right-first::after {
+            border-right: @table-border;
+          }
+        }
+      }
+
+      // ========================== Expandable ==========================
+      > table > tbody > tr > td {
+        > .@{protable-prefix-cls}-expanded-row-fixed {
+          margin: -@table-padding-vertical (-@table-padding-horizontal - @border-width-base);
+
+          &::after {
+            position: absolute;
+            top: 0;
+            right: @border-width-base;
+            bottom: 0;
+            border-right: @table-border;
+            content: '';
+          }
+        }
+      }
+    }
+  }
+
+  &.@{protable-prefix-cls}-scroll-horizontal {
+    > .@{protable-prefix-cls}-container > .@{protable-prefix-cls}-body {
+      > table > tbody {
+        > tr.@{protable-prefix-cls}-expanded-row,
+        > tr.@{protable-prefix-cls}-placeholder {
+          > td {
+            border-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // Size related
+  &.@{protable-prefix-cls}-middle {
+    > .@{protable-prefix-cls}-container {
+      > .@{protable-prefix-cls}-content,
+      > .@{protable-prefix-cls}-body {
+        > table > tbody > tr > td {
+          > .@{protable-prefix-cls}-expanded-row-fixed {
+            margin: -@table-padding-vertical-md (-@table-padding-horizontal-md - @border-width-base);
+          }
+        }
+      }
+    }
+  }
+
+  &.@{protable-prefix-cls}-small {
+    > .@{protable-prefix-cls}-container {
+      > .@{protable-prefix-cls}-content,
+      > .@{protable-prefix-cls}-body {
+        > table > tbody > tr > td {
+          > .@{protable-prefix-cls}-expanded-row-fixed {
+            margin: -@table-padding-vertical-sm (-@table-padding-horizontal-sm - @border-width-base);
+          }
+        }
+      }
+    }
+  }
+
+  // ============================ Footer ============================
+  > .@{protable-prefix-cls}-footer {
+    border: @table-border;
+    border-top: 0;
+  }
+}
+
+.@{protable-prefix-cls}-cell {
+  // ============================ Nested ============================
+  .@{protable-prefix-cls}-container:first-child {
+    // :first-child to avoid the case when bordered and title is set
+    border-top: 0;
+  }
+
+  &-scrollbar {
+    box-shadow: 0 @border-width-base 0 @border-width-base @table-header-bg;
+  }
+}

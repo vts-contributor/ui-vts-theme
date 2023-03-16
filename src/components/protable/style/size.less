@@ -1,0 +1,68 @@
+@import './index';
+
+.table-size(@size, @padding-vertical, @padding-horizontal, @font-size) {
+  .@{protable-prefix-cls}.@{protable-prefix-cls}-@{size} {
+    font-size: @font-size;
+
+    .@{protable-prefix-cls}-title,
+    .@{protable-prefix-cls}-footer,
+    .@{protable-prefix-cls}-thead > tr > th,
+    .@{protable-prefix-cls}-tbody > tr > td,
+    tfoot > tr > th,
+    tfoot > tr > td {
+      padding: @padding-vertical @padding-horizontal;
+    }
+
+    .@{protable-prefix-cls}-thead {
+      th.@{protable-prefix-cls}-column-has-sorters {
+        padding: 0;
+      }
+
+      .@{protable-prefix-cls}-filter-column {
+        margin: -@padding-vertical -@padding-horizontal;
+      }
+
+      .@{protable-prefix-cls}-filter-column-title {
+        padding: @padding-vertical 2.3em @padding-vertical @padding-horizontal;
+      }
+
+      .@{protable-prefix-cls}-column-sorters {
+        padding: @padding-vertical @padding-horizontal;
+      }
+    }
+
+    .@{protable-prefix-cls}-expanded-row-fixed {
+      margin: -@padding-vertical -@padding-horizontal;
+    }
+
+    .@{protable-prefix-cls}-tbody {
+      // ========================= Nest Table ===========================
+      .@{protable-prefix-cls}-wrapper:only-child {
+        .@{protable-prefix-cls} {
+          margin: -@padding-vertical -@padding-horizontal -@padding-vertical (@padding-horizontal +
+                ceil((@font-size-sm * 1.4)));
+        }
+      }
+    }
+  }
+}
+
+// ================================================================
+// =                            Middle                            =
+// ================================================================
+.table-size(~'middle', @table-padding-vertical-md, @table-padding-horizontal-md, @table-font-size-md);
+
+// ================================================================
+// =                            Small                             =
+// ================================================================
+.table-size(~'small', @table-padding-vertical-sm, @table-padding-horizontal-sm, @table-font-size-sm);
+
+.@{protable-prefix-cls}-small {
+  .@{protable-prefix-cls}-thead > tr > th {
+    background-color: @table-header-bg-sm;
+  }
+  .@{protable-prefix-cls}-selection-column {
+    width: 46px;
+    min-width: 46px;
+  }
+}

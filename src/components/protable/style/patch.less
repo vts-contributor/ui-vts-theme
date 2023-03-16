@@ -1,0 +1,135 @@
+vts-protable,
+vts-protable-title-footer,
+vts-protable-inner-scroll,
+vts-protable-inner-default,
+vts-protable-selection {
+  display: block;
+}
+
+.vts-protable-out-bordered {
+  > .@{protable-prefix-cls}-title {
+    border: @table-border;
+    border-bottom: 0;
+  }
+  > .@{protable-prefix-cls}-container {
+    border: @table-border;
+    border-bottom: 0;
+  }
+  > .@{protable-prefix-cls}-footer {
+    border: @table-border;
+    border-top: 0;
+  }
+}
+
+cdk-virtual-scroll-viewport.vts-protable-body {
+  overflow-y: scroll;
+}
+
+.vts-protable-hide-scrollbar {
+  scrollbar-color: @table-header-bg @table-header-bg;
+  &::-webkit-scrollbar {
+    background-color: @table-header-bg;
+  }
+}
+
+.@{protable-prefix-cls}.@{protable-prefix-cls}-small {
+  .vts-protable-hide-scrollbar {
+    scrollbar-color: @table-header-bg-sm @table-header-bg-sm;
+    &::-webkit-scrollbar {
+      background-color: transparent;
+    }
+  }
+}
+
+.vts-protable-wrapper-rtl .vts-protable thead > tr > th.vts-protable-selection-column {
+  text-align: center;
+}
+
+// virtual scroll border
+.@{protable-prefix-cls}.@{protable-prefix-cls}-bordered {
+
+  > .@{protable-prefix-cls}-container {
+
+    > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper {
+      > table {
+        // ============================= Cell =============================
+        > thead > tr > th,
+        > tbody > tr > td,
+        > tfoot > tr > th,
+        > tfoot > tr > td {
+          border-right: @table-border;
+        }
+        // ============================ Header ============================
+        > thead {
+          > tr:not(:last-child) > th {
+            border-bottom: @border-width-base @border-style-base @table-border-color;
+          }
+        }
+
+        // Fixed right should provides additional border
+        > thead > tr,
+        > tbody > tr,
+        > tfoot > tr {
+          > .@{protable-prefix-cls}-cell-fix-right-first::after {
+            border-right: @table-border;
+          }
+        }
+      }
+
+      // ========================== Expandable ==========================
+      > table > tbody > tr > td {
+        > .@{protable-prefix-cls}-expanded-row-fixed {
+          margin: -@table-padding-vertical (-@table-padding-horizontal - @border-width-base);
+
+          &::after {
+            position: absolute;
+            top: 0;
+            right: @border-width-base;
+            bottom: 0;
+            border-right: @table-border;
+            content: '';
+          }
+        }
+      }
+    }
+  }
+
+  &.@{protable-prefix-cls}-scroll-horizontal {
+    > .@{protable-prefix-cls}-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper {
+      > table > tbody {
+        > tr.@{protable-prefix-cls}-expanded-row,
+        > tr.@{protable-prefix-cls}-placeholder {
+          > td {
+            border-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // Size related
+  &.@{protable-prefix-cls}-middle {
+    > .@{protable-prefix-cls}-container {
+      > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper {
+        > table > tbody > tr > td {
+          > .@{protable-prefix-cls}-expanded-row-fixed {
+            margin: -@table-padding-vertical-md (-@table-padding-horizontal-md - @border-width-base);
+          }
+        }
+      }
+    }
+  }
+
+  &.@{protable-prefix-cls}-small {
+    > .@{protable-prefix-cls}-container {
+      > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper {
+        > table > tbody > tr > td {
+          > .@{protable-prefix-cls}-expanded-row-fixed {
+            margin: -@table-padding-vertical-sm (-@table-padding-horizontal-sm - @border-width-base);
+          }
+        }
+      }
+    }
+  }
+}
+
