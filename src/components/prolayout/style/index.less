@@ -16,6 +16,10 @@
     box-sizing: border-box;
   }
 
+  .cursor-pointer:hover {
+    cursor: pointer;
+  }
+
   &&-has-sider {
     flex-direction: row;
 
@@ -48,6 +52,35 @@
 
     .vts-menu-horizontal {
       border-bottom: 0;
+    }
+
+    .username, .subname {
+      line-height: 20.8px;
+    }
+
+    .username {
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .subname {
+      font-size: 12px;
+    }
+
+    .header-main {
+      padding-right: 24px;
+    }
+
+    .listmenu-avatar {
+      opacity: 0;
+      height: 64px; // = line height
+      position: absolute;
+      right: 50px;      
+      min-width: 130px;
+    }
+
+    vts-select-top-control.vts-select-selector {
+      height: 60px !important;
     }
   }
 
