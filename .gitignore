@@ -3,3 +3,4 @@ dist
 extract
 extracted
 package-lock.json
+.npmrc
