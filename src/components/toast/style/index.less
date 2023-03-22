@@ -2,27 +2,24 @@
 @import '../../../style/mixins/index';
 @import './customize.less';
 
-@notification-prefix-cls: ~'@{vts-prefix}-notification';
-@notification-width: 384px;
-@notification-padding: @notification-padding-vertical @notification-padding-horizontal;
-@notification-margin-bottom: 16px;
-@notification-margin-edge: 24px;
+@toast-prefix-cls: ~'@{vts-prefix}-toast';
 
-.@{notification-prefix-cls} {
+.@{toast-prefix-cls} {
   .reset-component();
-
+  
+  width: @toast-width;
   position: fixed;
-  z-index: @zindex-notification;
-  margin-right: @notification-margin-edge;
+  z-index: @zindex-toast;
+  margin-right: @toast-margin-edge;
 
   &-topLeft,
   &-bottomLeft {
     margin-right: 0;
-    margin-left: @notification-margin-edge;
+    margin-left: @toast-margin-edge;
 
-    .@{notification-prefix-cls}-fade-enter.@{notification-prefix-cls}-fade-enter-active,
-    .@{notification-prefix-cls}-fade-appear.@{notification-prefix-cls}-fade-appear-active {
-      animation-name: NotificationLeftFadeIn;
+    .@{toast-prefix-cls}-fade-enter.@{toast-prefix-cls}-fade-enter-active,
+    .@{toast-prefix-cls}-fade-appear.@{toast-prefix-cls}-fade-appear-active {
+      animation-name: ToastLeftFadeIn;
     }
   }
 
@@ -34,18 +31,16 @@
   &-hook-holder,
   &-notice {
     position: relative;
-    width: @notification-width;
-    max-width: ~'calc(100vw - @{notification-margin-edge} * 2)';
-    margin-bottom: @notification-margin-bottom;
+    width: @toast-width;
+    max-width: ~'calc(100vw - @{toast-margin-edge} * 2)';
+    margin-bottom: @toast-margin-bottom;
     margin-left: auto;
     overflow: hidden;
     word-wrap: break-word;
-    background: @notification-bg;
     border-radius: @border-radius-base;
-    box-shadow: @shadow-2;
 
-    .@{notification-prefix-cls}-topLeft &,
-    .@{notification-prefix-cls}-bottomLeft & {
+    .@{toast-prefix-cls}-topLeft &,
+    .@{toast-prefix-cls}-bottomLeft & {
       margin-right: auto;
       margin-left: 0;
     }
@@ -57,19 +52,15 @@
   }
 
   &-notice {
-    padding: @notification-padding;
-    line-height: @line-height-base;
-
     &-message {
       margin-bottom: 8px;
       color: @heading-color;
       font-size: @font-size-lg;
       line-height: 24px;
 
-      // https://github.com/ant-design-git/ant-design-git/issues/5846#issuecomment-296244140
       &-single-line-auto-margin {
         display: block;
-        width: ~'calc(@{notification-width} - @{notification-padding-horizontal} * 2 - 24px - 48px - 100%)';
+        width: ~'calc(@{toast-width} - @{toast-padding-horizontal} * 2 - 24px - 48px - 100%)';
         max-width: 4px;
         background-color: transparent;
         pointer-events: none;
@@ -99,9 +90,6 @@
       font-size: @font-size-base;
     }
 
-    // Icon & color style in different selector level
-    // https://github.com/ant-design-git/ant-design-git/issues/16503
-    // https://github.com/ant-design-git/ant-design-git/issues/15512
     &-icon {
       position: absolute;
       margin-left: 4px;
@@ -147,7 +135,7 @@
     }
   }
 
-  .notification-fade-effect {
+  .toast-fade-effect {
     animation-duration: 0.24s;
     animation-timing-function: @ease-in-out;
     animation-fill-mode: both;
@@ -156,13 +144,13 @@
   &-fade-enter,
   &-fade-appear {
     opacity: 0;
-    .notification-fade-effect();
+    .toast-fade-effect();
 
     animation-play-state: paused;
   }
 
   &-fade-leave {
-    .notification-fade-effect();
+    .toast-fade-effect();
 
     animation-duration: 0.2s;
     animation-play-state: paused;
@@ -170,19 +158,19 @@
 
   &-fade-enter&-fade-enter-active,
   &-fade-appear&-fade-appear-active {
-    animation-name: NotificationFadeIn;
+    animation-name: ToastFadeIn;
     animation-play-state: running;
   }
 
   &-fade-leave&-fade-leave-active {
-    animation-name: NotificationFadeOut;
+    animation-name: ToastFadeOut;
     animation-play-state: running;
   }
 }
 
-@keyframes NotificationFadeIn {
+@keyframes ToastFadeIn {
   0% {
-    left: @notification-width;
+    left: @toast-width;
     opacity: 0;
   }
   100% {
@@ -191,9 +179,9 @@
   }
 }
 
-@keyframes NotificationLeftFadeIn {
+@keyframes ToastLeftFadeIn {
   0% {
-    right: @notification-width;
+    right: @toast-width;
     opacity: 0;
   }
   100% {
@@ -202,10 +190,10 @@
   }
 }
 
-@keyframes NotificationFadeOut {
+@keyframes ToastFadeOut {
   0% {
     max-height: 150px;
-    margin-bottom: @notification-margin-bottom;
+    margin-bottom: @toast-margin-bottom;
     opacity: 1;
   }
   100% {
@@ -216,5 +204,3 @@
     opacity: 0;
   }
 }
-
-@import './rtl';
