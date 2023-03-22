@@ -42,6 +42,10 @@ function copyPackageJson() {
                 scripts: Object,
                 devDependencies: Object
             }))
+            .pipe(jsonEdit((json) => {
+                delete json.exports
+                return json
+            }))
             .pipe(dest(outDir))
 }
 

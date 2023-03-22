@@ -1,9 +1,9 @@
 @import '../../../style/themes/index';
 @import '../../../style/mixins/index';
 
-@layout-prefix-cls: ~'@{vts-prefix}-layout';
+@prolayout-prefix-cls: ~'@{vts-prefix}-prolayout';
 
-.@{layout-prefix-cls} {
+.@{prolayout-prefix-cls} {
   display: flex;
   flex: auto;
   flex-direction: column;
@@ -16,11 +16,15 @@
     box-sizing: border-box;
   }
 
+  .cursor-pointer:hover {
+    cursor: pointer;
+  }
+
   &&-has-sider {
     flex-direction: row;
 
-    > .@{layout-prefix-cls},
-    > .@{layout-prefix-cls}-content {
+    > .@{prolayout-prefix-cls},
+    > .@{prolayout-prefix-cls}-content {
       width: 0; // https://segmentfault.com/a/1190000019498300
     }
   }
@@ -32,26 +36,60 @@
 
   &-header {
     height: @layout-header-height;
-    padding: @layout-header-padding;
+    color: @prolayout-header-text-color;
     line-height: @layout-header-height;
-    background: @layout-header-background;
-    color: @layout-header-color;
-    box-shadow: @layout-header-box-shadow;
-    z-index: 1;
-  }
-  
-  &-content {
-    flex: auto;
-    /* fix firefox can't set height smaller than content on flex item */
-    min-height: 0;
-    padding: @layout-content-padding;
+    background: @prolayout-header-background;
+
+    // modify menu inside header
+    .vts-menu-horizontal .vts-menu-item, .vts-menu-horizontal .vts-menu-submenu {
+      margin-top: 0;
+      background-color: @prolayout-header-background;
+    }
+
+    .vts-menu-submenu-title {
+      padding: 0 20px;
+    }
+
+    .vts-menu {
+      background-color: @prolayout-header-background;
+      display: flex;
+      align-items: center;
+    }
+
+    .vts-menu-horizontal {
+      border-bottom: 0;
+    }
+
+    .username, .subname {
+      line-height: 20.8px;
+    }
+
+    .username {
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .subname {
+      font-size: 12px;
+    }
+
+    .header-main {
+      padding-right: 24px;
+    }
   }
 
   &-footer {
     padding: @layout-footer-padding;
-    background: @layout-footer-background;
-    color: @layout-footer-color;
-    box-shadow: @layout-footer-box-shadow;
+    color: @prolayout-footer-text-color;
+    font-size: @font-size-base;
+    background: @prolayout-footer-background;
+  }
+
+  &-content {
+    flex: auto;
+    /* fix firefox can't set height smaller than content on flex item */
+    min-height: 0;
+    padding: 24px;
   }
 
   &-sider {
@@ -59,9 +97,8 @@
 
     /* fix firefox can't set width smaller than content on flex item */
     min-width: 0;
-    background: @layout-sider-background;
+    background: @prolayout-sider-background;
     transition: all 0.2s;
-    z-index: 2;
 
     &-children {
       height: 100%;
@@ -88,7 +125,7 @@
       color: @layout-trigger-color;
       line-height: @layout-trigger-height;
       text-align: center;
-      background: @layout-trigger-background;
+      background: @prolayout-trigger-background;
       cursor: pointer;
       transition: all 0.2s;
     }
@@ -109,7 +146,7 @@
         font-size: (@layout-zero-trigger-width / 2);
         line-height: @layout-zero-trigger-height;
         text-align: center;
-        background: @layout-sider-background;
+        background: @prolayout-sider-background;
         border-radius: 0 @border-radius-base @border-radius-base 0;
         cursor: pointer;
         transition: background 0.3s ease;
@@ -140,3 +177,5 @@
 
 @import './light';
 @import './rtl';
+@import './drawer.less';
+

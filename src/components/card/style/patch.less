@@ -1,12 +1,3 @@
-@skeleton-prefix-cls: ~'@{vts-prefix}-skeleton';
-.@{card-prefix-cls} {
-  &-rtl {
-    .@{skeleton-prefix-cls}-header {
-      padding: 0 0 0 @card-head-padding;
-    }
-  }
-}
-
 vts-card {
   display: block;
 }
@@ -15,4 +6,26 @@ vts-card-meta {
 }
 vts-card-loading {
   display: block;
+}
+vts-card-body {
+  display: block;
+}
+
+.@{card-prefix-cls}-cover-fluid {
+  &-body {
+    padding: 0;
+
+    &-meta {
+      padding: @card-horizontal-padding @card-horizontal-padding 1em @card-horizontal-padding;
+    }
+
+    &-cover > img {
+      border-radius: 0;
+    }
+  }
+
+  &-actions li {
+    padding-top: @card-horizontal-padding;
+    text-align: left;
+  }
 }
