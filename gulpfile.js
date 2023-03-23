@@ -14,24 +14,6 @@ const _ = require('lodash')
 const currentDir = __dirname
 const outDir = path.join(currentDir, 'dist')
 
-function copyPackageJson() {
-    return src('package.json')
-            .pipe(jsonEdit({
-                main: "",
-                scripts: Object,
-                devDependencies: Object
-            }))
-            .pipe(jsonEdit((json) => {
-                delete json.exports
-                return json
-            }))
-            .pipe(dest(outDir))
-}
-
-function clean() {
-    return src(outDir, { read: false, allowEmpty: true }).pipe(gulpClean(null));
-}
-
 function extract() {
     return src('extract/**', {base: './'})
         .pipe(gulpFilter(function(path) {
@@ -120,9 +102,7 @@ task('generate', series(
 ))
 
 task('build', series(
-    clean,
     "generate",
     copyStyles,
-    copyPackageJson,
     compileTheme
 ))
