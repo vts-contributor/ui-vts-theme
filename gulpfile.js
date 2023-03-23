@@ -13,28 +13,6 @@ const _ = require('lodash')
 
 const currentDir = __dirname
 const outDir = path.join(currentDir, 'dist')
-const fileName = 'ui-vts.css'
-
-const themePath = "./src/ui-vts.less"
-const themeContent = `
-@import '${themePath}';
-`;
-
-function compileLess(cb) {
-    less.render(themeContent, {
-        javascriptEnabled: true,
-        plugins: [new LessPluginCleanCSS({ advanced: true })]
-    }).then(data => {
-        fs.writeFile(path.join(outDir, `${fileName}`), data.css);
-        cb()
-    }).catch(e => {
-        console.log(e);
-    });
-}
-
-function copyStyles() {
-    return src('src/**').pipe(dest(outDir))
-}
 
 function copyPackageJson() {
     return src('package.json')
@@ -73,14 +51,14 @@ function cleanGenerate() {
 
 function generateTheme() {
     const themeTemplate = `
-        @import './patch/index';
-        @import './style/core/index';
-        @import './variables-<%= theme %>';
-        @import './components/index';
+        @import './patch/index.less';
+        @import './style/core/index.less';
+        @import './variables-<%= theme %>.less';
+        @import './components/index.less';
     `
     const variableTemplate = `
-        @import "./style/color/colors";
-        @import "./style/themes/<%= theme %>";
+        @import "./style/color/colors.less";
+        @import "./style/themes/<%= theme %>.less";
     `
 
     return src('src/style/themes/*.less', {base: './'})
@@ -88,20 +66,47 @@ function generateTheme() {
             const withoutExt = file.basename.replace(file.extname, '')
             const theme = withoutExt
             const themeContent = _.template(themeTemplate)({theme})
-            const themeFile = `${withoutExt}.less`
+            const themeFile = `theme-${theme}.less`
             const variableContent = _.template(variableTemplate)({theme})
-            const variableFile = `variables-${withoutExt}.less`
-            fs.writeFileSync(path.join('src', themeFile), themeContent.replace(/ /g, '').trim())
-            fs.writeFileSync(path.join('src', variableFile), variableContent.replace(/ /g, '').trim())
+            const variableFile = `variables-${theme}.less`
+            fs.writeFileSync(path.join('src', themeFile), themeContent.replace(/  /g, '').trim())
+            fs.writeFileSync(path.join('src', variableFile), variableContent.replace(/  /g, '').trim())
         }))
 }
 
 function generateDefault(d) {
-    const defaultContent = `@import "./default";`
-    const variableContent = `@import "./variables-default";`
+    const defaultContent = `@import "./theme-default.less";`
+    const variableContent = `@import "./variables-default.less";`
     fs.writeFileSync(path.join('src', 'ui-vts.less'), defaultContent)
     fs.writeFileSync(path.join('src', 'variables.less'), variableContent)
     d()
+}
+
+function compileTheme(cb) {
+    return src([
+        path.join(outDir, 'theme-*.less'),
+        path.join(outDir, 'ui-vts.less')
+    ], {base: './'})
+        .pipe(gulpTap(async (file) => {
+            try {
+                const data = await less.render(
+                    fs.readFileSync(file.path).toString(),
+                    {
+                        javascriptEnabled: true,
+                        plugins: [new LessPluginCleanCSS({ advanced: true })],
+                        paths: [file.dirname]
+                    }
+                )
+                fs.writeFileSync(path.join(outDir, file.basename.replace('.less', '.css')), data.css)
+            } catch (e) {
+                console.log(e)
+                throw e
+            }
+        }))
+}
+
+function copyStyles() {
+    return src('src/**/*.less').pipe(dest(outDir))
 }
 
 task('extract', series(
@@ -116,7 +121,8 @@ task('generate', series(
 
 task('build', series(
     clean,
+    "generate",
     copyStyles,
-    compileLess,
-    copyPackageJson
+    copyPackageJson,
+    compileTheme
 ))
