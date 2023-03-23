@@ -4,3 +4,4 @@ extract
 extracted
 package-lock.json
 .npmrc
+src/*.*
