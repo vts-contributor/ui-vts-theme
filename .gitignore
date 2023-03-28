@@ -4,3 +4,9 @@ extract
 extracted
 package-lock.json
 .npmrc
+src/*.less
+
+.angular
+.cache
+.vscode
+.git
