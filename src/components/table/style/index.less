@@ -109,12 +109,15 @@
   // ============================= Body =============================
   &-tbody {
     > tr {
-      &.@{table-prefix-cls}-row-odd {
-        background: @table-row-odd-bg;
-      }
-
+      &.@{table-prefix-cls}-row-odd,
       &.@{table-prefix-cls}-row-even {
         background: @table-row-even-bg;
+
+        &:hover {
+          > td {
+            background: @table-row-odd-bg;
+          }
+        }
       }
 
       > td {
@@ -138,25 +141,21 @@
           }
         }
       }
-
-      &.@{table-prefix-cls}-row:hover {
-        > td {
-          background: @table-row-hover-bg;
-        }
-      }
     }
   }
 
   &&-stripe &-tbody {
     > tr {
-      &.@{table-prefix-cls}-row-odd,
+      &.@{table-prefix-cls}-row-odd {
+        background: @table-row-odd-bg;
+      }
+
       &.@{table-prefix-cls}-row-even {
         background: @table-row-even-bg;
-
-        &:hover {
-          > td {
-            background: @table-row-odd-bg;
-          }
+      }
+      &.@{table-prefix-cls}-row:hover {
+        > td {
+          background: @table-row-hover-bg;
         }
       }
     }
@@ -174,7 +173,7 @@
 
   // ========================== Pagination ==========================
   &-pagination.@{vts-prefix}-pagination {
-    margin: 24px 0;
+    margin: @table-pagination-margin;
   }
 
   &-pagination {
@@ -234,7 +233,7 @@
   &-column-sorter {
     margin-top: 0.15em;
     margin-bottom: -0.15em;
-    margin-left: auto;
+    margin-left: @icon-margin;
     color: @table-header-icon-color;
 
     &-full {

@@ -217,6 +217,11 @@
     margin: @pagination-other-margin;
     vertical-align: middle;
 
+    &:last-child {
+      margin-right: 0;
+    }
+
+
     // IE11 css hack. `*::-ms-backdrop,` is a must have
     @media all and (-ms-high-contrast: none) {
       *::-ms-backdrop,
@@ -252,9 +257,14 @@
       line-height: @pagination-item-size;
       vertical-align: top;
 
+      &:last-child {
+        margin-right: 0
+      }
+
       input {
         .input();
         margin: @pagination-other-margin;
+        margin-right: 0;
         width: @pagination-go-to-width;
         height: 100%;
         padding: @pagination-go-to-padding;
