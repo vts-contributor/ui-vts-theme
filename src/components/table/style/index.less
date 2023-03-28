@@ -20,7 +20,7 @@
 .@{table-prefix-cls} {
   .reset-component();
   position: relative;
-  font-size: @table-font-size;
+  font-size: @table-font-size-md;
   background: @table-bg;
   border-radius: @border-radius-base;
 
@@ -38,12 +38,15 @@
   }
 
   // ============================= Cell =============================
-  &-thead > tr > th,
+  &-thead > tr > th {
+    padding: @table-padding-vertical-header-md @table-padding-horizontal-header-md;
+  }
+
   &-tbody > tr > td,
   tfoot > tr > th,
   tfoot > tr > td {
     position: relative;
-    padding: @table-padding-vertical @table-padding-horizontal;
+    padding: @table-padding-vertical-cell-md @table-padding-horizontal-cell-md;
     overflow-wrap: break-word;
   }
 
@@ -68,12 +71,12 @@
 
   // ============================ Title =============================
   &-title {
-    padding: @table-padding-vertical @table-padding-horizontal;
+    padding: @table-padding-vertical-cell-md @table-padding-horizontal-cell-md;
   }
 
   // ============================ Footer ============================
   &-footer {
-    padding: @table-padding-vertical @table-padding-horizontal;
+    padding: @table-padding-vertical-cell-md @table-padding-horizontal-cell-md;
     color: @table-footer-color;
     background: @table-footer-bg;
   }
@@ -106,12 +109,12 @@
   // ============================= Body =============================
   &-tbody {
     > tr {
-      &:nth-of-type(2n + 1) {
-        background: @table-row-odd-bg;;
+      &.@{table-prefix-cls}-row-odd {
+        background: @table-row-odd-bg;
       }
 
-      &:nth-of-type(2n) {
-        background: @table-row-even-bg;;
+      &.@{table-prefix-cls}-row-even {
+        background: @table-row-even-bg;
       }
 
       > td {
@@ -121,7 +124,7 @@
         // ========================= Nest Table ===========================
         > .@{table-prefix-cls}-wrapper:only-child {
           .@{table-prefix-cls} {
-            margin: -@table-padding-vertical -@table-padding-horizontal -@table-padding-vertical (@table-padding-horizontal +
+            margin: -@table-padding-vertical-cell-md -@table-padding-horizontal-cell-md -@table-padding-vertical-cell-md (@table-padding-horizontal-cell-md +
                   ceil(@font-size-sm * 1.4));
 
             &-tbody > tr:last-child > td {
@@ -139,6 +142,21 @@
       &.@{table-prefix-cls}-row:hover {
         > td {
           background: @table-row-hover-bg;
+        }
+      }
+    }
+  }
+
+  &&-stripe &-tbody {
+    > tr {
+      &.@{table-prefix-cls}-row-odd,
+      &.@{table-prefix-cls}-row-even {
+        background: @table-row-even-bg;
+
+        &:hover {
+          > td {
+            background: @table-row-odd-bg;
+          }
         }
       }
     }
@@ -209,7 +227,7 @@
   &-column-sorters {
     display: inline-flex;
     align-items: center;
-    padding: @table-padding-vertical @table-padding-horizontal;
+    padding: @table-padding-vertical-cell-md @table-padding-horizontal-cell-md;
     width: 100%;
   }
 
@@ -248,12 +266,12 @@
   &-filter-column {
     display: flex;
     align-items: center;
-    margin: -@table-padding-vertical -@table-padding-horizontal;
+    margin: -@table-padding-vertical-cell-md -@table-padding-horizontal-cell-md;
   }
 
   &-filter-column-title {
     flex: auto;
-    padding: @table-padding-vertical 2.3em @table-padding-vertical @table-padding-horizontal;
+    padding: @table-padding-vertical-cell-md 2.3em @table-padding-vertical-cell-md @table-padding-horizontal-cell-md;
   }
 
   // Remove padding when sorter also provided
@@ -397,66 +415,66 @@
   }
 
   // ========================== Expandable ==========================
-  &-expand-icon-col {
-    width: 48px;
-  }
-
-  &-row-expand-icon-cell {
-    text-align: center;
-  }
-
   &-row-indent {
     float: left;
     height: 1px;
   }
 
   &-row-expand-icon {
-    .operation-unit();
     position: relative;
     display: inline-flex;
     float: left;
     box-sizing: border-box;
-
-    width: ceil(((@font-size-sm * 1.4 - @border-width-base * 3) / 2)) * 2 + @border-width-base * 3;
-    height: ceil(((@font-size-sm * 1.4 - @border-width-base * 3) / 2)) * 2 + @border-width-base * 3;
+    width: @table-expand-size;
+    height: @table-expand-size;
     padding: 0;
     color: inherit;
-    line-height: ceil(((@font-size-sm * 1.4 - @border-width-base * 3) / 2)) * 2 + @border-width-base *
-      3;
-    background: @table-expand-icon-bg;
-    border: @border-width-base @border-style-base @table-border-color;
+    line-height: @table-expand-size;
+    background: @table-expand-bg;
+    border: @border-width-base @border-style-base @table-expand-color;
     border-radius: @border-radius-base;
     outline: none;
     transition: all 0.3s;
     user-select: none;
-
-    &:focus,
-    &:hover,
-    &:active {
-      border-color: currentColor;
-    }
+    cursor: pointer;
 
     &::before,
     &::after {
       position: absolute;
-      background: currentColor;
       transition: transform 0.3s ease-out;
       content: '';
+      top: 50%;
+      height: 1px;
+      left: 50%;
+      width: @table-expand-icon-size;
+      background-color: @table-expand-color;
     }
 
     &::before {
-      top: ceil(((@font-size-sm * 1.4 - @border-width-base * 3) / 2));
-      right: 3px;
-      left: 3px;
-      height: @border-width-base;
+      transform: translateX(-50%);
     }
 
     &::after {
-      top: 3px;
-      bottom: 3px;
-      left: ceil(((@font-size-sm * 1.4 - @border-width-base * 3) / 2));
-      width: @border-width-base;
-      transform: rotate(90deg);
+      transform: translateX(-50%) rotate(0deg);
+    }
+
+    &:hover {
+      border-color: @table-expand-hover;
+
+      &::before,
+      &::after {
+        background-color: @table-expand-hover;
+      }
+    }
+
+    &:focus,
+    &:active {
+      border-color: @table-expand-active;
+
+      &::before,
+      &::after {
+        background-color: @table-expand-active;
+      }
     }
 
     &-template {
@@ -472,10 +490,10 @@
 
     // Motion effect
     &-collapsed::before {
-      transform: rotate(-180deg);
+      transform: translateX(-50%) rotate(-180deg);
     }
     &-collapsed::after {
-      transform: rotate(0deg);
+      transform: translateX(-50%) rotate(90deg);
     }
 
     &-spaced {
@@ -492,7 +510,6 @@
     .@{table-prefix-cls}-row-indent + & {
       margin-top: ((@font-size-base * @line-height-base - @border-width-base * 3) / 2) -
         ceil(((@font-size-sm * 1.4 - @border-width-base * 3) / 2));
-      margin-right: @padding-xs;
     }
   }
 
@@ -513,8 +530,8 @@
   // With fixed
   .@{table-prefix-cls}-expanded-row-fixed {
     position: relative;
-    margin: -@table-padding-vertical -@table-padding-horizontal;
-    padding: @table-padding-vertical @table-padding-horizontal;
+    margin: -@table-padding-vertical-cell-md -@table-padding-horizontal-cell-md;
+    padding: @table-padding-vertical-cell-md @table-padding-horizontal-cell-md;
   }
 
   // ========================= Placeholder ==========================
@@ -536,7 +553,7 @@
     position: -webkit-sticky !important;
     position: sticky !important;
     z-index: @zindex-table-fixed;
-    background: @table-bg;
+    background: inherit;
   }
 
   &-cell-fix-left-first::after,

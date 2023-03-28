@@ -305,6 +305,7 @@
 
 // Buttons
 @btn-font-weight: 500;
+@btn-text-font-weight: 400;
 @btn-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
 @btn-border-width: @border-width-base;
 @btn-border-style: @border-style-base;
@@ -421,6 +422,7 @@
 @checkbox-check-bg: @white-1;
 @checkbox-border-width: @border-width-base;
 @checkbox-group-item-margin-right: 8px;
+@checkbox-border-color: @border-color-base;
 @checkbox-border-hover: @grey-1;
 @checkbox-border-focus: @primary-1;
 
@@ -570,9 +572,8 @@
 @form-label-required-color: @primary-color;
 @form-label-color: @heading-color;
 @form-warning-input-bg: @input-bg-default;
-@form-item-margin-bottom: 26px;
+@form-item-margin-bottom: 32px;
 @form-item-trailing-colon: true;
-@form-vertical-label-padding: 0 0 8px;
 @form-vertical-label-margin: 0;
 @form-item-label-font-size: @font-size-base;
 @form-item-label-colon-margin-right: 8px;
@@ -932,34 +933,54 @@
 // --
 @table-bg: @component-background;
 
-@table-header-color: @heading-color;
-@table-header-sort-bg: @background-color-base;
-@table-header-border-bottom: 5px solid @table-border-color;
-@table-header-border-top: 2px solid @table-border-color;
-@table-body-sort-bg: #fafafa;
-@table-row-hover-bg: @ilus-red-8;
-@table-selected-row-color: inherit;
-@table-selected-row-bg: @primary-1;
-@table-body-selected-sort-bg: @table-selected-row-bg;
-@table-selected-row-hover-bg: darken(@table-selected-row-bg, 2%);
-@table-expanded-row-bg: #fbfbfb;
-@table-padding-vertical: 16px;
-@table-padding-horizontal: 16px;
-@table-padding-vertical-md: 16px;
-@table-padding-horizontal-md: 16px;
-@table-padding-vertical-sm: 16px;
-@table-padding-horizontal-sm: 16px;
 @table-border-color: @grey-4;
 @table-border-radius-base: 0;
+@table-header-border-bottom: 2px solid @table-border-color;
+@table-header-border-top: 0;
+
+@table-header-color: @heading-color;
+@table-header-sort-bg: @background-color-base;
+
+@table-padding-vertical-cell-sm: 8px;
+@table-padding-horizontal-cell-sm: 8px;
+@table-padding-vertical-header-sm: 12px;
+@table-padding-horizontal-header-sm: @table-padding-horizontal-cell-sm;
+@table-padding-vertical-cell-md: 16px;
+@table-padding-horizontal-cell-md: 16px;
+@table-padding-vertical-header-md: 12px;
+@table-padding-horizontal-header-md: @table-padding-horizontal-cell-md;
+@table-padding-vertical-cell-lg: 20px;
+@table-padding-horizontal-cell-lg: 20px;
+@table-padding-vertical-header-lg: 12px;
+@table-padding-horizontal-header-lg: @table-padding-horizontal-cell-lg;
+
+@table-font-size-md: @font-size-md;
+@table-font-size-lg: @font-size-md;
+@table-font-size-sm: @font-size-md;
+
+@table-expand-size: @checkbox-size;
+@table-expand-icon-size: 60%;
+@table-expand-color: @checkbox-border-color;
+@table-expand-hover: @checkbox-border-hover;
+@table-expand-active: @checkbox-color;
+@table-expand-bg: @component-background;
+
+@table-expanded-row-bg: #fbfbfb;
+
+@table-body-sort-bg: #fafafa;
+@table-selected-row-color: inherit;
+@table-selected-row-bg: @primary-1;
+@table-selected-row-hover-bg: darken(@table-selected-row-bg, 2%);
+@table-body-selected-sort-bg: @table-selected-row-bg;
+
 @table-footer-bg: @background-color-light;
 @table-footer-color: @heading-color;
 @table-header-bg-sm: @table-header-bg;
-@table-font-size: @font-size-md;
-@table-font-size-md: @font-size-md;
-@table-font-size-sm: @font-size-sm;
-@table-row-odd-bg: @white-1;
-@table-row-even-bg: @grey-5;
-@table-header-bg: @white-1;
+
+@table-header-bg: @table-bg;
+@table-row-odd-bg: @ilus-grey-7;
+@table-row-even-bg: @table-bg;
+@table-row-hover-bg: @ilus-red-8;
 
 
 
@@ -970,7 +991,6 @@
 @table-header-filter-active-bg: darken(@table-header-sort-active-bg, 5%);
 @table-filter-btns-bg: inherit;
 @table-filter-dropdown-bg: @component-background;
-@table-expand-icon-bg: @component-background;
 @table-selection-column-width: 32px;
 // Sticky
 @table-sticky-scroll-bar-bg: fade(#000, 35%);
@@ -978,10 +998,24 @@
 
 // Tag
 // --
-@tag-default-bg: @background-color-light;
-@tag-default-color: @text-color;
-@tag-font-size: @font-size-sm;
-@tag-line-height: 20px;
+@tag-default-bg: @grey-5;
+@tag-default-color: @grey-1;
+@tag-success-bg: @func-green-6;
+@tag-success-color: @func-green-1;
+@tag-error-bg: @primary-5;
+@tag-error-color: @primary-0;
+@tag-warning-bg: @func-orange-6;
+@tag-warning-color: @func-orange-1;
+@tag-info-bg: @func-blue-6;
+@tag-info-color: @func-blue-2;
+
+
+@tag-border-radius-base: 6px;
+@tag-font-size: @font-size-md;
+@tag-line-height: 32px;
+@tag-checkable-default-color: @white-1;
+@tag-checkable-default-bg: @primary-6;
+@tag-clear-icon-size: 16px;
 
 // Calendar
 // ---
@@ -1155,23 +1189,43 @@
 
 // Pagination
 // ---
-@pagination-item-bg: @btn-default-bg;
-@pagination-item-color: @text-color;
-@pagination-item-bg-active: @btn-primary-bg;
-@pagination-item-color-active: @btn-primary-color;
-@pagination-item-bg-hover: @grey-5;
-@pagination-item-color-hover: @text-color;
-@pagination-item-size: @control-height-md;
+@pagination-item-size: @control-height-sm;
 @pagination-item-size-sm: 24px;
-@pagination-font-family: @font-family;
-@pagination-font-weight-active: 500;
-@pagination-item-link-bg: @component-background;
+
+@pagination-border-radius-base: @border-radius-base;
+
+@pagination-item-bg: @white-1;
+@pagination-item-color: @text-color;
+@pagination-item-bg-active: @primary-1;
+@pagination-item-color-active: @white-1;
+@pagination-item-bg-hover: @ilus-grey-7;
+@pagination-item-color-hover: @pagination-item-color;
+
+@pagination-item-outline-bg-active: @pagination-item-bg;
+@pagination-item-outline-color-active: @primary-1;
+
+@pagination-font-weight-hover: 400;
+@pagination-font-weight-active: 400;
+
+@pagination-item-action-bg: @pagination-item-bg;
+@pagination-item-action-color: @grey-1;
+@pagination-item-action-font-size: 16px;
+
+@pagination-item-disabled-color: @input-color-disable;
+@pagination-item-disabled-bg: @input-bg-disable;
 @pagination-item-disabled-color-active: @white;
 @pagination-item-disabled-bg-active: darken(@disabled-bg, 10%);
+
+@pagination-other-margin: 0 8px;
+@pagination-go-to-width: 4ch;
+@pagination-go-to-padding: 0 0.4ch;
+
 @pagination-item-input-bg: @component-background;
 @pagination-mini-options-size-changer-top: 0px;
-@pagination-space: 0px;
-@pagination-border-color: @grey-4;
+
+@pagination-space: 5px;
+@pagination-border-color: @grey-5;
+@pagination-select-padding-patch: 0 40px 0 10px;
 
 // PageHeader
 // ---

@@ -36,5 +36,8 @@
     "ng-packagr": "^14.2.2",
     "rxjs": "^7.8.0",
     "typescript": "^4.6.2"
+  },
+  "exports": {
+    "./": "./src/"
   }
 }

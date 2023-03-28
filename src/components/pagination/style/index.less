@@ -2,6 +2,7 @@
 @import '../../input/style/mixin';
 
 @pagination-prefix-cls: ~'@{vts-prefix}-pagination';
+@select-prefix-cls: ~'@{vts-prefix}-select';
 
 .@{pagination-prefix-cls} {
   .reset-component();
@@ -35,7 +36,6 @@
     min-width: @pagination-item-size;
     height: @pagination-item-size;
     margin-right: @pagination-space;
-    font-family: @pagination-font-family;
     line-height: @pagination-item-size - 2px;
     text-align: center;
     vertical-align: middle;
@@ -43,6 +43,7 @@
     background-color: @pagination-item-bg;
     color: @pagination-item-color;
     border: @border-width-base @border-style-base @pagination-border-color;
+    border-radius: @pagination-border-radius-base;
     outline: 0;
     cursor: pointer;
     user-select: none;
@@ -64,7 +65,7 @@
       transition: all 0.3s;
       background: @pagination-item-bg-hover;
       color: @pagination-item-color-hover;
-      font-weight: 700;
+      font-weight: @pagination-font-weight-hover;
     }
 
     &-active {
@@ -74,7 +75,7 @@
         font-weight: @pagination-font-weight-active;
         background: @pagination-item-bg-active;
         color: @pagination-item-color-active;
-        border-color: @primary-color;
+        border-color: @pagination-item-bg-active;
       }
     }
   }
@@ -86,7 +87,6 @@
       position: relative;
 
       .@{pagination-prefix-cls}-item-link-icon {
-        color: @primary-color;
         font-size: @font-size-sm;
         letter-spacing: -1px;
         opacity: 0;
@@ -109,13 +109,13 @@
         display: block;
         margin: auto;
         color: @pagination-item-color;
-        font-family: Arial, Helvetica, sans-serif;
         letter-spacing: 2px;
         text-align: center;
         text-indent: 0.13em;
         opacity: 1;
         transition: all 0.2s;
         border: @border-width-base @border-style-base @pagination-border-color;
+        border-radius: @border-radius-base;
         margin-left: -1px;
         font-weight: bold;
       }
@@ -130,9 +130,12 @@
   &-begin,
   &-last,
   &-prev,
+  &-next,
   &-jump-prev,
   &-jump-next {
-    margin-right: @pagination-space;
+    &:not(:last-child) {
+      margin-right: @pagination-space;
+    }
   }
 
   &-begin,
@@ -145,7 +148,6 @@
     min-width: @pagination-item-size;
     height: @pagination-item-size;
     color: @text-color;
-    font-family: @pagination-font-family;
     line-height: @pagination-item-size;
     text-align: center;
     vertical-align: middle;
@@ -158,18 +160,15 @@
   &-next,
   &-begin,
   &-last {
-    font-family: Arial, Helvetica, sans-serif;
     outline: 0;
     margin-left: -1px;
+    color: @pagination-item-action-color;
+    cursor: pointer;
+    user-select: none;
+    border-radius: @pagination-border-radius-base;
 
-    button {
-      color: @grey-3;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    &:hover button {
-      border-color: @primary-5;
+    > * {
+      cursor: inherit;
     }
 
     .@{pagination-prefix-cls}-item-link {
@@ -177,10 +176,11 @@
       width: 100%;
       height: 100%;
       padding: 0;
-      font-size: 12px;
+      font-size: @pagination-item-action-font-size;
       text-align: center;
-      background-color: @pagination-item-link-bg;
+      background-color: @pagination-item-action-bg;
       border: @border-width-base @border-style-base @pagination-border-color;
+      border-radius: inherit;
       outline: none;
       transition: all 0.3s;
     }
@@ -201,20 +201,20 @@
     &:focus {
       cursor: not-allowed;
       .@{pagination-prefix-cls}-item-link {
-        color: @disabled-color;
-        border-color: @pagination-border-color;
-        cursor: not-allowed;
+        &, &:hover {
+          color: @input-color-disable;
+          background: @pagination-item-disabled-bg;
+          border-color: @pagination-item-disabled-bg;
+          cursor: not-allowed;
+          transition: none;
+        }
       }
     }
   }
 
-  &-slash {
-    margin: 0 10px 0 5px;
-  }
-
   &-options {
     display: inline-block;
-    margin-left: 16px;
+    margin: @pagination-other-margin;
     vertical-align: middle;
 
     // IE11 css hack. `*::-ms-backdrop,` is a must have
@@ -225,6 +225,21 @@
       }
     }
 
+    .@{select-prefix-cls} {
+      height: @pagination-item-size;
+      line-height: @pagination-item-size;
+
+      &-selector {
+        height: inherit !important;
+        line-height: inherit !important;
+        padding: @pagination-select-padding-patch !important;
+      }
+
+      &-selection-item {
+        line-height: inherit !important;
+      }
+    }
+
     &-size-changer.@{vts-prefix}-select {
       display: inline-block;
       width: auto;
@@ -232,32 +247,53 @@
 
     &-quick-jumper {
       display: inline-block;
-      height: @input-height-md;
-      margin-left: @margin-xs;
-      line-height: @input-height-md;
+      height: @pagination-item-size;
+      margin: @pagination-other-margin;
+      line-height: @pagination-item-size;
       vertical-align: top;
 
       input {
         .input();
-
-        width: 50px;
-        margin: 0 8px;
+        margin: @pagination-other-margin;
+        width: @pagination-go-to-width;
+        height: 100%;
+        padding: @pagination-go-to-padding;
       }
     }
   }
 
+  // ============================ Simple ============================
+  &-simple &-slash {  }
+
   &-simple &-prev,
-  &-simple &-next {
+  &-simple &-next,
+  &-simple &-begin,
+  &-simple &-last {
+    min-width: @pagination-item-size-sm;
     height: @pagination-item-size-sm;
     line-height: @pagination-item-size-sm;
     vertical-align: top;
     .@{pagination-prefix-cls}-item-link {
       height: @pagination-item-size-sm;
       background-color: transparent;
-      border: 0;
+      border-color: transparent;
+
       &::after {
         height: @pagination-item-size-sm;
         line-height: @pagination-item-size-sm;
+      }
+
+      &:hover {
+        border: @border-width-base @border-style-base @pagination-border-color;
+      }
+    }
+  }
+
+  &-simple &-disabled {
+    .@{pagination-prefix-cls}-item-link {
+      &, &:hover {
+        border-color: transparent;
+        background: transparent;
       }
     }
   }
@@ -265,33 +301,26 @@
   &-simple &-simple-pager {
     display: inline-block;
     height: @pagination-item-size-sm;
-    margin-right: 8px;
+    margin-right: @pagination-space;
 
     input {
-      box-sizing: border-box;
+      .input();
+      .input-sm();
+      width: @pagination-go-to-width;
       height: 100%;
-      margin-right: 8px;
-      padding: 0 6px;
-      text-align: center;
-      background-color: @pagination-item-input-bg;
-      border: @border-width-base @border-style-base @pagination-border-color;
-      border-radius: @border-radius-base;
-      outline: none;
-      transition: border-color 0.3s;
-
-      &:hover {
-        border-color: @primary-color;
-      }
+      padding: @pagination-go-to-padding;
+      margin-right: @pagination-space;
 
       &[disabled] {
-        color: @disabled-color;
-        background: @disabled-bg;
-        border-color: @pagination-border-color;
+        color: @pagination-item-disabled-color;
+        background: @pagination-item-disabled-bg;
+        border-color: @pagination-item-disabled-bg;
         cursor: not-allowed;
       }
     }
   }
 
+  // ============================ Mini ============================
   &.mini &-total-text,
   &.mini &-simple-pager {
     height: @pagination-item-size-sm;
@@ -308,10 +337,16 @@
   &.mini &-item:not(&-item-active) {
     background: transparent;
     border-color: transparent;
+
+    &:hover {
+      border: @border-width-base @border-style-base @pagination-border-color;
+    }
   }
 
   &.mini &-prev,
-  &.mini &-next {
+  &.mini &-next,
+  &.mini &-begin,
+  &.mini &-last {
     min-width: @pagination-item-size-sm;
     height: @pagination-item-size-sm;
     margin: 0;
@@ -319,12 +354,27 @@
   }
 
   &.mini &-prev &-item-link,
-  &.mini &-next &-item-link {
+  &.mini &-next &-item-link,
+  &.mini &-begin &-item-link,
+  &.mini &-last &-item-link {
     background: transparent;
     border-color: transparent;
     &::after {
       height: @pagination-item-size-sm;
       line-height: @pagination-item-size-sm;
+    }
+
+    &:hover {
+      border: @border-width-base @border-style-base @pagination-border-color;
+    }
+  }
+
+  &.mini &-disabled {
+    .@{pagination-prefix-cls}-item-link {
+      &, &:hover {
+        border-color: transparent;
+        background: transparent;
+      }
     }
   }
 
@@ -333,24 +383,39 @@
     height: @pagination-item-size-sm;
     margin-right: 0;
     line-height: @pagination-item-size-sm;
+    background: transparent;
+    border-color: transparent;
+  }
+
+  &.mini &-jump-prev &-item-ellipsis, 
+  &.mini &-jump-next &-item-ellipsis {
+    background: transparent;
+    border-color: transparent;
+
+    &:hover {
+      border: @border-width-base @border-style-base @pagination-border-color;
+    }
   }
 
   &.mini &-options {
-    margin-left: 2px;
-
-    &-size-changer {
-      top: @pagination-mini-options-size-changer-top;
-    }
+    margin: @pagination-other-margin;
 
     &-quick-jumper {
       height: @pagination-item-size-sm;
       line-height: @pagination-item-size-sm;
+      margin: @pagination-other-margin;
 
       input {
         .input-sm();
-
-        width: 44px;
+        width: @pagination-go-to-width;
+        height: 100%;
+        padding: @pagination-go-to-padding;
       }
+    }
+
+    .@{select-prefix-cls} {
+      height: @pagination-item-size-sm;
+      line-height: @pagination-item-size-sm;
     }
   }
 
@@ -359,33 +424,36 @@
     cursor: not-allowed;
 
     .@{pagination-prefix-cls}-item {
-      background: @disabled-bg;
-      border-color: @pagination-border-color;
+      background: @pagination-item-disabled-bg;
+      border-color: @pagination-item-disabled-bg;
       cursor: not-allowed;
 
       a {
-        color: @disabled-color;
+        color: @pagination-item-disabled-color;
         background: transparent;
         border: none;
         cursor: not-allowed;
       }
 
       &-active {
-        background: @pagination-item-disabled-bg-active;
-        border-color: transparent;
+        background: @pagination-item-disabled-bg-active !important;
+        border-color: transparent !important;
         a {
-          color: @pagination-item-disabled-color-active;
+          color: @pagination-item-disabled-color-active !important;
         }
       }
     }
 
     .@{pagination-prefix-cls}-item-link {
-      color: @disabled-color;
-      background: @disabled-bg;
-      border-color: @pagination-border-color;
+      color: @pagination-item-disabled-color;
       cursor: not-allowed;
       .@{pagination-prefix-cls}-simple& {
         background: transparent;
+        border-color: transparent;
+      }
+      .@{pagination-prefix-cls}.mini& {
+        background: transparent;
+        border-color: transparent;
       }
     }
 
@@ -394,11 +462,55 @@
     }
 
     .@{pagination-prefix-cls}-item-ellipsis {
-      opacity: 1;
+      color: @pagination-item-disabled-color;
+      background: @pagination-item-disabled-bg;
+      border-color: @pagination-item-disabled-bg;
+    }
+
+    .@{pagination-prefix-cls}-options-quick-jumper input {
+      color: @pagination-item-disabled-color;
+      background: @pagination-item-disabled-bg;
+      border-color: @pagination-item-disabled-bg;
+      user-select: none;
+      cursor: inherit;
     }
 
     .@{pagination-prefix-cls}-simple-pager {
-      color: @disabled-color;
+      color: @pagination-item-disabled-color;
+    }
+  }
+
+  // ============================ Rounded =============================
+  &&-rounded {
+    .@{pagination-prefix-cls} {
+      &-item,
+      &-item-link,
+      &-jump-next,
+      &-jump-prev,
+      &-item-ellipsis,
+      &-prev,
+      &-next,
+      &-begin,
+      &-last {
+        border-radius: 50%;
+      }
+    }
+  }
+  
+  // ============================ Outline =============================
+  &&-outline {
+    .@{pagination-prefix-cls} {
+      &-item {
+        &-active {
+          &,
+          &:focus,
+          &:hover {
+            background: @pagination-item-outline-bg-active;
+            color: @pagination-item-outline-color-active;
+            border-color: @pagination-item-outline-color-active;
+          }
+        }
+      }
     }
   }
 }

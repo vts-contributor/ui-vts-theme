@@ -159,3 +159,19 @@
     }
   }
 }
+
+.formLabelSize(@suffix, @control-height) {
+  &-@{suffix} {
+    .@{form-item-prefix-cls}-label {
+      height: @control-height;
+      line-height: @control-height;
+    }
+  }
+
+  &-vertical&-@{suffix} {
+    .@{form-item-prefix-cls}-label {
+      height: unset;
+      line-height: unset;
+    }
+  }
+}
