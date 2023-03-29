@@ -44,7 +44,7 @@
       // ========================= Nest Table ===========================
       .@{table-prefix-cls}-wrapper:only-child {
         .@{table-prefix-cls}.@{table-prefix-cls}-rtl {
-          margin: -@table-padding-vertical (@table-padding-horizontal + ceil(@font-size-sm * 1.4)) -@table-padding-vertical -@table-padding-horizontal;
+          margin: -@table-padding-vertical-cell-md (@table-padding-horizontal-cell-md + ceil(@font-size-sm * 1.4)) -@table-padding-vertical-cell-md -@table-padding-horizontal-cell-md;
         }
       }
     }
@@ -80,7 +80,7 @@
   // ============================ Filter ============================
   &-filter-column-title {
     .@{table-wrapepr-rtl-cls} & {
-      padding: @table-padding-vertical @table-padding-horizontal @table-padding-vertical 2.3em;
+      padding: @table-padding-vertical-cell-md @table-padding-horizontal-cell-md @table-padding-vertical-cell-md 2.3em;
     }
   }
 

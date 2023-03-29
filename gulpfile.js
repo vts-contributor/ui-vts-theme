@@ -44,6 +44,7 @@ function generateTheme() {
     `
 
     return src('src/style/themes/*.less', {base: './'})
+        .pipe(gulpFilter(file => file.basename !== 'base.less'))
         .pipe(gulpTap((file) => {
             const withoutExt = file.basename.replace(file.extname, '')
             const theme = withoutExt
@@ -79,7 +80,10 @@ function compileTheme(cb) {
                         paths: [file.dirname]
                     }
                 )
-                fs.writeFileSync(path.join(outDir, file.basename.replace('.less', '.css')), data.css)
+
+                // Fix fonts path
+                const css  = data.css.replace(/url\(\.\//g, `url(./fonts/`)
+                fs.writeFileSync(path.join(outDir, file.basename.replace('.less', '.css')), css)
             } catch (e) {
                 console.log(e)
                 throw e
@@ -88,7 +92,7 @@ function compileTheme(cb) {
 }
 
 function copyStyles() {
-    return src('src/**/*.less').pipe(dest(outDir))
+    return src(['src/**/*.less', 'src/**/*.woff', 'src/**/*.woff2']).pipe(dest(outDir))
 }
 
 task('extract', series(

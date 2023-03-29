@@ -1,0 +1,181 @@
+@import '../../../style/mixins/index';
+
+@prolayout-prefix-cls: ~'@{vts-prefix}-prolayout';
+
+.@{prolayout-prefix-cls} {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  /* fix firefox can't set height smaller than content on flex item */
+  min-height: 0;
+  background: @layout-body-background;
+  min-width: @prolayout-minwidth;
+
+  &,
+  * {
+    box-sizing: border-box;
+  }
+
+  .cursor-pointer:hover {
+    cursor: pointer;
+  }
+
+  &&-has-sider {
+    flex-direction: row;
+
+    > .@{prolayout-prefix-cls},
+    > .@{prolayout-prefix-cls}-content {
+      width: 0; // https://segmentfault.com/a/1190000019498300
+    }
+  }
+
+  &-header,
+  &-footer {
+    flex: 0 0 auto;
+  }
+
+  &-header {
+    height: @layout-header-height;
+    color: @prolayout-header-text-color;
+    line-height: @layout-header-height;
+    background: @prolayout-header-background;
+
+    // modify menu inside header
+    .vts-menu-horizontal .vts-menu-item, .vts-menu-horizontal .vts-menu-submenu {
+      margin-top: 0;
+      background-color: @prolayout-header-background;
+    }
+
+    .vts-menu-submenu-title {
+      padding: 0 20px;
+    }
+
+    .vts-menu {
+      background-color: @prolayout-header-background;
+      display: flex;
+      align-items: center;
+    }
+
+    .vts-menu-horizontal {
+      border-bottom: 0;
+    }
+
+    .username, .subname {
+      line-height: 20.8px;
+    }
+
+    .username {
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .subname {
+      font-size: 12px;
+    }
+
+    .header-main {
+      padding-right: 24px;
+    }
+  }
+
+  &-footer {
+    padding: @layout-footer-padding;
+    color: @prolayout-footer-text-color;
+    font-size: @font-size-base;
+    background: @prolayout-footer-background;
+  }
+
+  &-content {
+    flex: auto;
+    /* fix firefox can't set height smaller than content on flex item */
+    min-height: 0;
+    padding: 24px;
+  }
+
+  &-sider {
+    position: relative;
+
+    /* fix firefox can't set width smaller than content on flex item */
+    min-width: 0;
+    background: @prolayout-sider-background;
+    transition: all 0.2s;
+
+    &-children {
+      height: 100%;
+      margin-top: -0.1px;
+      // Hack for fixing margin collaspe bug
+      // https://github.com/ant-design-git/ant-design-git/issues/7967
+      // solution from https://stackoverflow.com/a/33132624/3040605
+      padding-top: 0.1px;
+    }
+
+    &-has-trigger {
+      padding-bottom: @layout-trigger-height;
+    }
+
+    &-right {
+      order: 1;
+    }
+
+    &-trigger {
+      position: fixed;
+      bottom: 0;
+      z-index: 1;
+      height: @layout-trigger-height;
+      color: @layout-trigger-color;
+      line-height: @layout-trigger-height;
+      text-align: center;
+      background: @prolayout-trigger-background;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    &-zero-width {
+      > * {
+        overflow: hidden;
+      }
+
+      &-trigger {
+        position: absolute;
+        top: @layout-header-height;
+        right: -@layout-zero-trigger-width;
+        z-index: 1;
+        width: @layout-zero-trigger-width;
+        height: @layout-zero-trigger-height;
+        color: @layout-trigger-color;
+        font-size: (@layout-zero-trigger-width / 2);
+        line-height: @layout-zero-trigger-height;
+        text-align: center;
+        background: @prolayout-sider-background;
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          transition: all 0.3s;
+          content: '';
+        }
+
+        &:hover::after {
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        &-right {
+          left: -@layout-zero-trigger-width;
+          border-radius: @border-radius-base 0 0 @border-radius-base;
+        }
+      }
+    }
+  }
+}
+
+@import './light';
+@import './rtl';
+@import './drawer.less';
+
