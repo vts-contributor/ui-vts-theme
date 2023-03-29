@@ -1,6 +1,7 @@
 @import '../../../style/mixins/index';
 @import './size';
 @import './bordered';
+@import (reference) '../../typography/style/index';
 
 @table-prefix-cls: ~'@{vts-prefix}-table';
 @dropdown-prefix-cls: ~'@{vts-prefix}-dropdown';
@@ -67,6 +68,10 @@
         text-overflow: ellipsis;
       }
     }
+  }
+
+  &-cell-nowrap {
+    .nowrap();
   }
 
   // ============================ Title =============================
@@ -228,6 +233,7 @@
     align-items: center;
     padding: @table-padding-vertical-cell-md @table-padding-horizontal-cell-md;
     width: 100%;
+    user-select: none;
   }
 
   &-column-sorter {

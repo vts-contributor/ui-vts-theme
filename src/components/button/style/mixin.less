@@ -309,9 +309,8 @@
 
 // link button style
 .btn-link(@btnClassName: btn) {
-  &.@{btnClassName} {
-    .button-variant-link(@btn-link-color);
-  }
+  .button-focus-padding(transparent);
+  .button-variant-link(@btn-link-color);
   box-shadow: none;
   padding: 0 4px;
   margin: 0 -4px; 
@@ -360,9 +359,8 @@
 
 // text button style
 .btn-text(@btnClassName: btn) {
-  &.@{btnClassName} {
-    .button-variant-link(@btn-text-color);
-  }
+  .button-focus-padding(transparent);
+  .button-variant-link(@btn-text-color);
   box-shadow: none;
   padding: 0 4px;
   margin: 0 -4px; 
@@ -370,13 +368,15 @@
   width: unset;
   font-weight: @btn-text-font-weight;
 
+  > span,
+  > .vtsicon {
+    color: inherit
+  }
+
   &:hover,
-  &.@{btnClassName}:hover, 
-  & > span:hover {
-    &, span {
-      color: @btn-text-hover-color;
-      box-shadow: none;
-    }
+  &.@{btnClassName}:hover {
+    color: @btn-text-hover-color;
+    box-shadow: none;
   }
   &:focus, &:focus-within, & > span:focus, & > span:focus-within {
     &, span {
