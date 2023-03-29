@@ -1,16 +1,19 @@
 @import './index';
 
-.table-size(@size, @padding-vertical, @padding-horizontal, @font-size) {
+.table-size(@size, @padding-vertical-header, @padding-horizontal-header, @padding-vertical-cell, @padding-horizontal-cell, @font-size) {
   .@{table-prefix-cls}.@{table-prefix-cls}-@{size} {
     font-size: @font-size;
 
+    .@{table-prefix-cls}-thead > tr > th {
+      padding: @padding-vertical-header @padding-horizontal-header;
+    }
+
     .@{table-prefix-cls}-title,
     .@{table-prefix-cls}-footer,
-    .@{table-prefix-cls}-thead > tr > th,
     .@{table-prefix-cls}-tbody > tr > td,
     tfoot > tr > th,
     tfoot > tr > td {
-      padding: @padding-vertical @padding-horizontal;
+      padding: @padding-vertical-cell @padding-horizontal-cell;
     }
 
     .@{table-prefix-cls}-thead {
@@ -19,27 +22,27 @@
       }
 
       .@{table-prefix-cls}-filter-column {
-        margin: -@padding-vertical -@padding-horizontal;
+        margin: -@padding-vertical-cell -@padding-horizontal-cell;
       }
 
       .@{table-prefix-cls}-filter-column-title {
-        padding: @padding-vertical 2.3em @padding-vertical @padding-horizontal;
+        padding: @padding-vertical-cell 2.3em @padding-vertical-cell @padding-horizontal-cell;
       }
 
       .@{table-prefix-cls}-column-sorters {
-        padding: @padding-vertical @padding-horizontal;
+        padding: @padding-vertical-cell @padding-horizontal-cell;
       }
     }
 
     .@{table-prefix-cls}-expanded-row-fixed {
-      margin: -@padding-vertical -@padding-horizontal;
+      margin: -@padding-vertical-cell -@padding-horizontal-cell;
     }
 
     .@{table-prefix-cls}-tbody {
       // ========================= Nest Table ===========================
       .@{table-prefix-cls}-wrapper:only-child {
         .@{table-prefix-cls} {
-          margin: -@padding-vertical -@padding-horizontal -@padding-vertical (@padding-horizontal +
+          margin: -@padding-vertical-cell -@padding-horizontal-cell -@padding-vertical-cell (@padding-horizontal-cell +
                 ceil((@font-size-sm * 1.4)));
         }
       }
@@ -47,22 +50,5 @@
   }
 }
 
-// ================================================================
-// =                            Middle                            =
-// ================================================================
-.table-size(~'middle', @table-padding-vertical-md, @table-padding-horizontal-md, @table-font-size-md);
-
-// ================================================================
-// =                            Small                             =
-// ================================================================
-.table-size(~'small', @table-padding-vertical-sm, @table-padding-horizontal-sm, @table-font-size-sm);
-
-.@{table-prefix-cls}-small {
-  .@{table-prefix-cls}-thead > tr > th {
-    background-color: @table-header-bg-sm;
-  }
-  .@{table-prefix-cls}-selection-column {
-    width: 46px;
-    min-width: 46px;
-  }
-}
+.table-size(~'lg', @table-padding-vertical-header-lg, @table-padding-horizontal-header-lg, @table-padding-vertical-cell-lg, @table-padding-horizontal-cell-lg, @table-font-size-lg);
+.table-size(~'sm', @table-padding-vertical-header-sm, @table-padding-horizontal-header-sm, @table-padding-vertical-cell-sm, @table-padding-horizontal-cell-sm, @table-font-size-sm);
