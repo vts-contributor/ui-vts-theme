@@ -2,7 +2,7 @@
 
 .antCheckboxFn(@checkbox-prefix-cls: ~'@{vts-prefix}-checkbox') {
   @checkbox-inner-prefix-cls: ~'@{checkbox-prefix-cls}-inner';
-  // 一般状态
+
   .@{checkbox-prefix-cls} {
     .reset-component();
 
@@ -53,7 +53,7 @@
       height: @checkbox-size;
       direction: ltr;
       background-color: @checkbox-check-bg;
-      border: @checkbox-border-width @border-style-base @border-color-base;
+      border: @checkbox-border-width @border-style-base @checkbox-border-color;
       border-radius: @border-radius-base;
       // Fix IE checked style
       // https://github.com/ant-design-git/ant-design-git/issues/12597
@@ -154,7 +154,8 @@
 
     font-size: inherit;
     display: inline-block;
-    line-height: unset;
+    line-height: @checkbox-size;
+    height: @checkbox-size;
     cursor: pointer;
     &.@{checkbox-prefix-cls}-wrapper-disabled {
       cursor: not-allowed;
@@ -185,11 +186,10 @@
     }
   }
 
-  // 半选状态
   .@{checkbox-prefix-cls}-indeterminate {
     .@{checkbox-inner-prefix-cls} {
       background-color: @checkbox-check-bg;
-      border-color: @border-color-base;
+      border-color: @checkbox-border-color;
     }
     .@{checkbox-inner-prefix-cls}::after {
       @indeterminate-width: @checkbox-size - 8px;

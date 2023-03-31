@@ -79,7 +79,7 @@ cdk-virtual-scroll-viewport.vts-table-body {
       // ========================== Expandable ==========================
       > table > tbody > tr > td {
         > .@{table-prefix-cls}-expanded-row-fixed {
-          margin: -@table-padding-vertical (-@table-padding-horizontal - @border-width-base);
+          margin: -@table-padding-vertical-cell-md (-@table-padding-horizontal-cell-md - @border-width-base);
 
           &::after {
             position: absolute;
@@ -108,24 +108,36 @@ cdk-virtual-scroll-viewport.vts-table-body {
   }
 
   // Size related
-  &.@{table-prefix-cls}-middle {
+  &.@{table-prefix-cls}-lg {
     > .@{table-prefix-cls}-container {
       > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper {
         > table > tbody > tr > td {
           > .@{table-prefix-cls}-expanded-row-fixed {
-            margin: -@table-padding-vertical-md (-@table-padding-horizontal-md - @border-width-base);
+            margin: -@table-padding-vertical-cell-lg (-@table-padding-horizontal-cell-lg - @border-width-base);
           }
         }
       }
     }
   }
 
-  &.@{table-prefix-cls}-small {
+  &.@{table-prefix-cls}-md {
     > .@{table-prefix-cls}-container {
       > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper {
         > table > tbody > tr > td {
           > .@{table-prefix-cls}-expanded-row-fixed {
-            margin: -@table-padding-vertical-sm (-@table-padding-horizontal-sm - @border-width-base);
+            margin: -@table-padding-vertical-cell-lg (-@table-padding-horizontal-cell-lg - @border-width-base);
+          }
+        }
+      }
+    }
+  }
+
+  &.@{table-prefix-cls}-sm {
+    > .@{table-prefix-cls}-container {
+      > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper {
+        > table > tbody > tr > td {
+          > .@{table-prefix-cls}-expanded-row-fixed {
+            margin: -@table-padding-vertical-cell-sm (-@table-padding-horizontal-cell-sm - @border-width-base);
           }
         }
       }
