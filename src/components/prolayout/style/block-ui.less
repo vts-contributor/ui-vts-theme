@@ -1,0 +1,46 @@
+@prolayout-block-ui: ~"@{vts-prefix}-block-ui";
+
+.@{prolayout-block-ui} {
+  &-container {
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+    background-color: white;
+    font-size: xx-large;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    background: #1f2f3e;
+    min-height: 100vh;
+    color: white;
+  }
+
+  .w-100 {
+    width: 100%;
+  }
+
+  .hour-circle {
+    width: 500px;
+    height: 700px;
+    background: #26394a;
+    border-radius: 0 500px 500px 0;
+    text-align: center;
+    margin-left: -106px;
+    font-size: 120px;
+    align-items: center;
+    display: grid;
+  }
+
+  .minute-circle {
+    width: 500px;
+    height: 700px;
+    background: #26394a;
+    border-radius: 500px 0 0 500px;
+    text-align: center;
+    margin-right: -106px;
+    font-size: 120px;
+    align-items: center;
+    display: grid;
+  }
+}
