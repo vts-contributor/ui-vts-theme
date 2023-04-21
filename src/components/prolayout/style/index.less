@@ -37,9 +37,16 @@
 
   &-header {
     height: @layout-header-height;
-    color: @prolayout-header-text-color;
     line-height: @layout-header-height;
     background: @prolayout-header-background;
+
+    &-wrapper {
+      height: @layout-header-height;
+    }
+
+    .btn-toggle-sider {
+      padding: 0 23px;
+    }
 
     // modify menu inside header
     .vts-menu-horizontal .vts-menu-item, .vts-menu-horizontal .vts-menu-submenu {
@@ -72,16 +79,13 @@
 
     .subname {
       font-size: 12px;
-    }
-
-    .header-main {
-      padding-right: 24px;
+      color: #73777A;
     }
 
     .logo-header {
       width: 120px;
       height: 46px;
-      margin: 5px 28px 0 24px;
+      margin: 5px 36px 0 24px;
       float: left;
       background-repeat: no-repeat;
       background-size: contain;
@@ -89,7 +93,7 @@
 
     .title-container {
       display: flex;
-      padding-left: 24px;      
+      padding-left: 16px;      
     }
 
     .icon-utils-container {
@@ -97,8 +101,8 @@
     }
 
     .icons-utils {
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
     }
 
     .notification-icon {
@@ -109,11 +113,20 @@
     }
 
     i {
-      font-size: 16px;
+      font-size: 18px;
+      color: #44494D;
     }
 
     .vts-badge-multiple-words {
       padding: 0 4px;
+    }
+
+    .avatar-main {
+      padding: 0 10px;
+    }
+
+    .logo-fixed-header {
+      background-color: #192E35;
     }
   }
 
@@ -128,7 +141,10 @@
     flex: auto;
     /* fix firefox can't set height smaller than content on flex item */
     min-height: 0;
-    padding: 12px;
+    background-color: #F0F0F0;
+    .breadcrumb-container {
+      padding: 12px;
+    }
   }
 
   &-sider {
