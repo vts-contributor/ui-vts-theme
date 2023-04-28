@@ -128,6 +128,14 @@
     .logo-fixed-header {
       background-color: #192E35;
     }
+
+    .avatar-user {
+      width: 40px;
+      height: 40px;
+    }
+    i.no-avatar {
+      font-size: 40px;
+    }
   }
 
   &-footer {
@@ -216,16 +224,20 @@
           transition: all 0.3s;
           content: '';
         }
-
+        
         &:hover::after {
           background: rgba(255, 255, 255, 0.1);
         }
-
+        
         &-right {
           left: -@layout-zero-trigger-width;
           border-radius: @border-radius-base 0 0 @border-radius-base;
         }
       }
+    }
+      
+    .vts-menu-submenu-arrow {
+      right: 4px
     }
   }
 }
