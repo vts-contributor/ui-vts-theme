@@ -5,9 +5,10 @@
 @tree-select-prefix-cls: ~'@{vts-prefix}-tree-select';
 @select-tree-prefix-cls: ~'@{vts-prefix}-select-tree';
 
-.antCheckboxFn(@checkbox-prefix-cls: ~'@{select-tree-prefix-cls}-checkbox');
+.vtsCheckboxFn(@checkbox-prefix-cls: ~'@{select-tree-prefix-cls}-checkbox');
 
 .@{tree-select-prefix-cls} {
+
   // ======================= Dropdown =======================
   &-dropdown {
     padding: @padding-xs (@padding-xs / 2) 0;
@@ -15,6 +16,7 @@
     &-rtl {
       direction: rtl;
     }
+
     // ======================== Tree ========================
     .@{select-tree-prefix-cls} {
       border-radius: 0;
@@ -35,7 +37,7 @@
 }
 
 .@{select-tree-prefix-cls} {
-  .antTreeFn(@select-tree-prefix-cls);
+  .vtsTreeFn(@select-tree-prefix-cls);
 
   // change switcher icon rotation in rtl direction
   & &-switcher {

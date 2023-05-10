@@ -1,3 +1,5 @@
+@icon-prefix-cls: ~'@{vts-prefix}-icon';
+
 .iconfont-mixin() {
   display: inline-block;
   color: @icon-color;
@@ -10,7 +12,26 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  > * {
+  &.@{icon-prefix-cls}-type {
+    font-size: 1em;
+    height: 1em;
+    width: 1em;
+
+    .custom-size(@type, @extra) {
+      &-@{type} {
+        font-size: calc(1em + @extra);
+        height: 1em;
+        width: calc(1em + @extra);
+        margin-right: -@extra;
+        margin-left: -@extra;
+        vertical-align: -@extra;
+      }
+    }
+
+    .custom-size(antd, 4px);
+  }
+
+  >* {
     line-height: 1;
   }
 

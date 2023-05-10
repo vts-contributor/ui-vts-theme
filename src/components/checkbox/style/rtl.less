@@ -1,6 +1,6 @@
 @import '../../../style/mixins/index';
 
-.antCheckboxFn(@checkbox-prefix-cls: ~'@{vts-prefix}-checkbox') {
+.vtsCheckboxFn(@checkbox-prefix-cls: ~'@{vts-prefix}-checkbox') {
   .@{checkbox-prefix-cls}-rtl {
     direction: rtl;
   }
@@ -11,13 +11,15 @@
         margin-right: 0;
         margin-left: @checkbox-group-item-margin-right;
       }
+
       &:last-child {
         .@{checkbox-prefix-cls}-group-rtl & {
           margin-left: 0 !important;
         }
       }
     }
-    &-item + &-item {
+
+    &-item+&-item {
       .@{checkbox-prefix-cls}-group-rtl & {
         margin-left: @checkbox-group-item-margin-right;
       }

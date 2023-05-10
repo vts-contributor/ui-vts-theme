@@ -9,7 +9,7 @@
   border-radius: @border-radius-base;
   outline: none;
 
-  > div {
+  >div {
     display: flex;
     flex-direction: column;
     // TODO: this is a useless wrapper, and we need to remove it in rc-calendar
@@ -32,6 +32,7 @@
 
 .@{calendar-prefix-cls}-year-panel-footer {
   border-top: @border-width-base @border-style-base @border-color-split;
+
   .@{calendar-prefix-cls}-footer-extra {
     padding: 0 12px;
   }
@@ -61,7 +62,7 @@
   transition: background 0.3s ease;
 
   &:hover {
-    background: @item-hover-bg;
+    background: @picker-bg-hover;
     cursor: pointer;
   }
 }

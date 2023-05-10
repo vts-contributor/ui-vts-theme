@@ -285,6 +285,7 @@
 @disabled-color-dark: fade(#fff, 35%);
 
 // Transition
+@transition-duration-quick: 0.15s;
 @transition-duration: 0.3s;
 @transition-function: ease-out;
 
@@ -295,13 +296,13 @@
 @shadow-1-up: 0 -6px 16px -8px rgba(0, 0, 0, 0.08), 0 -9px 28px 0 rgba(0, 0, 0, 0.05),
   0 -12px 48px 16px rgba(0, 0, 0, 0.03);
 @shadow-1-down: 0 6px 16px -8px rgba(0, 0, 0, 0.08), 0 9px 28px 0 rgba(0, 0, 0, 0.05),
-0 12px 48px 16px rgba(0, 0, 0, 0.03);
+  0 12px 48px 16px rgba(0, 0, 0, 0.03);
 @shadow-1-left: -6px 0 16px -8px rgba(0, 0, 0, 0.08), -9px 0 28px 0 rgba(0, 0, 0, 0.05),
--12px 0 48px 16px rgba(0, 0, 0, 0.03);
+  -12px 0 48px 16px rgba(0, 0, 0, 0.03);
 @shadow-1-right: 6px 0 16px -8px rgba(0, 0, 0, 0.08), 9px 0 28px 0 rgba(0, 0, 0, 0.05),
-12px 0 48px 16px rgba(0, 0, 0, 0.03);
+  12px 0 48px 16px rgba(0, 0, 0, 0.03);
 @shadow-2: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  0 9px 28px 8px rgba(0, 0, 0, 0.05);
 
 // Buttons
 @btn-font-weight: 500;
@@ -1130,9 +1131,7 @@
 @tabs-card-head-background: @background-color-light;
 @tabs-card-height: 40px;
 @tabs-card-active-color: @primary-color;
-@tabs-card-horizontal-padding: (
-    (@tabs-card-height - floor(@font-size-base * @line-height-base)) / 2
-  ) - @border-width-base @padding-md;
+@tabs-card-horizontal-padding: ((@tabs-card-height - floor(@font-size-base * @line-height-base)) / 2) - @border-width-base @padding-md;
 @tabs-card-horizontal-padding-sm: 6px @padding-md;
 @tabs-card-horizontal-padding-lg: 7px @padding-md 6px;
 @tabs-title-font-size: @font-size-base;
@@ -1285,13 +1284,24 @@
 
 // Tree
 // ---
-@tree-bg: @component-background;
-@tree-title-height: 24px;
-@tree-child-padding: 18px;
-@tree-directory-selected-color: #fff;
-@tree-directory-selected-bg: @primary-color;
-@tree-node-hover-bg: @item-hover-bg;
-@tree-node-selected-bg: @primary-2;
+
+@tree-node-item-size: @checkbox-size;
+@tree-node-item-spacing: 8px;
+@tree-node-height-sm: 32px;
+@tree-node-height-md: 40px;
+@tree-node-height-lg: 48px;
+@tree-node-font-size-sm: 14px;
+@tree-node-font-size-md: 16px;
+@tree-node-font-size-lg: 18px;
+@tree-node-line-height: 1.5;
+@tree-node-switcher-color: @grey-1;
+@tree-node-hover-bg: @ilus-grey-7;
+@tree-node-selected-bg: @func-red-6;
+@tree-node-focused-shadow: inset 0px 0px 1px 1px @black-1;
+@tree-node-line-width: 0.5px;
+@tree-node-line-color: @grey-4;
+@tree-node-line-horizontal-width: 8px;
+@tree-node-line-horizontal-minus: 4px;
 
 // Accordion
 // ---
