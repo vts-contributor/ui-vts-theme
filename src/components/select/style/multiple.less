@@ -3,11 +3,8 @@
 @select-overflow-prefix-cls: ~'@{select-prefix-cls}-selection-overflow';
 @select-border-width: 1px;
 
-@select-multiple-padding: max(
-  @input-padding-vertical-md - @select-border-width -
-    @select-multiple-item-spacing-half,
-  0
-);
+@select-multiple-padding: max(@input-padding-vertical-md - @select-border-width - @select-multiple-item-spacing-half,
+    0);
 
 /**
  * Do not merge `height` & `line-height` under style with `selection` & `search`,
@@ -30,6 +27,7 @@
 
 .@{select-prefix-cls} {
   &-multiple {
+
     // ========================= Selector =========================
     .@{select-prefix-cls}-selector {
       display: flex;
@@ -99,26 +97,26 @@
       &-remove {
         .iconfont-mixin();
         display: inline-flex;
-        color: @control-clear-icon-color-default;
+        color: @control-suffix-icon-color;
         font-weight: bold;
         font-size: 16px;
         align-items: center;
         line-height: inherit;
         cursor: pointer;
 
-        > .@{iconfont-css-prefix} {
+        >.@{iconfont-css-prefix} {
           vertical-align: -0.2em;
           line-height: 0.1;
         }
 
         &:hover {
-          color: @control-clear-icon-color-hover;
+          color: @control-suffix-icon-hover-color;
         }
       }
     }
 
     // ========================== Input ==========================
-    .@{select-overflow-prefix-cls}-item + .@{select-overflow-prefix-cls}-item {
+    .@{select-overflow-prefix-cls}-item+.@{select-overflow-prefix-cls}-item {
       .@{select-prefix-cls}-selection-search {
         margin-inline-start: 0;
       }
@@ -230,8 +228,8 @@
   @font-size: ~'input-font-size-@{suffix}';
 
   @select-selection-height-var: @@control-height - 2 * @@item-padding - @border-width-base * 2;
-  @count-right: @@select-clear-right + 8px + @@suffix-font-size;
-  
+  @count-right: @@select-clear-right + @@suffix-font-size + 8px;
+
   &.@{merged-cls} {
     &.@{select-prefix-cls} .@{select-prefix-cls}-selector {
       padding-left: @@item-padding;

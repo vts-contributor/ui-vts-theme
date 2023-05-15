@@ -4,15 +4,15 @@
 @tree-node-prefix-cls: ~'@{tree-prefix-cls}-treenode';
 @select-tree-prefix-cls: ~'@{vts-prefix}-select-tree';
 @tree-motion: ~'@{vts-prefix}-motion-collapse';
-@tree-node-padding: (@padding-xs / 2);
-@tree-node-hightlight-color: @volcano-7;
 
-.antTreeSwitcherIcon(@type: 'tree-default-open-icon') {
+.vtsTreeSwitcherIcon(@type: 'tree-default-open-icon') {
+
   .@{tree-prefix-cls}-switcher-icon,
   .@{select-tree-prefix-cls}-switcher-icon {
     display: inline-block;
-    font-size: 10px;
+    font-size: 12px;
     vertical-align: baseline;
+
     svg {
       transition: transform 0.3s;
     }
@@ -28,6 +28,7 @@
     background-color: @primary-color;
     border-radius: 1px;
     pointer-events: none;
+
     &::after {
       position: absolute;
       top: -3px;
@@ -42,233 +43,271 @@
   }
 }
 
-.antTreeFn(@custom-tree-prefix-cls) {
+.vtsTreeFn(@custom-tree-prefix-cls) {
   @custom-tree-node-prefix-cls: ~'@{custom-tree-prefix-cls}-treenode';
-  .reset-component();
-  background: @tree-bg;
-  border-radius: @border-radius-base;
-  transition: background-color 0.3s;
 
-  &-focused:not(:hover):not(&-active-focused) {
-    background: @primary-1;
-  }
+  .@{custom-tree-prefix-cls} {
+    .reset-component();
+    color: @tree-color;
+    transition: background-color 0.3s;
 
-  // =================== Virtual List ===================
-  &-list-holder-inner {
-    align-items: flex-start;
-  }
-
-  &.@{custom-tree-prefix-cls}-block-node {
-    .@{custom-tree-prefix-cls}-list-holder-inner {
-      align-items: stretch;
-
-      // >>> Title
-      .@{custom-tree-prefix-cls}-node-content-wrapper {
-        flex: auto;
-      }
+    // =================== Virtual List ===================
+    &-list-holder-inner {
+      align-items: flex-start;
     }
-  }
 
-  // ===================== TreeNode =====================
-  .@{custom-tree-node-prefix-cls} {
-    display: flex;
-    align-items: flex-start;
-    padding: 0 0 @tree-node-padding 0;
-    outline: none;
-    // Disabled
-    &-disabled {
-      // >>> Title
-      .@{custom-tree-prefix-cls}-node-content-wrapper {
-        color: @disabled-color;
+    // ===================== TreeNode =====================
+    .@{custom-tree-node-prefix-cls} {
+      display: flex;
+      width: 100%;
+      align-items: flex-start;
+      outline: none;
+      line-height: @tree-node-line-height;
+      cursor: pointer;
+      transition: all @transition-duration-quick @transition-function;
+      user-select: none;
+      padding-left: @tree-node-item-spacing;
+
+      &:hover:not(&-selected) {
+        background: @tree-node-hover-bg;
+      }
+
+      &:focus,
+      &:focus-visible {
+        box-shadow: @tree-node-focused-shadow;
+      }
+
+      &-selected {
+        background: @tree-node-selected-bg;
+      }
+
+      // Disabled
+      &-disabled {
+        user-select: none;
         cursor: not-allowed;
 
-        &:hover {
-          background: transparent;
+        // >>> Title
+        .@{custom-tree-prefix-cls}-node-content-wrapper {
+          color: @disabled-color;
+
+          &:hover {
+            background: transparent;
+          }
+        }
+
+        .@{custom-tree-prefix-cls}-switcher {
+          color: @disabled-color;
+          cursor: inherit;
         }
       }
     }
 
-    &-active .@{custom-tree-prefix-cls}-node-content-wrapper {
-      background: @tree-node-hover-bg;
-    }
+    // >>> Indent
+    &-indent {
+      align-self: stretch;
+      white-space: nowrap;
+      user-select: none;
 
-    &.filter-node .@{custom-tree-prefix-cls}-title {
-      color: @tree-node-hightlight-color;
-      font-weight: 500;
-    }
-  }
-
-  // >>> Indent
-  &-indent {
-    align-self: stretch;
-    white-space: nowrap;
-    user-select: none;
-
-    &-unit {
-      display: inline-block;
-      width: @tree-title-height;
-    }
-  }
-
-  // >>> Switcher
-  &-switcher {
-    .antTreeSwitcherIcon();
-    position: relative;
-    flex: none;
-    align-self: stretch;
-    width: @tree-title-height;
-    margin: 0;
-    line-height: @tree-title-height;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
-
-    &-noop {
-      cursor: default;
-    }
-
-    &_close {
-      .@{custom-tree-prefix-cls}-switcher-icon {
-        svg {
-          transform: rotate(-90deg);
-        }
-      }
-    }
-
-    &-loading-icon {
-      color: @primary-color;
-    }
-
-    &-leaf-line {
-      position: relative;
-      z-index: 1;
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-      &::before {
-        position: absolute;
-        top: 0;
-        bottom: -@tree-node-padding;
-        margin-left: -1px;
-        border-left: 1px solid @normal-color;
-        content: ' ';
-      }
-      &::after {
-        position: absolute;
-        width: @tree-title-height - 14px;
-        height: @tree-title-height - 10px;
-        margin-left: -1px;
-        border-bottom: 1px solid @normal-color;
-        content: ' ';
-      }
-    }
-  }
-
-  // >>> Checkbox
-  &-checkbox {
-    top: initial;
-    margin: ((@tree-title-height - @checkbox-size) / 2) 8px 0 0;
-  }
-
-  // >>> Title
-  & &-node-content-wrapper {
-    position: relative;
-    z-index: auto;
-    min-height: @tree-title-height;
-    margin: 0;
-    padding: 0 4px;
-    color: inherit;
-    line-height: @tree-title-height;
-    background: transparent;
-    border-radius: @border-radius-base;
-    cursor: pointer;
-    transition: all 0.3s, border 0s, line-height 0s, box-shadow 0s;
-
-    &:hover {
-      background-color: @tree-node-hover-bg;
-    }
-
-    &.@{custom-tree-prefix-cls}-node-selected {
-      background-color: @tree-node-selected-bg;
-    }
-
-    // Icon
-    .@{custom-tree-prefix-cls}-iconEle {
-      display: inline-block;
-      width: @tree-title-height;
-      height: @tree-title-height;
-      line-height: @tree-title-height;
-      text-align: center;
-      vertical-align: top;
-      &:empty {
-        display: none;
-      }
-    }
-  }
-
-  // https://github.com/ant-design-git/ant-design-git/issues/28217
-  &-unselectable &-node-content-wrapper:hover {
-    background-color: transparent;
-  }
-
-  // ==================== Draggable =====================
-  &-node-content-wrapper[draggable='true'] {
-    line-height: @tree-title-height;
-    user-select: none;
-
-    .drop-indicator();
-  }
-
-  .@{custom-tree-node-prefix-cls}.drop-container {
-    > [draggable] {
-      box-shadow: 0 0 0 2px @primary-color;
-    }
-  }
-
-  // ==================== Show Line =====================
-  &-show-line {
-    // ================ Indent lines ================
-    .@{custom-tree-prefix-cls}-indent {
       &-unit {
-        position: relative;
-        height: 100%;
+        display: inline-block;
+        width: (@tree-node-item-size + @tree-node-item-spacing);
+      }
+    }
 
-        &::before {
-          position: absolute;
-          top: 0;
-          right: (@tree-title-height / 2);
-          bottom: -@tree-node-padding;
-          border-right: 1px solid @border-color-base;
-          content: '';
+    // >>> Switcher
+    &-switcher {
+      .vtsTreeSwitcherIcon();
+      width: @tree-node-item-size;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: @tree-node-item-spacing;
+      cursor: pointer;
+      user-select: none;
+      color: @tree-node-switcher-color;
+
+      &_close {
+        .@{custom-tree-prefix-cls}-switcher-icon {
+          svg {
+            transform: rotate(-90deg);
+          }
         }
+      }
 
-        &-end {
+      &-loading-icon {
+        color: @primary-color;
+      }
+
+      &-disabled {
+        color: @disabled-color;
+      }
+    }
+
+    // >>> Checkbox
+    &-checkbox {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: @tree-node-item-spacing;
+    }
+
+    // >>> Title
+    & &-node-content-wrapper {
+      position: relative;
+      z-index: auto;
+      margin: 0;
+      padding: 0 4px;
+      color: inherit;
+      background: transparent;
+      border-radius: @border-radius-base;
+
+      // Icon
+      .@{custom-tree-prefix-cls}-custom-icon {
+        display: inline-block;
+        text-align: center;
+        margin-right: @tree-node-item-spacing;
+
+        &:empty {
+          display: none;
+        }
+      }
+    }
+
+    // https://github.com/ant-design-git/ant-design-git/issues/28217
+    &-unselectable &-node-content-wrapper:hover {
+      background-color: transparent;
+    }
+
+    // ==================== Draggable =====================
+    .drop-indicator();
+
+    .@{custom-tree-node-prefix-cls}[draggable='true'] {
+
+      &,
+      &:hover {
+        &.dragging {
+          opacity: 0.5;
+          background: @tree-node-selected-bg;
+          box-shadow: none;
+        }
+      }
+    }
+
+    // ==================== Show Line =====================
+    &-show-line {
+
+      // ================ Indent lines ================
+      .@{custom-tree-prefix-cls}-indent {
+        &-unit {
+          position: relative;
+          height: 100%;
+
+          &::before,
+          &::after {
+            content: '';
+            position: absolute;
+            background: @tree-node-line-color;
+          }
+
+          // Character "├"
+          &-end {
+            &::before {
+              top: -(@tree-node-item-size / 2);
+              bottom: 0;
+              left: (@tree-node-item-size / 2);
+              width: 1px;
+            }
+
+            &::after {
+              top: 50%;
+              left: (@tree-node-item-size / 2);
+              width: calc(100% - (@tree-node-item-size / 2) - @tree-node-line-horizontal-minus);
+              height: 1px;
+            }
+          }
+
+          // Character "|"
+          &:not(&-end) {
+            &::before {
+              top: -(@tree-node-item-size / 2);
+              bottom: 0;
+              left: (@tree-node-item-size / 2);
+              width: 1px;
+            }
+          }
+        }
+      }
+
+      // Character "└"
+      .@{custom-tree-node-prefix-cls}-end .@{custom-tree-prefix-cls}-indent {
+        &-unit {
+          &-end {
+            &::before {
+              bottom: 50%;
+            }
+          }
+        }
+      }
+
+      // Hide last "|" if it is child of openable node
+      .@{custom-tree-prefix-cls}-indent {
+
+        // End of expand eliminated
+        &-unit-eliminated {
           &::before {
             display: none;
           }
         }
       }
-    }
 
-    // ============== Cover Background ==============
-    .@{custom-tree-prefix-cls}-switcher {
-      background: @component-background;
 
-      &-line-icon {
-        vertical-align: -0.225em;
+      // ============== Cover Background ==============
+      .@{custom-tree-prefix-cls}-switcher {
+        &-line-icon {
+          vertical-align: -0.225em;
+        }
       }
     }
-  }
-}
 
-.@{tree-node-prefix-cls}-leaf-last {
-  .@{tree-prefix-cls}-switcher {
-    &-leaf-line {
-      &::before {
-        top: auto !important;
-        bottom: auto !important;
-        height: @tree-title-height - 10px !important;
+    // ==================== Size =====================
+    .size(@size) {
+      @tree-node-height: 'tree-node-height-@{size}';
+      @tree-node-font-size: 'tree-node-font-size-@{size}';
+
+      &.@{custom-tree-prefix-cls}-@{size} {
+        .@{custom-tree-node-prefix-cls} {
+          min-height: @@tree-node-height;
+
+          .@{custom-tree-prefix-cls}-node-content-wrapper {
+            font-size: @@tree-node-font-size;
+            padding: ((@@tree-node-height - (@@tree-node-font-size * @tree-node-line-height)) / 2) 0;
+          }
+
+          .@{custom-tree-prefix-cls}-checkbox {
+            height: @@tree-node-height;
+            padding: ((@@tree-node-height - (@@tree-node-font-size * @tree-node-line-height)) / 2) 0;
+          }
+
+          .@{custom-tree-prefix-cls}-switcher {
+            height: @@tree-node-height;
+            padding: ((@@tree-node-height - (@@tree-node-font-size * @tree-node-line-height)) / 2) 0;
+          }
+
+          .@{custom-tree-prefix-cls}-custom-icon {
+            font-size: @@tree-node-font-size;
+
+            & when (@size=sm) {
+              font-size: @tree-node-font-size-md;
+              margin-top: -((@tree-node-font-size-md - @tree-node-font-size-sm) / 2);
+              margin-bottom: -((@tree-node-font-size-md - @tree-node-font-size-sm) / 2);
+            }
+          }
+        }
       }
     }
+
+    .size(sm);
+    .size(md);
+    .size(lg);
   }
 }

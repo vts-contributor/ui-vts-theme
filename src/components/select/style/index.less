@@ -18,28 +18,6 @@
   input {
     cursor: pointer;
   }
-
-  .@{select-prefix-cls}-show-search& {
-    cursor: text;
-
-    input {
-      cursor: auto;
-    }
-  }
-
-  // .@{select-prefix-cls}-focused:not(.@{select-prefix-cls}-disabled)& {
-  //   .active();
-  // }
-
-  // .@{select-prefix-cls}-disabled& {
-  //   color: @disabled-color;
-  //   background: @input-bg-disable;
-  //   cursor: not-allowed;
-
-  //   input {
-  //     cursor: not-allowed;
-  //   }
-  // }
 }
 
 /* Reset search input style */
@@ -68,7 +46,7 @@
   .state-for-child(~'@{select-prefix-cls}-selector');
 
   &&-disabled:not(&-customize-input) &-selector {
-    color: @input-color-disable;
+    color: @control-color-disable;
     background-color: @input-bg-disable;
     cursor: not-allowed;
     opacity: 1;
@@ -97,6 +75,7 @@
 
     // IE11 css hack. `*::-ms-backdrop,` is a must have
     @media all and (-ms-high-contrast: none) {
+
       *::-ms-backdrop,
       & {
         flex: auto;
@@ -115,6 +94,7 @@
 
     // IE11 css hack. `*::-ms-backdrop,` is a must have
     @media all and (-ms-high-contrast: none) {
+
       *::-ms-backdrop,
       & {
         flex: auto;
@@ -126,35 +106,27 @@
   &-arrow {
     .iconfont-mixin();
     position: absolute;
-    top: 54%;
+    top: 50%;
     right: @input-padding-horizontal-md;
-    width: @icon-font-size-md - 3px;
-    height: @icon-font-size-md - 3px;
-    color: @select-arrow-color;
-    font-size: @icon-font-size-md - 3px;
+    width: @icon-font-size-md;
+    height: @icon-font-size-md;
+    font-size: @icon-font-size-md;
+    color: @control-suffix-icon-color;
     line-height: 1;
     text-align: center;
-    pointer-events: none;
     transform: translateY(-50%);
     display: inline-flex;
     justify-content: center;
     align-items: center;
 
-    .@{iconfont-css-prefix} {
-      vertical-align: top;
-      transition: transform 0.3s;
-
-      > svg {
-        vertical-align: top;
-      }
-
-      &:not(.@{select-prefix-cls}-suffix) {
-        pointer-events: auto;
-      }
-    }
-
     .@{select-prefix-cls}-disabled & {
       cursor: not-allowed;
+      pointer-events: none;
+      color: @control-suffix-icon-disabled-color;
+    }
+
+    &:hover {
+      color: @control-suffix-icon-hover-color;
     }
   }
 
@@ -165,26 +137,26 @@
     right: @input-padding-horizontal-md + @icon-font-size-md;
     width: @icon-font-size-md;
     height: @icon-font-size-md;
-    color: @disabled-color;
     font-size: @icon-font-size-md;
+    color: @control-suffix-icon-color;
     z-index: 1;
     display: inline-block;
     margin-top: (-@font-size-sm / 2);
-    color: @select-arrow-color;
     font-size: @font-size-sm;
     font-style: normal;
     line-height: 1;
     text-align: center;
     text-transform: none;
-    background: @select-clear-background;
     cursor: pointer;
     transition: color 0.3s ease, opacity 0.15s ease;
     text-rendering: auto;
+
     &::before {
       display: block;
     }
+
     &:hover {
-      color: @text-color-secondary;
+      color: @control-suffix-icon-hover-color;
     }
 
     .@{select-prefix-cls}:hover & {
@@ -214,12 +186,15 @@
     &-single.@{select-prefix-cls}-dropdown-xl {
       box-shadow: @input-box-shadow-xl;
     }
+
     &-single.@{select-prefix-cls}-dropdown-lg {
       box-shadow: @input-box-shadow-lg;
     }
+
     &-single.@{select-prefix-cls}-dropdown-md {
       box-shadow: @input-box-shadow-md;
     }
+
     &-single.@{select-prefix-cls}-dropdown-sm {
       box-shadow: @input-box-shadow-sm;
     }
@@ -322,7 +297,7 @@
       }
     }
   }
-  
+
   // Custom
   &-dropdown-single &-item-option-selected {
     border: @select-item-selected-border;

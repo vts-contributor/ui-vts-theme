@@ -42,7 +42,7 @@
 }
 
 .disabled() {
-  color: @input-color-disable;
+  color: @control-color-disable;
   background-color: @input-bg-disable;
   cursor: not-allowed;
   opacity: 1;
@@ -55,13 +55,13 @@
 .state-for-child(@child-cls) {
   &:hover .@{child-cls} {
     border-color: @input-border-hover;
-    color: @input-color-hover;
+    color: @control-color-hover;
     background: @input-bg-hover;
   }
 
   &:focus .@{child-cls}, &-focused .@{child-cls} {
     border-color: @input-border-focus;
-    color: @input-color-focus;
+    color: @control-color-focus;
     background: @input-bg-focus;
   }
 
@@ -87,7 +87,7 @@
 
   &&-disabled .@{child-cls}, &&[disabled] .@{child-cls} {
     border-color: @input-border-disable;
-    color: @input-color-disable;
+    color: @control-color-disable;
     background: @input-bg-disable;
   }
 }
@@ -95,13 +95,13 @@
 .state() {
   &:hover {
     border-color: @input-border-hover;
-    color: @input-color-hover;
+    color: @control-color-hover;
     background: @input-bg-hover;
   }
 
   &:focus, &-focused {
     border-color: @input-border-focus;
-    color: @input-color-focus;
+    color: @control-color-focus;
     background: @input-bg-focus;
   }
 
@@ -133,14 +133,14 @@
 
   // &-filled:focus {
   //   border-color: @input-border-typing;
-  //   color: @input-color-typing;
+  //   color: @control-color-typing;
   //   background: @input-bg-typing;
   //   box-shadow: none;
   // }
 
   &&-disabled, &&[disabled] {
     border-color: @input-border-disable;
-    color: @input-color-disable;
+    color: @control-color-disable;
     background: @input-bg-disable;
   }
 }
@@ -152,7 +152,7 @@
   width: 100%;
   min-width: 0;
   padding: @input-padding-vertical-md @input-padding-horizontal-md;
-  color: @input-color-default;
+  color: @control-color-default;
   font-size: @font-size-base;
   line-height: @line-height-base;
   background-color: @input-bg-default;
@@ -272,7 +272,7 @@
   &-addon {
     position: relative;
     padding: 0 @input-padding-horizontal-md;
-    color: @input-color-default;
+    color: @control-color-default;
     font-weight: normal;
     font-size: @font-size-base;
     text-align: center;

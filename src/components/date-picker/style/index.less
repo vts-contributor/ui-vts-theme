@@ -15,7 +15,7 @@
   padding: @padding-vertical @padding-horizontal;
   height: @input-height;
 
-  .@{picker-prefix-cls}-input > input {
+  .@{picker-prefix-cls}-input>input {
     font-size: @font-size;
   }
 
@@ -76,7 +76,7 @@
     align-items: center;
     width: 100%;
 
-    > input {
+    >input {
       .input();
       flex: auto;
 
@@ -102,7 +102,7 @@
     }
 
     &-placeholder {
-      > input {
+      >input {
         color: @input-placeholder-color;
       }
     }
@@ -124,7 +124,7 @@
       margin: @picker-affix-margin-lg;
     }
   }
-  
+
   &-md {
     .picker(@input-height-md, @input-padding-vertical-md, @input-padding-horizontal-md, @input-font-size-md, @icon-font-size-md);
 
@@ -132,7 +132,7 @@
       margin: @picker-affix-margin-md;
     }
   }
-  
+
   &-sm {
     .picker(@input-height-sm, @input-padding-vertical-sm, @input-padding-horizontal-sm, @input-font-size-sm, @icon-font-size-sm);
 
@@ -149,35 +149,20 @@
     cursor: pointer;
 
     &:hover {
-      color: @primary-1;
+      color: @control-suffix-icon-hover-color;
     }
 
-    > * {
+    >* {
       vertical-align: top;
     }
   }
 
   &-clear {
-    // position: absolute;
-    // top: 50%;
-    // right: 0;
-    // color: @disabled-color;
-    // line-height: 1;
-    // background: @component-background;
-    // transform: translateY(-50%);
-    // cursor: pointer;
-    // opacity: 1;
-    // transition: opacity @animation-duration-slow, color @animation-duration-slow;
-
-    // > * {
-    //   vertical-align: top;
-    // }
-
     cursor: pointer;
-    color: @control-clear-icon-color-default;
+    color: @control-suffix-icon-color;
 
     &:hover {
-      color: @control-clear-icon-color-hover;
+      color: @control-suffix-icon-hover-color;
     }
   }
 
@@ -312,7 +297,7 @@
   }
 
   // Time picker with additional style
-  &-dropdown &-panel > &-time-panel {
+  &-dropdown &-panel>&-time-panel {
     padding-top: (@padding-xs / 2);
   }
 
@@ -325,12 +310,12 @@
     text-align: left;
     list-style: none;
 
-    > li {
+    >li {
       display: inline-block;
     }
 
     // https://github.com/ant-design-git/ant-design-git/issues/23687
-    .@{picker-prefix-cls}-preset > .@{vts-prefix}-tag-blue {
+    .@{picker-prefix-cls}-preset>.@{vts-prefix}-tag-blue {
       color: @primary-color;
       background: @primary-1;
       border-color: @primary-3;

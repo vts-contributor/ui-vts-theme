@@ -1,19 +1,22 @@
 @import './index';
 
 .clear-icon-size() {
-  .@{vts-prefix}-input-sm + .@{vts-prefix}-input-suffix > & {
+  .@{vts-prefix}-input-sm+.@{vts-prefix}-input-suffix>& {
     font-size: @icon-font-size-sm;
   }
-  .@{vts-prefix}-input-md + .@{vts-prefix}-input-suffix > & {
+
+  .@{vts-prefix}-input-md+.@{vts-prefix}-input-suffix>& {
     font-size: @icon-font-size-md;
   }
-  .@{vts-prefix}-input-lg + .@{vts-prefix}-input-suffix > & {
+
+  .@{vts-prefix}-input-lg+.@{vts-prefix}-input-suffix>& {
     font-size: @icon-font-size-lg;
   }
-  .@{vts-prefix}-input-xl + .@{vts-prefix}-input-suffix > & {
+
+  .@{vts-prefix}-input-xl+.@{vts-prefix}-input-suffix>& {
     font-size: @icon-font-size-xl;
   }
-  
+
 }
 
 // ========================= Input =========================
@@ -58,18 +61,18 @@
     top: 8px;
     right: @control-padding-horizontal;
     z-index: 1;
-    color: @control-clear-icon-color-default;
+    color: @control-suffix-icon-color;
     font-size: @icon-font-size-md;
     cursor: pointer;
 
     &:hover {
-      color: @control-clear-icon-color-hover;
+      color: @control-suffix-icon-hover-color;
     }
-  
+
     &:active {
       color: @text-color;
     }
-  
+
     &-hidden {
       visibility: hidden;
     }

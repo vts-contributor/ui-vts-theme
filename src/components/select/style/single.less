@@ -3,6 +3,7 @@
 @selection-item-padding: ceil(@font-size-base * 1.25);
 
 .@{select-prefix-cls}-single {
+
   // ========================= Selector =========================
   .@{select-prefix-cls}-selector {
     display: flex;
@@ -180,8 +181,9 @@
       padding: 0 @padding-horizontal-var;
       font-size: @font-size-var;
       padding-right: @@select-clear-right + @suffix-font-size-var + 8px;
-  
-      & when (@isSingleSelect = true) {
+
+      & when (@isSingleSelect =true) {
+
         &::after,
         .@{select-prefix-cls}-selection-item,
         .@{select-prefix-cls}-selection-placeholder {
@@ -196,41 +198,43 @@
       width: @suffix-font-size-var;
       right: @@select-clear-right;
 
-      & when (@suffix = xl) {
+      & when (@suffix =xl) {
         transform: translateY(-2px);
       }
-    
-      & when (@suffix = lg) {
+
+      & when (@suffix =lg) {
         transform: translateY(-2px);
       }
     }
 
     .@{select-prefix-cls}-arrow {
+      font-size: @suffix-font-size-var;
+      height: @suffix-font-size-var;
+      width: @suffix-font-size-var;
       right: @@select-arrow-right;
 
-      & when (@suffix = xl) {
-        font-size: 10px;
+      & when (@suffix =xl) {
         height: @icon-font-size-xl;
         width: @icon-font-size-xl;
       }
-      & when (@suffix = lg) {
-        font-size: 10px;
+
+      & when (@suffix =lg) {
         height: @icon-font-size-lg;
         width: @icon-font-size-lg;
       }
-      & when (@suffix = md) {
-        font-size: 8px;
+
+      & when (@suffix =md) {
         height: @icon-font-size-md;
         width: @icon-font-size-md;
       }
-      & when (@suffix = sm) {
-        font-size: 8px;
+
+      & when (@suffix =sm) {
         height: @icon-font-size-sm;
         width: @icon-font-size-sm;
       }
     }
 
-    & when (@isSingleSelect = true) {
+    & when (@isSingleSelect =true) {
       .@{select-prefix-cls}-selection-search {
         right: @@select-clear-right + @suffix-font-size-var + 8px
       }
