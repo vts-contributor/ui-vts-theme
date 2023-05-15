@@ -211,8 +211,9 @@
 
 @control-color-placeholder: @grey-3;
 
-@control-clear-icon-color-default: @grey-3;
-@control-clear-icon-color-hover: @grey-2;
+@control-suffix-icon-color: @grey-3;
+@control-suffix-icon-hover-color: @primary-color;
+@control-suffix-icon-disabled-color: @control-color-disable;
 
 // icon
 @icon-font-size-xs: 16px;
@@ -614,13 +615,6 @@
 @input-padding-vertical-lg: @control-padding-vertical-lg;
 @input-padding-vertical-xl: @control-padding-vertical-xl;
 
-@input-color-default: @control-color-default;
-@input-color-hover: @control-color-hover;
-@input-color-focus: @control-color-focus;
-@input-color-typing: @control-color-typing;
-// @input-color-fill: @control-color-fill;
-@input-color-disable: @control-color-disable;
-
 @input-bg-default: @control-bg-default;
 @input-bg-hover: @control-bg-hover;
 @input-bg-focus: @control-bg-focus;
@@ -648,7 +642,7 @@
 @input-affix-margin-sm: 0 -8px 0 8px;
 
 
-@input-icon-color: @input-color-default;
+@input-icon-color: @control-color-default;
 @input-number-hover-border-color: @input-border-hover;
 @input-number-handler-active-bg: #f4f4f4;
 @input-number-handler-hover-bg: @primary-2;
@@ -680,7 +674,6 @@
 @select-dropdown-line-height: @dropdown-line-height;
 @select-dropdown-height: 32px;
 @select-background: @component-background;
-@select-clear-background: @select-background;
 @select-single-item-height-lg: 40px;
 @select-multiple-item-height: @control-height-md - 2 * @select-multiple-selection-padding-md - 2 * @select-border-width;
 @select-multiple-item-height-lg: @control-height-lg - 2 * @select-multiple-selection-padding-lg - 2 * @select-border-width;
@@ -700,7 +693,6 @@
 @select-multiple-selection-padding-md: 4px;
 @select-multiple-selection-padding-sm: 4px;
 
-@select-arrow-color: @grey-2;
 @select-arrow-right-xl: 16px;
 @select-arrow-right-lg: 14px;
 @select-arrow-right-md: 12px;
@@ -1220,7 +1212,7 @@
 @pagination-item-action-color: @grey-1;
 @pagination-item-action-font-size: 16px;
 
-@pagination-item-disabled-color: @input-color-disable;
+@pagination-item-disabled-color: @control-color-disable;
 @pagination-item-disabled-bg: @input-bg-disable;
 @pagination-item-disabled-color-active: @white;
 @pagination-item-disabled-bg-active: darken(@disabled-bg, 10%);
@@ -1284,7 +1276,8 @@
 
 // Tree
 // ---
-
+@tree-color: @grey-1;
+@tree-node-switcher-color: inherit;
 @tree-node-item-size: @checkbox-size;
 @tree-node-item-spacing: 8px;
 @tree-node-height-sm: 32px;
@@ -1294,7 +1287,6 @@
 @tree-node-font-size-md: 16px;
 @tree-node-font-size-lg: 18px;
 @tree-node-line-height: 1.5;
-@tree-node-switcher-color: @grey-1;
 @tree-node-hover-bg: @ilus-grey-7;
 @tree-node-selected-bg: @func-red-6;
 @tree-node-focused-shadow: inset 0px 0px 1px 1px @black-1;

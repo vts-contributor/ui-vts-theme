@@ -4,7 +4,7 @@
 @form-prefix-cls: ~'@{vts-prefix}-form';
 @form-item-prefix-cls: ~'@{form-prefix-cls}-item';
 
-.form-control-validation(@text-color: @input-color-default; @border-color: @input-border-default; @background-color: @input-bg-default) {
+.form-control-validation(@text-color: @control-color-default; @border-color: @input-border-default; @background-color: @input-bg-default) {
   .@{vts-prefix}-form-item-split {
     color: @text-color;
   }
@@ -25,7 +25,7 @@
 
     &&-disabled, &&[disabled] {
       background-color: @input-bg-disable;
-      color: @input-color-disable;
+      color: @control-color-disable;
       border-color: @input-border-disable;
   
       input:focus {
@@ -111,7 +111,7 @@
   output {
     display: block;
     padding-top: 15px;
-    color: @input-color-default;
+    color: @control-color-default;
     line-height: @line-height-base;
   }
 }

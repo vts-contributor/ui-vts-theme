@@ -48,6 +48,7 @@
 
   .@{custom-tree-prefix-cls} {
     .reset-component();
+    color: @tree-color;
     transition: background-color 0.3s;
 
     // =================== Virtual List ===================
@@ -55,20 +56,10 @@
       align-items: flex-start;
     }
 
-    &.@{custom-tree-prefix-cls}-block-node {
-      .@{custom-tree-prefix-cls}-list-holder-inner {
-        align-items: stretch;
-
-        // >>> Title
-        .@{custom-tree-prefix-cls}-node-content-wrapper {
-          flex: auto;
-        }
-      }
-    }
-
     // ===================== TreeNode =====================
     .@{custom-tree-node-prefix-cls} {
       display: flex;
+      width: 100%;
       align-items: flex-start;
       outline: none;
       line-height: @tree-node-line-height;
@@ -145,6 +136,10 @@
 
       &-loading-icon {
         color: @primary-color;
+      }
+
+      &-disabled {
+        color: @disabled-color;
       }
     }
 
@@ -255,12 +250,12 @@
       }
 
       // Hide last "|" if it is child of openable node
-      .@{custom-tree-node-prefix-cls}-end-of-expand .@{custom-tree-prefix-cls}-indent {
-        &-unit {
-          &-end-of-expand-eliminated {
-            &::before {
-              display: none;
-            }
+      .@{custom-tree-prefix-cls}-indent {
+
+        // End of expand eliminated
+        &-unit-eliminated {
+          &::before {
+            display: none;
           }
         }
       }
